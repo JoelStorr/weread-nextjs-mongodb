@@ -12,7 +12,8 @@ export default async function Login() {
           // redirect("/");
         }}
       >
-        <input type="email" placeholder="Email" />
+        <input type="email" placeholder="Email" name="email"/>
+        <input type="password" placeholder="Password" name="password"/>
         <br />
         <button type="submit">Login</button>
       </form>

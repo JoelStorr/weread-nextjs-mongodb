@@ -1,22 +1,33 @@
-'use client'
-import { signup } from "@/lib/auth";
-import {useActionState} from "react";
+import { redirect } from "next/navigation";
+import { getSession, signup, logout } from "@/lib/auth/index";
 
-
-export default function Register() {
-
-    const [state, formAction] = useActionState(signup, {error: null})
-
-
+export default async function Login() {
+  const session = await getSession();
   return (
-    <>
-        <h3>Register</h3>
-        <form >
-            <label>
-                Email
-                <input type="mail"/>
-            </label>
-        </form>
-    </>
-  )
+    <section>
+      <form
+        action={async (formData) => {
+          "use server";
+          await signup(formData);
+          // redirect("/");
+        }}
+      >
+        <input type="email" placeholder="Email" name="email" />
+        <input type="password" placeholder="Password" name="password"/>
+        <input type="text" placeholder="username" name="username" />
+        <br />
+        <button type="submit">Register</button>
+      </form>
+      <form
+        action={async () => {
+          "use server";
+          await logout();
+          redirect("/");
+        }}
+      >
+        <button type="submit">Logout</button>
+      </form>
+      <pre>{JSON.stringify(session, null, 2)}</pre>
+    </section>
+  );
 }
