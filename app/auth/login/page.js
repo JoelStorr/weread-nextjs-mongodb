@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
-import { getSession, login, logout } from "@/lib/auth/index";
+import { login, logout } from "@/lib/auth/index";
+import { getSession } from "@/lib/auth/tokenHandler";
 
 export default async function Login() {
   const session = await getSession();
