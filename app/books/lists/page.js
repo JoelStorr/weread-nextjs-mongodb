@@ -23,6 +23,7 @@ export default async function Lists() {
             List Title
             <input type="text" name="name" placeholder='Add a name'/>
         </label>
+        <button type='submit'>Add</button>
     </form>
 
     </>
