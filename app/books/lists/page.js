@@ -5,16 +5,16 @@ import React from 'react'
 export default async function Lists() {
 
 
-    const {lists} = await getLists()
+    //const {lists} = await getLists()
 
-    console.log(lists)
+    
 
 
   return (
     <>
     <div>Lists</div>
     <ul>
-        {lists.map(list => (<li key={list._id}>{list.name}</li>))}
+        {/* {lists.map(list => (<li key={list._id}>{list.name}</li>))} */}
     </ul>
     <br/>
     <h2>Make List</h2>
@@ -23,9 +23,17 @@ export default async function Lists() {
             List Title
             <input type="text" name="name" placeholder='Add a name'/>
         </label>
+        <br/>
+        <label>
+          Private List
+          <select name="private">
+            <option value="private">Private</option>
+            <option value="public">Public</option>
+          </select>
+        </label>
+        <br/>
         <button type='submit'>Add</button>
     </form>
-
     </>
   )
 }
