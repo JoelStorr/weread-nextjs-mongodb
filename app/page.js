@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { getMovies } from "./../lib/mongo/movies.js";
+import Link from "next/link";
 
 async function fetchMovies() {
   const { movies } = await getMovies();
@@ -14,11 +15,21 @@ export default async function Home() {
 
   return (
     <div>
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>{movie.name}</li>
-        ))}
-      </ul>
+      <p>
+        <Link href="/auth/login">Login</Link>
+      </p>
+      <br />
+      <p>
+        <Link href="/auth/register">Register</Link>
+      </p>
+      <br />
+      <p>
+        <Link href="/books/search">Search</Link>
+      </p>
+      <br />
+      <p>
+        <Link href="/books/lists">Lists</Link>
+      </p>
     </div>
   );
 }
