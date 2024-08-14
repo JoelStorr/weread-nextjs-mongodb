@@ -1,24 +1,47 @@
-import { makeList } from '@/lib/list'
-import { getLists } from '@/lib/mongo/list'
-import React from 'react'
+'use client'
+import { useFormState } from "react-dom";
+import { makeList, getLists } from '@/lib/list'
+import React, { useEffect, useState } from 'react'
 
-export default async function Lists() {
+
+export default function Lists() {
 
 
-    //const {lists} = await getLists()
+    const [lists, setLists] = useState([]);
+
+    const [state, formAction] = useFormState(makeList, {
+      error: null,
+      lists: [],
+    });
+
+    useEffect(()=>{
+      let load = async ()=>{
+        let listData = await getLists();
+        setLists(listData);
+      }
+
+      load();
+    }, [])
+
+    useEffect(() => {
+      let load = async () => {
+        let listData = await getLists();
+        setLists(listData);
+      };
+
+      load();
+    }, [state]);
 
     
-
-
   return (
     <>
     <div>Lists</div>
     <ul>
-        {/* {lists.map(list => (<li key={list._id}>{list.name}</li>))} */}
+        {lists.map(list => (<li key={list._id}>{list.name}</li>))}
     </ul>
     <br/>
     <h2>Make List</h2>
-    <form action={makeList}>
+    <form action={formAction}>
         <label>
             List Title
             <input type="text" name="name" placeholder='Add a name'/>
