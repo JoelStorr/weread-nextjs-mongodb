@@ -1,26 +1,25 @@
+
+
 import { redirect } from "next/navigation";
-import { login, logout } from "@/lib/auth/index";
+import { delUser, logout } from "@/lib/auth/index";
 import { getSession } from "@/lib/auth/tokenHandler";
+import Link from "next/link";
+
+
+import LoginForm from "@/components/auth/loginForm";
 
 export default async function Login() {
-  const session = await getSession();
+  
+
+const session = await getSession();
+  
+
   return (
     <section>
-      <form
-        action={async (formData) => {
-          "use server";
-          await login(formData);
-          // redirect("/");
-        }}
-      >
-        <input type="email" placeholder="Email" name="email"/>
-        <input type="password" placeholder="Password" name="password"/>
-        <br />
-        <button type="submit">Login</button>
-      </form>
+      <LoginForm />
       <form
         action={async () => {
-          "use server";
+          'use server'
           await logout();
           redirect("/");
         }}
@@ -28,6 +27,10 @@ export default async function Login() {
         <button type="submit">Logout</button>
       </form>
       <pre>{JSON.stringify(session, null, 2)}</pre>
+      <form action={delUser}>
+        <button type="submit">Delete User</button>
+      </form>
+      <p><Link href="/auth/register">Register</Link></p>
     </section>
   );
 }
