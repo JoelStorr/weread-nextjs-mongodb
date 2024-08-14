@@ -1,5 +1,6 @@
 'use client'
 
+import { addBookToList, getLists } from '@/lib/list';
 import React, { useRef,useState } from 'react'
 
 export default function BookSearch() {
@@ -8,8 +9,38 @@ export default function BookSearch() {
     const  search = useRef();
     const [searchResult, setSearchResult] =  useState([]);
     const [pageIndex, setPageIndex] = useState(0)
+    const [lists, setLists] = useState([])
+
+
+    const [clickedList, setClickedList] = useState(null);
+    const [clickedBook, setClickedBook] = useState(null);
+
+
+    function saveSelection(){
+
+      console.log(clickedList);
+      console.log(clickedBook);
+
+    }
+
+
+    function handleListClick(name){
+      setClickedList(name)
+    }
+
+    function handleBookClick(book){
+
+      console.log(book);
+
+      setClickedBook(book);
+
+    }
 
     
+    async function loadLists(){
+      const result = await getLists();
+      setLists(result)
+    }
     
     async function runBookSearch(e){
 
@@ -46,13 +77,13 @@ export default function BookSearch() {
                 id: response.items[i].id,
                 title: response.items[i].volumeInfo.title,
                 author: response.items[i].volumeInfo.authors,
-                img: null,
+                cover: null,
                 isbn: null,
                 pages: response.items[i].volumeInfo.pageCount,
               };
 
               if (response.items[i].volumeInfo.imageLinks) {
-                bookObj["img"] =
+                bookObj["cover"] =
                   response.items[i].volumeInfo.imageLinks.thumbnail;
               }
 
@@ -126,9 +157,29 @@ export default function BookSearch() {
       </form>
       <ul>
         {searchResult.map((book) => (
-          <li key={book.id}> {book.title}</li>
+          <li key={book.id} onClick={()=>handleBookClick(book)}> {book.title}</li>
         ))}
       </ul>
+
+      <br />
+
+
+
+        {searchResult.length > 0 && 
+          <>
+          
+        <button onClick={loadLists}>Load List</button>
+        <ul>
+          {lists.map(list => (
+            <li key={list.name} onClick={()=>handleListClick(list.name)}> {list.name}</li>
+          ))}
+        </ul>
+        </>
+        }
+
+        {clickedBook && clickedList && (
+          <button onClick={()=>addBookToList(clickedList, clickedBook)}>Save</button>
+        )}
     </>
   );
 }
