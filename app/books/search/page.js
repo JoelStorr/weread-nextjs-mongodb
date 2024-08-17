@@ -159,7 +159,12 @@ export default function BookSearch() {
       </form>
       <ul>
         {searchResult.map((book) => (
-          <li key={book.id} onClick={()=>handleBookClick(book)}> {book.title} {book.author}</li>
+          <li key={book.id} onClick={()=>handleBookClick(book)}> 
+          <p>
+          {book.title} - {book.author}
+          </p>
+          <img src={book.cover}/>
+          </li>
         ))}
       </ul>
 
@@ -173,7 +178,9 @@ export default function BookSearch() {
         <button onClick={loadLists}>Load List</button>
         <ul>
           {lists.map(list => (
-            <li key={list.name} onClick={()=>handleListClick(list.name)}> {list.name}</li>
+            <li key={list.name} onClick={()=>handleListClick(list.name)}> 
+              {list.name}
+            </li>
           ))}
         </ul>
         </>
