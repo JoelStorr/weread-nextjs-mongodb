@@ -46,6 +46,16 @@ export default function Lists() {
       console.log(result);
       setActiveList(result)
 
+      const convertedList = list.books.map((book) => {
+
+        book.book = result.find(b => b._id === book.bookId)
+        
+        return book
+
+      })
+
+      console.log(convertedList)
+      setActiveList(convertedList)
       //TODO: Fix bug loading books from lits
     }
 
@@ -81,15 +91,19 @@ export default function Lists() {
       <br />
       <ul>
         {activeList &&
-          activeList.map((book) => (
-            <li key={book._id}>
+          activeList.map((el) => (
+            <li key={el.book._id}>
             <p>
-            {book.title}
+            {el.book.title}
             </p>
-            {book.cover && (
-            <img src={book.cover} alt={"Book Cover"} fill/>
+            {el.book.cover && (
+            <img src={el.book.cover} alt={"Book Cover"} fill/>
             )}
-            {!book.cover && <p>No Cover</p>}
+            {!el.book.cover && <p>No Cover</p>}
+
+            <p>Current Progress: {el.progress} {el.percent && "%"}</p>
+            <p>TotalPages: {el.pages}</p>
+
             </li>
           ))}
       </ul>
