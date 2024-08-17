@@ -34,6 +34,8 @@ export default function BookSearch() {
 
       setClickedBook(book);
 
+      console.log(clickedBook);
+
     }
 
     
@@ -157,7 +159,7 @@ export default function BookSearch() {
       </form>
       <ul>
         {searchResult.map((book) => (
-          <li key={book.id} onClick={()=>handleBookClick(book)}> {book.title}</li>
+          <li key={book.id} onClick={()=>handleBookClick(book)}> {book.title} {book.author}</li>
         ))}
       </ul>
 
