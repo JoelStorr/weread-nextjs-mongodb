@@ -37,7 +37,7 @@ export default function Lists() {
     <>
     <div>Lists</div>
     <ul>
-        {lists.map(list => (<li key={list._id}>{list.name}</li>))}
+        {lists.map(list => (<li key={list.name}>{list.name}</li>))}
     </ul>
     <br/>
     <h2>Make List</h2>
