@@ -1,7 +1,8 @@
 'use client'
 import { useFormState } from "react-dom";
-import { makeList, getLists } from '@/lib/list'
+import { makeList, getLists, booksFromList } from '@/lib/list'
 import React, { useEffect, useState } from 'react'
+import Image from "next/image";
 
 
 export default function Lists() {
@@ -34,6 +35,21 @@ export default function Lists() {
     }, [state]);
 
     
+    async function onActiveList(list){
+      //setActiveList(list);
+
+      let booksIds = list.books.map(book => book.bookId);
+      
+      console.log(booksIds);
+      const result = await booksFromList(booksIds);
+
+      console.log(result);
+      setActiveList(result)
+
+      //TODO: Fix bug loading books from lits
+    }
+
+
   return (
     <>
       <h2>Make List</h2>
@@ -57,16 +73,25 @@ export default function Lists() {
       <h3>Lists</h3>
       <ul>
         {lists.map((list) => (
-          <li key={list.name} onClick={()=>setActiveList(list)}>{list.name}</li>
+          <li key={list.name} onClick={() => onActiveList(list)}>
+            {list.name}
+          </li>
         ))}
       </ul>
-      <br/>
+      <br />
       <ul>
-        {
-          activeList && activeList.books.map(book => (
-            <li key={book.bookId}>{book.bookId}</li>
-          ))
-        }
+        {activeList &&
+          activeList.map((book) => (
+            <li key={book._id}>
+            <p>
+            {book.title}
+            </p>
+            {book.cover && (
+            <img src={book.cover} alt={"Book Cover"} fill/>
+            )}
+            {!book.cover && <p>No Cover</p>}
+            </li>
+          ))}
       </ul>
     </>
   );
