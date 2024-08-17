@@ -8,6 +8,7 @@ export default function Lists() {
 
 
     const [lists, setLists] = useState([]);
+    const [activeList, setActiveList] = useState(null)
 
     const [state, formAction] = useFormState(makeList, {
       error: null,
@@ -35,18 +36,13 @@ export default function Lists() {
     
   return (
     <>
-    <div>Lists</div>
-    <ul>
-        {lists.map(list => (<li key={list.name}>{list.name}</li>))}
-    </ul>
-    <br/>
-    <h2>Make List</h2>
-    <form action={formAction}>
+      <h2>Make List</h2>
+      <form action={formAction}>
         <label>
-            List Title
-            <input type="text" name="name" placeholder='Add a name'/>
+          List Title
+          <input type="text" name="name" placeholder="Add a name" />
         </label>
-        <br/>
+        <br />
         <label>
           Private List
           <select name="private">
@@ -54,9 +50,24 @@ export default function Lists() {
             <option value="public">Public</option>
           </select>
         </label>
-        <br/>
-        <button type='submit'>Add</button>
-    </form>
+        <br />
+        <button type="submit">Add</button>
+      </form>
+      <br />
+      <h3>Lists</h3>
+      <ul>
+        {lists.map((list) => (
+          <li key={list.name} onClick={()=>setActiveList(list)}>{list.name}</li>
+        ))}
+      </ul>
+      <br/>
+      <ul>
+        {
+          activeList && activeList.books.map(book => (
+            <li key={book.bookId}>{book.bookId}</li>
+          ))
+        }
+      </ul>
     </>
-  )
+  );
 }
