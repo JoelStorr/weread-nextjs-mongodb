@@ -1,6 +1,6 @@
 'use client'
 import { useFormState } from "react-dom";
-import { makeList, getLists, booksFromList } from '@/lib/list'
+import { makeList, getLists, booksFromList, updateProgress } from '@/lib/list'
 import React, { useEffect, useState } from 'react'
 import Image from "next/image";
 
@@ -10,6 +10,7 @@ export default function Lists() {
 
     const [lists, setLists] = useState([]);
     const [activeList, setActiveList] = useState(null)
+    const [activeListBooks, setActiveListBooks] = useState(null);
 
     const [state, formAction] = useFormState(makeList, {
       error: null,
@@ -36,15 +37,12 @@ export default function Lists() {
 
     
     async function onActiveList(list){
-      //setActiveList(list);
+      setActiveList(list);
 
       let booksIds = list.books.map(book => book.bookId);
       
       console.log(booksIds);
       const result = await booksFromList(booksIds);
-
-      console.log(result);
-      setActiveList(result)
 
       const convertedList = list.books.map((book) => {
 
@@ -54,8 +52,8 @@ export default function Lists() {
 
       })
 
-      console.log(convertedList)
-      setActiveList(convertedList)
+      console.log('Converted List',convertedList)
+      setActiveListBooks(convertedList)
       //TODO: Fix bug loading books from lits
     }
 
@@ -90,8 +88,8 @@ export default function Lists() {
       </ul>
       <br />
       <ul>
-        {activeList &&
-          activeList.map((el) => (
+        {activeListBooks &&
+          activeListBooks.map((el) => (
             <li key={el.book._id}>
             <p>
             {el.book.title}
@@ -102,6 +100,17 @@ export default function Lists() {
             {!el.book.cover && <p>No Cover</p>}
 
             <p>Current Progress: {el.progress} {el.percent && "%"}</p>
+            <form action={updateProgress}>
+              <label>
+                Update Progress
+                <input type="number" name="progress" defaultValue={el.progress}/>
+              </label>
+
+              <input type="hidden" value={el.book._id} name="bookId" />
+              <input type="hidden" value={activeList.name} name="listName"/>
+
+              <button type="submit">Update</button>
+            </form>
             <p>TotalPages: {el.pages}</p>
 
             </li>
