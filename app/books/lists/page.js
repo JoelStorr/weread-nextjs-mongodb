@@ -8,7 +8,7 @@ import Image from "next/image";
 export default function Lists() {
 
 
-    const [lists, setLists] = useState([]);
+    const [lists, setLists] = useState(null);
     const [activeList, setActiveList] = useState(null)
     const [activeListBooks, setActiveListBooks] = useState(null);
 
@@ -20,7 +20,10 @@ export default function Lists() {
     useEffect(()=>{
       let load = async ()=>{
         let listData = await getLists();
-        setLists(listData);
+        console.log('Lists', listData)
+        if(listData){
+          setLists(listData);
+        }
       }
 
       load();
@@ -80,7 +83,7 @@ export default function Lists() {
       <br />
       <h3>Lists</h3>
       <ul>
-        {lists.map((list) => (
+        {lists && lists.map((list) => (
           <li key={list.name} onClick={() => onActiveList(list)}>
             {list.name}
           </li>
@@ -108,6 +111,7 @@ export default function Lists() {
 
               <input type="hidden" value={el.book._id} name="bookId" />
               <input type="hidden" value={activeList.name} name="listName"/>
+              <input type="hidden" value={el.book.pages} name="pages" />
 
               <button type="submit">Update</button>
             </form>
