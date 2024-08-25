@@ -1,0 +1,35 @@
+
+.navigation{
+  /* grid-area: sl, h, sr; */
+  grid-row: slh-start / srh-end;
+  grid-column: slh-start / srh-end;
+  background-color: blue;
+  height: 90px;
+}
+
+.navItem{
+  grid-area: h;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+
+  h3{
+    color: white;
+    font-weight: bold;
+    font-size: 37px;
+    letter-spacing: 2px;
+    font-family: LibreBaskerville;
+  }
+
+}
+
+.homepage {
+  grid-area: m;
+}

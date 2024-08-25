@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals.scss";
+import classes from './indexpage.modules.scss'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,9 +10,26 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+  console.log(classes)
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="bodywrapper">
+          <div className="navigation"></div>
+
+          <nav className="navItem">
+            <h3>WeRead</h3>
+            <ul>
+              <li>Login</li>
+              <li>Register</li>
+            </ul>
+          </nav>
+
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

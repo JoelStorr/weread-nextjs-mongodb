@@ -14,7 +14,7 @@ export default async function Home() {
   const movies = await fetchMovies();
 
   return (
-    <div>
+    <div className="homepage">
       <p>
         <Link href="/auth/login">Login</Link>
       </p>
