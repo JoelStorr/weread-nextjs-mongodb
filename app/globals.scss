@@ -4,8 +4,35 @@
   font-family: LibreBaskerville;
   src: url('../asset/Libre-Baskerville/LibreBaskerville-Regular.ttf');
   font-weight: 400;
+  font-style: normal;
 }
 
+@font-face{
+  font-family: LibreBaskerville;
+  src: url('../asset/Libre-Baskerville/LibreBaskerville-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face{
+  font-family: LibreBaskerville;
+  src: url('../asset/Libre-Baskerville/LibreBaskerville-Italic.ttf');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face{
+  font-family: Montserrat;
+  src: url('../asset//Montserrat/Montserrat-VariableFont_wght.ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url('../asset/Montserrat/Montserrat-Italic-VariableFont_wght.ttf');
+  font-style: italic;
+}
+
+$primary-dark-blue: #1E2362;
 
 * {
   box-sizing: border-box;
@@ -25,7 +52,7 @@ body {
   height: auto;
   grid-gap: 10px;
   
-  grid-template-areas: "slh h h h h h h h h h h h h srh" "sl m m m m m m m m m m m m sr";
+  grid-template-areas: "slh h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 h12 srh" "sl m m m m m m m m m m m m sr";
 }
 
 

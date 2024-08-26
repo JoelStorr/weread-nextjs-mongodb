@@ -19,10 +19,10 @@ export default function RootLayout({ children }) {
         <div className="bodywrapper">
           <div className="navigation"></div>
 
+          <h3 id="main-logo">WeRead</h3>
           <nav className="navItem">
-            <h3>WeRead</h3>
             <ul>
-              <li>Login</li>
+              <li>Log In</li>
               <li>Register</li>
             </ul>
           </nav>
