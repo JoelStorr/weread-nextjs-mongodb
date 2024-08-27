@@ -21,17 +21,23 @@ export default async function AuthPopUp({register, login}) {
             <div className="popUp">
               <div className="popUp-bg" />
               <section className="form-section">
+
+              <div className='form-header'>
+                    <h1>Log in</h1>
+                    <Link href="/" className='close-btn'>Close</Link>
+              </div>
+              <div className='form-main'>
                 <div>
-                    <h1>Register</h1>
                     <div className='image-container'>
                     <Image src={'/traveler-reading-a-book.png'} width={880 / 3} height={851 / 3} alt="Women reading a book" />
 
                     </div>
                 </div>
                 <div className='form-holder'>
-                    <Link href="/" className='close-btn'>Close</Link>
                     <LoginForm />
                 </div>
+
+              </div>
               </section>
             </div>
           </>
