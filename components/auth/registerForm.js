@@ -3,7 +3,7 @@ import { signup, logout } from "@/lib/auth/index";
 
 import { getSession } from "@/lib/auth/tokenHandler";
 
-export default async function Login() {
+export default async function RegisterForm() {
   const session = await getSession();
   return (
     <section>
@@ -16,11 +16,12 @@ export default async function Login() {
       >
         <input type="email" placeholder="Email" name="email" />
         <input type="password" placeholder="Password" name="password" />
-        <input type="text" placeholder="username" name="username" />
+        <input type="password" placeholder="Password" name="password" />
+        <input type="text" placeholder="Username" name="username" />
         <br />
         <button type="submit">Register</button>
       </form>
-      <form
+      {/* <form
         action={async () => {
           "use server";
           await logout();
@@ -28,8 +29,8 @@ export default async function Login() {
         }}
       >
         <button type="submit">Logout</button>
-      </form>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
+      </form> */}
+      {/* <pre>{JSON.stringify(session, null, 2)}</pre> */}
     </section>
   );
 }

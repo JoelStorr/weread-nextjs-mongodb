@@ -7,6 +7,7 @@ import Link from "next/link";
 import LoginForm from "./loginForm";
 import classes from './authPop.component.scss'
 import Image from 'next/image';
+import RegisterForm from './registerForm';
 
 
 export default async function AuthPopUp({register, login}) {
@@ -47,7 +48,36 @@ export default async function AuthPopUp({register, login}) {
 
 
     if(register){
-        return <div>Registration Form</div>
+        return (
+          <>
+            <div className="popUp">
+              <div className="popUp-bg" />
+              <section className="form-section">
+                <div className="form-header">
+                  <h1>Register</h1>
+                  <Link href="/" className="close-btn">
+                    Close
+                  </Link>
+                </div>
+                <div className="form-main">
+                  <div>
+                    <div className="image-container">
+                      <Image
+                        src={"/traveler-reading-a-book.png"}
+                        width={880 / 3}
+                        height={851 / 3}
+                        alt="Women reading a book"
+                      />
+                    </div>
+                  </div>
+                  <div className="form-holder">
+                    <RegisterForm />
+                  </div>
+                </div>
+              </section>
+            </div>
+          </>
+        );
     }
 
 
