@@ -1,43 +1,11 @@
 
 
-@font-face{
-  font-family: LibreBaskerville;
-  src: url('../asset/Libre-Baskerville/LibreBaskerville-Regular.ttf');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face{
-  font-family: LibreBaskerville;
-  src: url('../asset/Libre-Baskerville/LibreBaskerville-Bold.ttf');
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face{
-  font-family: LibreBaskerville;
-  src: url('../asset/Libre-Baskerville/LibreBaskerville-Italic.ttf');
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face{
-  font-family: Montserrat;
-  src: url('../asset//Montserrat/Montserrat-VariableFont_wght.ttf');
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url('../asset/Montserrat/Montserrat-Italic-VariableFont_wght.ttf');
-  font-style: italic;
-}
-
-$primary-dark-blue: #1E2362;
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Montserrat;
 }
 
 html,

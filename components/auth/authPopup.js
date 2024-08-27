@@ -28,20 +28,10 @@ export default async function AuthPopUp({register, login}) {
 
                     </div>
                 </div>
-                <div>
-                    <Link href="/">Close</Link>
+                <div className='form-holder'>
+                    <Link href="/" className='close-btn'>Close</Link>
                     <LoginForm />
-                    
-                    <p>
-                    <Link href="/auth/register">Register</Link>
-                    </p>
                 </div>
-                
-
-
-                
-                
-                
               </section>
             </div>
           </>
