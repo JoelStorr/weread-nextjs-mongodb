@@ -20,6 +20,18 @@
 }
 
 
+
+.search{
+  grid-row: h5-start / h7-end;
+  grid-column: h5-start / h7-end;
+  display: flex;
+  align-items: center;
+
+  input{
+    width: 100%;
+  }
+}
+
 .navItem{
   grid-column: h11-start / h11-end;
   grid-row: h10-start / h11-end;

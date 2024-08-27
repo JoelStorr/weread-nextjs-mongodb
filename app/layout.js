@@ -27,7 +27,7 @@ export default async function RootLayout({ children  }) {
 
           <h3 id="main-logo">WeRead</h3>
 
-          <form>
+          <form className="search">
             <input type="text" name="search" placeholder="Search for Books" />
           </form>
 
