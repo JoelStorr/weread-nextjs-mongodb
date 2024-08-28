@@ -7,6 +7,7 @@ import { getSession } from "@/lib/auth/tokenHandler";
 import SessionAuth from "@/components/navigation/sessionNav";
 import { runBookSearch } from "@/lib/search/search";
 import NavSearch from "@/components/navigation/navSearch";
+import Link from "next/link";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,12 +27,11 @@ export default async function RootLayout({ children  }) {
       <body className={inter.className}>
         <div className="bodywrapper">
           <div className="navigation"></div>
+          <Link href={"/"} id="main-logo">
+            <h3>WeRead</h3>
+          </Link>
 
-          <h3 id="main-logo">WeRead</h3>
-
-          {session && (
-            <NavSearch />
-          )}
+          {session && <NavSearch />}
 
           <nav className="navItem">
             {!session && <NavAuth />}
