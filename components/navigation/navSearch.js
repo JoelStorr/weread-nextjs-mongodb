@@ -1,7 +1,7 @@
 "use client";
 
 import { addBookToList, getLists } from "@/lib/list";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import classes from "./navSearch.component.scss";
 
@@ -12,9 +12,10 @@ export default function NavSearch() {
   const [searchResult, setSearchResult] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
   const [lists, setLists] = useState([]);
+  const [showList, setShowList] = useState(false);
 
   const [clickedList, setClickedList] = useState(null);
-  const [clickedBook, setClickedBook] = useState(null);
+  const [clickedBook, setClickedBook] = useState({ id: null });
 
   function saveSelection() {
     console.log(clickedList);
@@ -37,6 +38,10 @@ export default function NavSearch() {
     const result = await getLists();
     setLists(result);
   }
+
+  useEffect(() => {
+    loadLists();
+  }, []);
 
   async function runBookSearch(e, nav = false) {
     e.preventDefault();
@@ -160,7 +165,27 @@ export default function NavSearch() {
                         <p>pages: {book.pages}</p>
                       </div>
                       <div className="add-to-list-btn">
-                        <button>Add to List</button>
+                        {/* TODO: Load List and Display users list */}
+                        <button onClick={() => handleBookClick(book)}>
+                          Add to List
+                        </button>
+                        {clickedBook.id == book.id && (
+                          <div className="list-holder">
+                            <ul>
+                              {lists.map((list) => (
+                                <li
+                                  key={list.name}
+                                  onClick={() => {
+                                    addBookToList(list.name, clickedBook);
+                                    handleBookClick({ id: null });
+                                  }}
+                                >
+                                  {list.name}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
                     </div>
                     {searchResult.length - 1 !== index && <hr />}
