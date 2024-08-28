@@ -1,0 +1,52 @@
+.search-popup-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.48);
+}
+
+.search-popup{
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    padding: 3rem;
+    background-color: $primary-dark-blue;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 5px;
+    overflow: hidden;
+    color: white;
+}
+
+.book-list-holder{
+    position: relative;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.book-list-element{
+    padding: 0 2rem ;
+}
+
+.book-list-detail{
+    display: flex;
+
+    img{
+        padding-right: 2rem ;
+    }
+
+    span{
+        font-weight: bold;
+    }
+}
+
+.author{
+    display: flex;
+}
+
+hr{
+    margin: 2rem 0;
+    color: $white;
+}

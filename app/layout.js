@@ -5,6 +5,8 @@ import NavAuth from "@/components/navigation/navAuth";
 import AuthPopUp from "@/components/auth/authPopup";
 import { getSession } from "@/lib/auth/tokenHandler";
 import SessionAuth from "@/components/navigation/sessionNav";
+import { runBookSearch } from "@/lib/search/search";
+import NavSearch from "@/components/navigation/navSearch";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,9 +29,9 @@ export default async function RootLayout({ children  }) {
 
           <h3 id="main-logo">WeRead</h3>
 
-          <form className="search">
-            <input type="text" name="search" placeholder="Search for Books" />
-          </form>
+          {session && (
+            <NavSearch />
+          )}
 
           <nav className="navItem">
             {!session && <NavAuth />}
