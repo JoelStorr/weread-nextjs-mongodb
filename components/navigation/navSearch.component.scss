@@ -1,52 +1,100 @@
-.search-popup-bg{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.48);
+.search-popup-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.48);
 }
 
-.search-popup{
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    padding: 3rem;
-    background-color: $primary-dark-blue;
-    left: 50%;
-    transform: translate(-50%, 0);
-    border-radius: 5px;
-    overflow: hidden;
-    color: white;
+.search-popup {
+  position: absolute;
+  width: 70%;
+  height: 80%;
+  padding: 3rem;
+  background-color: $primary-dark-blue;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 5px;
+  overflow: hidden;
+  color: white;
 }
 
-.book-list-holder{
-    position: relative;
-    height: 80%;
-    overflow-y: scroll;
+.book-list-holder {
+  position: relative;
+  height: 80%;
+  overflow-y: scroll;
+  scrollbar-color: $white $primary-dark-blue;
+
 }
 
-.book-list-element{
-    padding: 0 2rem ;
+.book-list-element {
+  padding: 0 2rem;
 }
 
-.book-list-detail{
-    display: flex;
+.book-list-detail {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
-    img{
-        padding-right: 2rem ;
-    }
+  img {
+    padding-right: 2rem;
+  }
 
-    span{
-        font-weight: bold;
-    }
+  span {
+    font-weight: bold;
+  }
 }
 
-.author{
-    display: flex;
+.author {
+  display: flex;
 }
 
-hr{
-    margin: 2rem 0;
-    color: $white;
+hr {
+  margin: 2rem 0;
+  color: $white;
+}
+
+.add-to-list-btn {
+  width: auto;
+  flex: 2;
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  button {
+    background-color: $white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+    color: $primary-dark-blue;
+  }
+}
+
+.btn-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-btn {
+  margin-top: 4rem;
+  background-color: $primary-dark-blue;
+  color: $white;
+  border: 2px solid $white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 2rem;
+
+  &:first-child {
+    margin-right: 1.5rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: $primary-dark-blue;
+    background-color: $white;
+  }
 }

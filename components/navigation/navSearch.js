@@ -3,12 +3,12 @@
 import { addBookToList, getLists } from "@/lib/list";
 import React, { useRef, useState } from "react";
 
-import classes from './navSearch.component.scss';
+import classes from "./navSearch.component.scss";
 
 export default function NavSearch() {
   const search1 = useRef();
   //const search2 = useRef();
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
   const [lists, setLists] = useState([]);
@@ -41,15 +41,16 @@ export default function NavSearch() {
   async function runBookSearch(e, nav = false) {
     e.preventDefault();
 
-    let search = ""
+    let search = "";
 
-    if(nav){
-        search = search1.current.value
-        //search2.current.value = search;
-        setSearchValue(search);
+    if (nav) {
+      search = search1.current.value;
+      //search2.current.value = search;
+      setSearchValue(search);
+    } else {
+      search = searchValue;
+      search1.current.value = search;
     }
-
-
 
     try {
       const res = await fetch(
@@ -113,12 +114,8 @@ export default function NavSearch() {
   }
 
   const handleInputChange = (event) => {
-
     setSearchValue(event.target.value);
-
   };
-
-
 
   return (
     <>
@@ -156,9 +153,14 @@ export default function NavSearch() {
                       <div>
                         <h4>{book.title}</h4>
                         <br />
-                        <p>by <span>{book.author}</span> </p>
+                        <p>
+                          by <span>{book.author}</span>{" "}
+                        </p>
                         <br />
                         <p>pages: {book.pages}</p>
+                      </div>
+                      <div className="add-to-list-btn">
+                        <button>Add to List</button>
                       </div>
                     </div>
                     {searchResult.length - 1 !== index && <hr />}
@@ -166,86 +168,99 @@ export default function NavSearch() {
                 ))}
               </ul>
             </div>
+            <div className="btn-holder">
+              <div>
+                <button
+                  className="search-btn"
+                  onClick={(e) => {
+                    setPageIndex(pageIndex - 10);
+                    runBookSearch(e);
+                  }}
+                >
+                  Prev 10
+                </button>
+                <button
+                  className="search-btn"
+                  onClick={(e) => {
+                    setPageIndex(pageIndex + 10);
+                    runBookSearch(e);
+                  }}
+                >
+                  Next 10
+                </button>
+              </div>
 
-            <button
-              onClick={() => {
-                setPageIndex(pageIndex + 10);
-              }}
-            >
-              Next 10
-            </button>
-            <button
-              onClick={() => {
-                setPageIndex(pageIndex - 10);
-              }}
-            >
-              Prev 10
-            </button>
+              <button
+                className="search-btn"
+                onClick={(e) => {
+                  runBookSearch(e);
+                }}
+              >
+                Search
+              </button>
+            </div>
           </div>
         </div>
       )}
     </>
   );
 
+  //   return (
+  //     <>
+  //       <div>BookSearch</div>
+  //       <form onSubmit={runBookSearch}>
+  //         <label>
+  //           Search for a Book
+  //           <input type="text" ref={search} />
+  //           <button type="submit">Search</button>
+  //           <br />
+  //           <button
+  //             onClick={() => {
+  //               setPageIndex(pageIndex + 10);
+  //             }}
+  //           >
+  //             Next 10
+  //           </button>
+  //           <button
+  //             onClick={() => {
+  //               setPageIndex(pageIndex - 10);
+  //             }}
+  //           >
+  //             Prev 10
+  //           </button>
+  //         </label>
+  //       </form>
+  //       <ul>
+  //         {searchResult.map((book) => (
+  //           <li key={book.id} onClick={() => handleBookClick(book)}>
+  //             <p>
+  //               {book.title} - {book.author}
+  //             </p>
+  //             <img src={book.cover} />
+  //           </li>
+  //         ))}
+  //       </ul>
 
+  //       <br />
 
+  //       {searchResult.length > 0 && (
+  //         <>
+  //           <button onClick={loadLists}>Load List</button>
+  //           <ul>
+  //             {lists.map((list) => (
+  //               <li key={list.name} onClick={() => handleListClick(list.name)}>
+  //                 {list.name}
+  //               </li>
+  //             ))}
+  //           </ul>
+  //         </>
+  //       )}
 
-//   return (
-//     <>
-//       <div>BookSearch</div>
-//       <form onSubmit={runBookSearch}>
-//         <label>
-//           Search for a Book
-//           <input type="text" ref={search} />
-//           <button type="submit">Search</button>
-//           <br />
-//           <button
-//             onClick={() => {
-//               setPageIndex(pageIndex + 10);
-//             }}
-//           >
-//             Next 10
-//           </button>
-//           <button
-//             onClick={() => {
-//               setPageIndex(pageIndex - 10);
-//             }}
-//           >
-//             Prev 10
-//           </button>
-//         </label>
-//       </form>
-//       <ul>
-//         {searchResult.map((book) => (
-//           <li key={book.id} onClick={() => handleBookClick(book)}>
-//             <p>
-//               {book.title} - {book.author}
-//             </p>
-//             <img src={book.cover} />
-//           </li>
-//         ))}
-//       </ul>
-
-//       <br />
-
-//       {searchResult.length > 0 && (
-//         <>
-//           <button onClick={loadLists}>Load List</button>
-//           <ul>
-//             {lists.map((list) => (
-//               <li key={list.name} onClick={() => handleListClick(list.name)}>
-//                 {list.name}
-//               </li>
-//             ))}
-//           </ul>
-//         </>
-//       )}
-
-//       {clickedBook && clickedList && (
-//         <button onClick={() => addBookToList(clickedList, clickedBook)}>
-//           Save
-//         </button>
-//       )}
-//     </>
-//   );
+  //       {clickedBook && clickedList && (
+  //         <button onClick={() => addBookToList(clickedList, clickedBook)}>
+  //           Save
+  //         </button>
+  //       )}
+  //     </>
+  //   );
 }
