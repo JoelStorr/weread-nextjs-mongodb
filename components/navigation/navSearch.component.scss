@@ -25,6 +25,7 @@
   height: 80%;
   overflow-y: scroll;
   scrollbar-color: $white $primary-dark-blue;
+  margin-top: 2rem;
 
 }
 
@@ -75,6 +76,7 @@ hr {
 }
 
 .btn-holder {
+    margin-top: 2rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -82,7 +84,7 @@ hr {
 }
 
 .search-btn {
-  margin-top: 4rem;
+  //margin-top: 4rem;
   background-color: $primary-dark-blue;
   color: $white;
   border: 2px solid $white;
@@ -104,16 +106,21 @@ hr {
 .list-holder{
     position:absolute;
     z-index: 5;
-    top: 50px;
-    right: 40px;
+    top: 40px;
+    right: 0;
     background-color: $white;
     color: $primary-dark-blue;
-    width: 100px;
+    width: 50%;
     height: auto;
     padding: 1rem;
+    border-radius: 5px;
 
     ul{
         list-style: none;
+
+        li:hover{
+            cursor: pointer;
+        }
     }
 
 }
