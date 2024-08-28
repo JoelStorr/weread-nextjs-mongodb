@@ -1,5 +1,4 @@
-
-.navigation{
+.navigation {
   /* grid-area: sl, h, sr; */
   grid-row: slh-start / srh-end;
   grid-column: slh-start / srh-end;
@@ -7,32 +6,30 @@
   height: 90px;
 }
 
-#main-logo{
+#main-logo {
   grid-area: h1;
   color: white;
-    font-weight: bold;
-    font-size: 37px;
-    letter-spacing: 2px;
-    font-family: LibreBaskerville;
-    display: flex;
-    align-items: center;
-    // justify-content: center;
+  font-weight: bold;
+  font-size: 37px;
+  letter-spacing: 2px;
+  font-family: LibreBaskerville;
+  display: flex;
+  align-items: center;
+  // justify-content: center;
 }
 
-
-
-.search{
+.search {
   grid-row: h5-start / h7-end;
   grid-column: h5-start / h7-end;
   display: flex;
   align-items: center;
 
-  input{
+  input {
     width: 100%;
   }
 }
 
-.navItem{
+.navItem {
   grid-column: h11-start / h11-end;
   grid-row: h10-start / h11-end;
   width: 100%;
@@ -40,7 +37,7 @@
   align-items: center;
   justify-content: space-between;
 
-  ul{
+  ul {
     display: flex;
     flex-direction: row;
     list-style: none;
@@ -48,23 +45,21 @@
     justify-content: space-between;
     width: 100%;
 
-    li{
+    li {
       font-family: Montserrat;
       font-weight: bold;
       letter-spacing: 2%;
-      color: white
+      color: white;
     }
-
   }
 
-  h3{
+  h3 {
     color: white;
     font-weight: bold;
     font-size: 37px;
     letter-spacing: 2px;
     font-family: LibreBaskerville;
   }
-
 }
 
 .homepage {
