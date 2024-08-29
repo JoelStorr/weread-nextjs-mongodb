@@ -34,3 +34,18 @@ $primary-dark-blue: #1E2362;
 $secondary-light-blue: #2B7CE6;
 $white: #fff;
 $off-white: #d1deef;
+
+
+
+.bodywrapper {
+  display: grid;
+  width: 100vw;
+  height: auto;
+  grid-gap: 10px;
+  //grid-template-rows: repeat(14, 1fr);
+  grid-template-columns: repeat(14, 1fr);
+  grid-template-areas: "slh h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 h12 srh" 
+                       "sl1 m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 sr1" 
+                       "sl2 m1 m2 m3 m4 m5 m6 m7 m8 m9 m10 m11 m12 sr2";
+}
+

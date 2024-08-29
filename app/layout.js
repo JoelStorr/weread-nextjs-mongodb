@@ -8,6 +8,7 @@ import SessionAuth from "@/components/navigation/sessionNav";
 import { runBookSearch } from "@/lib/search/search";
 import NavSearch from "@/components/navigation/navSearch";
 import Link from "next/link";
+import UnAuthHome from "@/components/home/unAuthHome";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -33,10 +34,18 @@ export default async function RootLayout({ children  }) {
 
           {session && <NavSearch />}
 
-          <nav className="navItem">
-            {!session && <NavAuth />}
-            {session && <SessionAuth />}
-          </nav>
+          {!session && (
+            <nav className="navItem nav-item-un-auth">
+              <NavAuth />
+            </nav>
+          )}
+
+          {session && (
+            <nav className="navItem nav-item-auth">
+              <SessionAuth />
+            </nav>
+          )}
+          
           {children}
         </div>
       </body>

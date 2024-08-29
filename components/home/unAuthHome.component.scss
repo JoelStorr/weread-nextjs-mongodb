@@ -1,0 +1,81 @@
+.header-section{
+
+}
+
+.join-now-container{
+    position: relative;
+    grid-column: m1-start / m3-end;
+    grid-row: sl1-start / sr1-end;
+
+    button{
+        position: absolute;
+        top: 350px;
+        right: -100px;
+        background-color: $primary-dark-blue;
+        color: white;
+        width: 260px;
+        height: 80px;
+        border: none;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 25px;
+        z-index: 0;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+}
+.header-image-one{
+    position: relative;
+    pointer-events: none;
+    user-select: none;
+    width: 307px;
+    height: 680px;
+    top: 20px;
+    z-index: 10;
+}
+
+.header-image-two{
+    position: relative;
+    grid-column: m5-start / m12-end;
+    grid-row: sl1-start / sr1-end;
+    align-self: end;
+    justify-self: end;
+    top: 40px;
+    width: 486.71px;
+    height: 396.32px;
+}
+
+.header-main{
+    grid-column: m5-start / m9-end;
+    grid-row: sl1-start / sr1-end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-h1-main{
+    font-weight: bold;
+    font-size: 140px;
+    font-family: Baskerville;
+    color: $primary-dark-blue;
+    margin: 3rem 0;
+}
+
+.header-h2-main{
+
+    font-size: 50px;
+    font-family: Baskerville;
+    color: $secondary-light-blue;
+    text-align: center;
+
+}
+
+.cards-bg{
+    background-color: $primary-dark-blue;
+    grid-row: sl2-start / sr2-end;
+    grid-column: sl2-start / sr2-e3nd;
+    height: 300px;
+}

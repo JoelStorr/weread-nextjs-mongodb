@@ -5,6 +5,7 @@ import Link from "next/link";
 import AuthContextProvider from "@/store/auth-context";
 import AuthPopUp from "@/components/auth/authPopup";
 import { getSession } from "@/lib/auth/tokenHandler";
+import UnAuthHome from "@/components/home/unAuthHome";
 
 async function fetchMovies() {
   const { movies } = await getMovies();
@@ -26,25 +27,11 @@ export default async function Home({searchParams}) {
     )
   } else {
     return (
-      <div className="homepage">
-        <p>
-          <Link href="/auth/login">Login</Link>
-        </p>
-        <br />
-        <p>
-          <Link href="/auth/register">Register</Link>
-        </p>
-        <br />
-        <p>
-          <Link href="/books/search">Search</Link>
-        </p>
-        <br />
-        <p>
-          <Link href="/books/lists">Lists</Link>
-        </p>
+      <>
         {login && <AuthPopUp login={true} />}
         {register && <AuthPopUp register={true} />}
-      </div>
+        <UnAuthHome />
+      </>
     );
   }
 
