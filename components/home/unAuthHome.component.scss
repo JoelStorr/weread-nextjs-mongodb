@@ -1,3 +1,4 @@
+// NOTE: Header Section
 .header-section {
 }
 
@@ -69,6 +70,18 @@
   text-align: center;
 }
 
+
+//NOTE: Card Section
+.card-section{
+  
+  background-color: $primary-dark-blue;
+  grid-row: sl2-start / sr2-end;
+  grid-column: sl2-start / sr2-e3nd;
+  height: 400px;
+  padding: 5rem 0;
+
+}
+
 .cards-bg {
   background-color: $primary-dark-blue;
   grid-row: sl2-start / sr2-end;
@@ -78,6 +91,8 @@
 }
 
 .card-holder {
+    align-self: center;
+    justify-self: center;
   grid-row: sl2-start / sr2-end;
   grid-column: m1-start / m12-end;
   display: flex;
@@ -112,4 +127,36 @@
         font-weight:600;
     }
   }
+}
+
+//NOTE: Feature Section
+.feature-section{
+    grid-row: sl3-start / sr3-end;
+    grid-column: sl3-start / sr3-end;
+}
+
+// NOTE: Quote
+.quote-section{
+    grid-row: sl4-start / sr4-end;
+    grid-column: sl4-start / sr4-end;
+    background-color: $primary-dark-blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+    p{
+        color: $white;
+        font-size: 25px;
+        font-weight: 200;
+
+        &:first-child{
+            font-family: Baskerville;
+            font-size: 32px;
+            font-weight: 600;
+            margin: 2rem;
+
+        }
+    }
+
 }
