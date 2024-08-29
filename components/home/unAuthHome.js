@@ -76,5 +76,5 @@ export default function UnAuthHome() {
         <p>Joseph Addison</p>
       </section>
     </>
-  );
-}
+  )
+};
