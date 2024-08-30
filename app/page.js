@@ -6,6 +6,7 @@ import AuthContextProvider from "@/store/auth-context";
 import AuthPopUp from "@/components/auth/authPopup";
 import { getSession } from "@/lib/auth/tokenHandler";
 import UnAuthHome from "@/components/home/unAuthHome";
+import AuthHome from "@/components/home/authHome";
 
 async function fetchMovies() {
   const { movies } = await getMovies();
@@ -23,7 +24,7 @@ export default async function Home({searchParams}) {
 
   if(session){
     return (
-      <div>Logged In</div>
+      <AuthHome />
     )
   } else {
     return (

@@ -1,0 +1,31 @@
+
+.current-reads{
+    grid-column: m1-start / m3-end;
+    grid-row: sl1-start / sr1-end;
+
+}
+
+.reading-goals{
+    grid-column: m1-start / m3-end;
+    grid-row: sl3-start / sr3-end;
+}
+
+.reading-list{
+     grid-column: m1-start / m3-end;
+    grid-row: sl4-start / sr4-end;
+}
+
+.for-you-list{
+    grid-row: sl1-start / sr4-end;
+    grid-column: m5-start / m8-end;
+}
+
+.your-groupes{
+    grid-row: sl1-start / sr1-end;
+    grid-column: m10-start / m12-end;
+}
+
+.placeholder-todo-one{
+    grid-row: sl3-start / sr3-end;
+    grid-column: m10-start / m12-end;
+}
