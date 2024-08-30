@@ -67,7 +67,60 @@ export default function UnAuthHome() {
 
       {/* NOTE: Features */}
       <section className="feature-section">
-        <h1>Todo</h1>
+        <div className="vertical-line" />
+        <div className=" circle circle-one" />
+        <div className="circle circle-two" />
+        <div className="circle circle-three" />
+
+        <div className="feature-element feature-one">
+          <span>In Progress</span>
+          <h2>Track your Progress</h2>
+          <ul>
+            <li>Capture your progress along each page</li>
+            <li>Manage the status of each book</li>
+            <li>Support for re-reading</li>
+            <li>Organize your library into fitting lists</li>
+          </ul>
+          <h4>Want to keep a book for yourself?</h4>
+          <p>Manage the visibility of your lists or individual books.</p>
+        </div>
+        <div className="feature-element feature-two">
+          <span>Planed</span>
+          <h2>Find your Community</h2>
+          <ul>
+            <li>Find the right people for your next read</li>
+            <li>Set reading goals for the group</li>
+            <li>Share your thoughts</li>
+            <li>Vote on your next read together</li>
+          </ul>
+          <h4>Books are meant to be shared?</h4>
+          <p>
+            Our group chats allow for in-depth discussions about your favorite
+            reads.
+          </p>
+          <h4>Want to make your Own?</h4>
+          <p>
+            We provide the tools to manage your group and keep each other safe.{" "}
+            <br />
+            Learn more about Groups.
+          </p>
+        </div>
+        <div className="feature-element feature-three">
+          <span>Planed</span>
+          <h2>Custom Profiles</h2>
+          <ul>
+            <li>Build your own design</li>
+            <li>Intuitive drag-and-drop UI Editor</li>
+            <li>Show what matters to you</li>
+            <li>Share your designs with the community</li>
+          </ul>
+          <h4>Want to show how you are?</h4>
+          <p>
+            Your profile should match how you are. Our drag-and-drop editor
+            provides full flexibility when it comes to designing your profile
+            page.
+          </p>
+        </div>
       </section>
 
       {/* NOTE: Quote */}
@@ -76,5 +129,5 @@ export default function UnAuthHome() {
         <p>Joseph Addison</p>
       </section>
     </>
-  )
+  );
 };
