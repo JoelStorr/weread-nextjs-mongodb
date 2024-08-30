@@ -1,12 +1,13 @@
 import React from 'react'
 import classes from './authHome.component.scss';
+import CurrentReads from './currentReads/currentReads';
 
 export default function AuthHome() {
   return (
 
     <>
         <div className='current-reads'>
-            Current Reads
+            <CurrentReads />
         </div>
         <div className='reading-goals'>
             Reading Goals

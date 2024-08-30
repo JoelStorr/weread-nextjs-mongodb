@@ -3,6 +3,10 @@
     grid-column: m1-start / m3-end;
     grid-row: sl1-start / sr1-end;
 
+    border: 3px solid $primary-dark-blue;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+
 }
 
 .reading-goals{
