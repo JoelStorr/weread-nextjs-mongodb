@@ -135,7 +135,7 @@
 }
 
 .vertical-line {
-  height: 50rem;
+  height: 100%;
   width: 6px;
   border-radius: 5px;
   background-color: $primary-dark-blue;
@@ -167,13 +167,54 @@
   grid-column: m6-start / m7-end;
 }
 
-.feature-element{
+.feature-element {
+  margin-top: 4rem;
 
+  span {
+    font-weight: bold;
+    color: $primary-dark-blue;
+    opacity: 40%;
+  }
+
+  h2 {
+    font-family: Baskerville;
+    font-size: 40px;
+    font-weight: bold;
+    color: $primary-dark-blue;
+    margin: 1rem 0;
+  }
+
+  ul {
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+
+    li {
+      font-weight: 600;
+      color: $primary-dark-blue;
+    }
+  }
+
+  h4 {
+    color: $primary-dark-blue;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
 }
 
-.feature-one{}
-.feature-two{}
-
+.feature-one {
+  grid-row: sl3-start / sr3-end;
+  grid-column: m1-start / m5-end;
+}
+.feature-two {
+  grid-row: sl3a-start / sr3a-end;
+  grid-column: m8-start / m12-end;
+}
+.feature-three {
+  grid-row: sl3b-start / sr3b-end;
+  grid-column: m1-start / m5-end;
+}
 
 // NOTE: Quote
 .quote-section {
