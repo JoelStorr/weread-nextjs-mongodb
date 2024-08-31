@@ -1,16 +1,16 @@
 "use client";
 import React from "react";
 
-import classes from "./unAuthHome.component.scss";
+import classes from "./unAuthHome.module.scss";
 
 export default function UnAuthHome() {
   return (
     <>
       {/* NOTE: Header */}
-      <div className="join-now-container">
+      <div className={classes.joinNowContainer}>
         <img
           src="/man-stands-and-leans-forward.png"
-          className="header-image-one"
+          className={classes.headerImageOne}
         />
         <button
           onClick={() => {
@@ -21,18 +21,18 @@ export default function UnAuthHome() {
         </button>
       </div>
 
-      <div className="header-main">
-        <h1 className="header-h1-main">WeRead</h1>
-        <h2 className="header-h2-main">
+      <div className={classes.headerMain}>
+        <h1 className={classes.headerH1Main}>WeRead</h1>
+        <h2 className={classes.headerH2Main}>
           We read & talk <br /> together
         </h2>
       </div>
-      <img src="/woman-reading-a-book.png" className="header-image-two" />
+      <img src="/woman-reading-a-book.png" className={classes.headerImageTwo} />
 
       {/* NOTE: Home cards */}
-      <section className="card-section">
-        <div className="card-holder">
-          <div className="card card-one">
+      <section className={classes.cardSection}>
+        <div className={classes.cardHolder}>
+          <div className={`${classes.card} ${classes.cardOne}`}>
             <div>
               <h3>Track</h3>
               <img src="/icons/Journey.png" />
@@ -42,7 +42,7 @@ export default function UnAuthHome() {
               with your reading goals.
             </p>
           </div>
-          <div className="card card-two">
+          <div className={`${classes.card} ${classes.cardTwo}`}>
             <div>
               <h3>Connect</h3>
               <img src="/icons/Connect.png" />
@@ -52,7 +52,7 @@ export default function UnAuthHome() {
               club.
             </p>
           </div>
-          <div className="card card-three">
+          <div className={`${classes.card} ${classes.cardThree}`}>
             <div>
               <h3>Share</h3>
               <img src="/icons/Open Book.png" />
@@ -66,13 +66,13 @@ export default function UnAuthHome() {
       </section>
 
       {/* NOTE: Features */}
-      <section className="feature-section">
-        <div className="vertical-line" />
-        <div className=" circle circle-one" />
-        <div className="circle circle-two" />
-        <div className="circle circle-three" />
-        <p className="more-is-planned">More is planned</p>
-        <div className="feature-element feature-one">
+      <section className={classes.featureSection}>
+        <div className={classes.verticalLine} />
+        <div className={`${classes.circle} ${classes.circleOne}`} />
+        <div className={`${classes.circle} ${classes.circleTwo}`} />
+        <div className={`${classes.circle} ${classes.circleThree}`} />
+        <p className={classes.moreIsPlanned}>More is planned</p>
+        <div className={`${classes.featureElement} ${classes.featureOne}`}>
           <span>In Progress</span>
           <h2>Track your Progress</h2>
           <ul>
@@ -84,7 +84,7 @@ export default function UnAuthHome() {
           <h4>Want to keep a book for yourself?</h4>
           <p>Manage the visibility of your lists or individual books.</p>
         </div>
-        <div className="feature-element feature-two">
+        <div className={`${classes.featureElement} ${classes.featureTwo}`}>
           <span>Planed</span>
           <h2>Find your Community</h2>
           <ul>
@@ -105,7 +105,7 @@ export default function UnAuthHome() {
             Learn more about Groups.
           </p>
         </div>
-        <div className="feature-element feature-three">
+        <div className={`${classes.featureElement} ${classes.featureThree}`}>
           <span>Planed</span>
           <h2>Custom Profiles</h2>
           <ul>
@@ -124,7 +124,7 @@ export default function UnAuthHome() {
       </section>
 
       {/* NOTE: Quote */}
-      <section className="quote-section">
+      <section className={classes.quoteSection}>
         <p>“Reading is to the mind what exercise is to the body.”</p>
         <p>Joseph Addison</p>
       </section>
