@@ -1,5 +1,5 @@
 
-.current-reads{
+.currentReads{
     grid-column: m1-start / m3-end;
     grid-row: sl1-start / sr1-end;
 
@@ -9,27 +9,27 @@
 
 }
 
-.reading-goals{
+.readingGoals{
     grid-column: m1-start / m3-end;
     grid-row: sl3-start / sr3-end;
 }
 
-.reading-list{
+.readingList{
      grid-column: m1-start / m3-end;
     grid-row: sl4-start / sr4-end;
 }
 
-.for-you-list{
+.forYouList{
     grid-row: sl1-start / sr4-end;
     grid-column: m5-start / m8-end;
 }
 
-.your-groupes{
+.yourGroupes{
     grid-row: sl1-start / sr1-end;
     grid-column: m10-start / m12-end;
 }
 
-.placeholder-todo-one{
+.placeholderTodoOne{
     grid-row: sl3-start / sr3-end;
     grid-column: m10-start / m12-end;
 }
