@@ -1,0 +1,51 @@
+.readingGoals{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    p{
+        color: $primary-dark-blue;
+        span{
+            font-weight: 600;
+        }
+    }
+
+    
+}
+
+.yearGoal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid $primary-dark-blue;
+    border-radius: 5px;
+    padding: 0.5rem  1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.progress{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span{
+        color: $primary-dark-blue;
+        font-weight: 600;
+    }
+}
+
+.progressRing {
+  position: absolute;
+}
+
+.progressRingCircle {
+  transition: 0.35s stroke-dashoffset;
+  // axis compensation
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
