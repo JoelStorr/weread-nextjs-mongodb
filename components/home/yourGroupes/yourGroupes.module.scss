@@ -1,0 +1,45 @@
+.yourGroupes{
+
+
+    ul{
+        list-style: none;
+    }
+}
+
+
+.groupElement{
+    display: flex;
+    margin: 2rem 0;
+
+    width: 100%;
+    img{
+        margin-right: 2rem;
+    }
+
+    .infoHolder{
+        width: 100%;
+    }
+
+}
+
+.progressHolder{
+    position: relative;
+    
+}
+
+.progress{
+    position: absolute;
+    width: 80%;
+    background-color: $primary-dark-blue;
+    height: 2rem;
+    border-radius: 1rem;
+}
+
+.progressBg{
+    position: absolute;
+    width: 100%;
+    background-color: $primary-dark-blue;
+    opacity: 60%;
+   height: 2rem;
+    border-radius: 1rem; 
+}

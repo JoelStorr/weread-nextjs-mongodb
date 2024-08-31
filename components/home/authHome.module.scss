@@ -33,9 +33,15 @@
 .yourGroupes{
     grid-row: sl1-start / sr1-end;
     grid-column: m10-start / m12-end;
+    border: 3px solid $primary-dark-blue;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
 }
 
 .placeholderTodoOne{
     grid-row: sl3-start / sr3-end;
     grid-column: m10-start / m12-end;
+    border: 3px solid $primary-dark-blue;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
 }
