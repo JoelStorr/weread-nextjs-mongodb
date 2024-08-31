@@ -26,7 +26,7 @@ export default async function RootLayout({ children }) {
         <div className="bodywrapper">
           <div className={classes.navigation}></div>
           <Link href={"/"} id={classes.mainLogo}>
-            <h3>WeRead</h3>
+            <h1>WeRead</h1>
           </Link>
 
           {session && <NavSearch />}
