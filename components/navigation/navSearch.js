@@ -3,7 +3,7 @@
 import { addBookToList, getLists } from "@/lib/list";
 import React, { useEffect, useRef, useState } from "react";
 
-import classes from "./navSearch.component.scss";
+import classes from "./navSearch.module.scss";
 
 export default function NavSearch() {
   const search1 = useRef();
@@ -124,7 +124,7 @@ export default function NavSearch() {
 
   return (
     <>
-      <form className="search" onSubmit={(e) => runBookSearch(e, true)}>
+      <form className={classes.search} onSubmit={(e) => runBookSearch(e, true)}>
         <input
           type="text"
           name="search"
@@ -135,11 +135,11 @@ export default function NavSearch() {
       {searchResult.length > 0 && (
         <div>
           <div
-            className="search-popup-bg"
+            className={classes.searchPopupBg}
             onClick={() => setSearchResult([])}
           ></div>
-          <div className="search-popup">
-            <form className="search" onSubmit={runBookSearch}>
+          <div className={classes.searchPopup}>
+            <form className={classes.search} onSubmit={runBookSearch}>
               <input
                 type="text"
                 name="search"
@@ -149,11 +149,11 @@ export default function NavSearch() {
               />
             </form>
 
-            <div className="book-list-holder">
+            <div  className={classes.bookListHolder}>
               <ul>
                 {searchResult.map((book, index) => (
-                  <li key={book.id} className="book-list-element">
-                    <div className="book-list-detail">
+                  <li key={book.id} className={classes.bookListElement}>
+                    <div className={classes.bookListDetail}>
                       <img src={book.cover} />
                       <div>
                         <h4>{book.title}</h4>
@@ -164,13 +164,13 @@ export default function NavSearch() {
                         <br />
                         <p>pages: {book.pages}</p>
                       </div>
-                      <div className="add-to-list-btn">
+                      <div className={classes.addToListBtn}>
                         {/* TODO: Load List and Display users list */}
                         <button onClick={() => handleBookClick(book)}>
                           Add to List
                         </button>
                         {clickedBook.id == book.id && (
-                          <div className="list-holder">
+                          <div className={classes.listHolder}>
                             <ul>
                               {lists.map((list) => (
                                 <li
@@ -193,10 +193,10 @@ export default function NavSearch() {
                 ))}
               </ul>
             </div>
-            <div className="btn-holder">
+            <div className={classes.btnHolder}>
               <div>
                 <button
-                  className="search-btn"
+                  className={classes.searchBtn}
                   onClick={(e) => {
                     setPageIndex(pageIndex - 10);
                     runBookSearch(e);
@@ -205,7 +205,7 @@ export default function NavSearch() {
                   Prev 10
                 </button>
                 <button
-                  className="search-btn"
+                  className={classes.searchBtn}
                   onClick={(e) => {
                     setPageIndex(pageIndex + 10);
                     runBookSearch(e);
@@ -216,7 +216,7 @@ export default function NavSearch() {
               </div>
 
               <button
-                className="search-btn"
+                className={classes.searchBtn}
                 onClick={(e) => {
                   runBookSearch(e);
                 }}
