@@ -12,7 +12,7 @@
 .readingGoals{
     grid-column: m1-start / m3-end;
     grid-row: sl3-start / sr3-end;
-     border: 3px solid $primary-dark-blue;
+     //border: 3px solid $primary-dark-blue;
     border-radius: 1rem;
     padding: 1rem 2rem;
 }
@@ -20,6 +20,9 @@
 .readingList{
      grid-column: m1-start / m3-end;
     grid-row: sl4-start / sr4-end;
+    border: 3px solid $primary-dark-blue;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
 }
 
 .forYouList{
