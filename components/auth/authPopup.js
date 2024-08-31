@@ -5,7 +5,7 @@ import { getSession } from "@/lib/auth/tokenHandler";
 import Link from "next/link";
 
 import LoginForm from "./loginForm";
-import classes from './authPop.component.scss'
+import classes from './authPop.module.scss'
 import Image from 'next/image';
 import RegisterForm from './registerForm';
 
@@ -19,22 +19,22 @@ export default async function AuthPopUp({register, login}) {
     if(login){
         return (
           <>
-            <div className="popUp">
-              <div className="popUp-bg" />
-              <section className="form-section">
+            <div className={classes.popUp}>
+              <div className={classes.popUpBg} />
+              <section className={classes.formSection}>
 
-              <div className='form-header'>
+              <div className={classes.formHeader}>
                     <h1>Log in</h1>
-                    <Link href="/" className='close-btn'>Close</Link>
+                    <Link href="/" className={classes.closeBtn}>Close</Link>
               </div>
-              <div className='form-main'>
+              <div className={classes.formMain}>
                 <div>
-                    <div className='image-container'>
+                    <div className={classes.imageContainer}>
                     <Image src={'/traveler-reading-a-book.png'} width={880 / 3} height={851 / 3} alt="Women reading a book" />
 
                     </div>
                 </div>
-                <div className='form-holder'>
+                <div className={classes.formHolder}>
                     <LoginForm />
                 </div>
 
@@ -50,18 +50,18 @@ export default async function AuthPopUp({register, login}) {
     if(register){
         return (
           <>
-            <div className="popUp">
-              <div className="popUp-bg" />
-              <section className="form-section">
-                <div className="form-header">
+            <div className={classes.popUp}>
+              <div className={classes.popUpBg} />
+              <section className={classes.formSection}>
+                <div className={classes.formHeader}>
                   <h1>Register</h1>
-                  <Link href="/" className="close-btn">
+                  <Link href="/" className={classes.closeBtn}>
                     Close
                   </Link>
                 </div>
-                <div className="form-main">
+                <div className={classes.formMain}>
                   <div>
-                    <div className="image-container">
+                    <div className={classes.imageContainer}>
                       <Image
                         src={"/traveler-reading-a-book.png"}
                         width={880 / 3}
@@ -70,7 +70,7 @@ export default async function AuthPopUp({register, login}) {
                       />
                     </div>
                   </div>
-                  <div className="form-holder">
+                  <div className={classes.formHolder}>
                     <RegisterForm />
                   </div>
                 </div>

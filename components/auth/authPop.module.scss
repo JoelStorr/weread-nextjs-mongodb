@@ -9,14 +9,14 @@
   justify-content: center;
 }
 
-.popUp-bg {
+.popUpBg {
   position: absolute;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.74);
 }
 
-.form-section {
+.formSection {
   z-index: 2;
   background-color: white;
   width: 50vw;
@@ -28,7 +28,7 @@
   justify-content: space-around;
 }
 
-.form-header {
+.formHeader {
   position: relative;
   width: 100%;
   display: flex;
@@ -44,7 +44,7 @@
   }
 }
 
-.form-main {
+.formMain {
   width: 100%;
   height: auto;
   display: flex;
@@ -57,7 +57,7 @@
   }
 }
 
-.image-container {
+.imageContainer {
   position: relative;
   width: 100%;
   height: 100%;
@@ -66,14 +66,14 @@
   justify-content: center;
 }
 
-.close-btn {
+.closeBtn {
   color: $primary-dark-blue;
   font-weight: bold;
   text-decoration: underline;
   margin-right: 50px;
 }
 
-.form-holder {
+.formHolder {
   display: flex;
   flex-direction: column;
   justify-content: center;

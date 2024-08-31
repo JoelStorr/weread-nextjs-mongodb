@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './readingGoals.component.scss';
+import classes from './readingGoals.module.scss';
 
 export default function ReadingGoals() {
   return (

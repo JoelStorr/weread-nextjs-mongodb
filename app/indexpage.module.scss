@@ -6,7 +6,7 @@
   height: 90px;
 }
 
-#main-logo {
+#mainLogo {
   grid-column: h1-start / h2-end;
   grid-row: h1-start / h2-end;
   color: white;
@@ -84,12 +84,12 @@
   }
 }
 
-.nav-item-un-auth{
+.navItemUnAuth{
   grid-column: h10-start / h11-end;
   grid-row: h10-start / h11-end;
 }
 
-.nav-item-auth{
+.navItemAuth{
   grid-column: h9-start / h11-end;
   grid-row: h9-start / h11-end;
 }

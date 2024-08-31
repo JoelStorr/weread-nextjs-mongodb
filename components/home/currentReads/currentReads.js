@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './currentReads.component.scss'
+import classes from './currentReads.module.scss'
 
 export default function CurrentReads() {
   return (
@@ -16,17 +16,17 @@ export default function CurrentReads() {
 
 
 function CurrentBook(){
-    return(
-        <li className='current-book-element'>
-            <img src="/bookCover/cover.webp" />
-            <div>
-                <h3>Book Cover</h3>
-                <p>by <span>Author Name</span></p>
-                <div className='progress'>
-                    progress bar
-                </div>
-                <button>Udate</button>
-            </div>
-        </li>
-    )
+    return (
+      <li className={classes.currentBookElement}>
+        <img src="/bookCover/cover.webp" />
+        <div>
+          <h3>Book Cover</h3>
+          <p>
+            by <span>Author Name</span>
+          </p>
+          <div className={classes.progress}>progress bar</div>
+          <button>Udate</button>
+        </div>
+      </li>
+    );
 }
