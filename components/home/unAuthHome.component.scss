@@ -130,7 +130,7 @@
   display: grid;
   grid-template-columns: subgrid;
   grid-template-rows: subgrid;
-  grid-row: sl3-start / sr3b-end;
+  grid-row: sl3-start / sr4-end;
   grid-column: sl3-start / sr3-end;
   margin: 5rem 0;
 }
@@ -166,6 +166,17 @@
 .circle-three {
   grid-row: sl3b-start / sr3b-end;
   grid-column: m6-start / m7-end;
+}
+
+.more-is-planned{
+  grid-row: sl4-start / sr4-end;
+  grid-column: m6-start / m7-end;
+  align-self: center;
+  justify-self: center;
+  font-weight: 600;
+  color: $primary-dark-blue;
+  opacity: 60%;
+  margin-top: 1rem;
 }
 
 .feature-element {

@@ -71,7 +71,7 @@ export default function UnAuthHome() {
         <div className=" circle circle-one" />
         <div className="circle circle-two" />
         <div className="circle circle-three" />
-
+        <p className="more-is-planned">More is planned</p>
         <div className="feature-element feature-one">
           <span>In Progress</span>
           <h2>Track your Progress</h2>
