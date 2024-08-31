@@ -4,7 +4,7 @@ import classes from './currentReads.module.scss'
 export default function CurrentReads() {
   return (
     <>
-        <h2>Current Reads</h2>
+        <h3>Current Reads</h3>
         <ul>
             <CurrentBook />
             <CurrentBook />
@@ -20,7 +20,7 @@ function CurrentBook(){
       <li className={classes.currentBookElement}>
         <img src="/bookCover/cover.webp" />
         <div>
-          <h3>Book Cover</h3>
+          <h4>Book Cover</h4>
           <p>
             by <span>Author Name</span>
           </p>

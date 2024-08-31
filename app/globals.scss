@@ -27,14 +27,17 @@ h1{
   font-weight: 600;
 }
 h2{
-
+ font-size: 3rem;
+ color: $primary-dark-blue;
 }
 
 h3{
   font-size: 2.5rem;
+  color: $primary-dark-blue;
 }
 h4{
   font-size: 1.8rem;
+  color: $primary-dark-blue;
 }
 
 p{
@@ -44,6 +47,7 @@ p{
 
 li{
   font-size: 1.5rem;
+  color: $primary-dark-blue;
 }
 
 span{

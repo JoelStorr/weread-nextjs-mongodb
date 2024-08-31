@@ -1,0 +1,69 @@
+.forYou{
+    height: 85vh;
+    overflow: hidden;
+    h2{
+        margin-bottom: 2rem;
+    }
+    
+    ul{
+        max-height: 90%;
+        list-style: none;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}
+
+
+.forYouItem{
+    border: 0.2rem solid $primary-dark-blue;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.userInfo{
+    display: flex;
+    align-items: center;
+    
+    img{
+        width: 5rem;
+        margin-right: 2rem;
+    }
+
+    span{
+        font-weight: 700;
+    }
+}
+
+.bookInfo{
+    margin-top: 2rem;
+   display: flex; 
+   align-items: center;
+   justify-content: space-between;
+
+    div{
+       display: flex;
+       flex-direction: row;
+
+
+       div{
+        display: flex;
+        flex-direction: column;
+
+        span{
+            font-weight: 700;
+        }
+
+       }
+        
+    }
+
+   img{
+     width: 6rem ;
+    height: auto;
+    margin-right: 2rem;
+    border-radius: 0.5rem;
+   }
+}

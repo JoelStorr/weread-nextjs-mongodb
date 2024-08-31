@@ -3,6 +3,7 @@ import classes from './authHome.module.scss';
 import CurrentReads from './currentReads/currentReads';
 import ReadingGoals from './readingGoals/readingGoals';
 import ReadingLists from './readingLists/readingLists';
+import ForYou from './forYou/forYou';
 
 export default function AuthHome() {
   return (
@@ -17,7 +18,9 @@ export default function AuthHome() {
         <ReadingLists />
       </div>
 
-      <div className={classes.forYouList}>For You List</div>
+      <div className={classes.forYouList}>
+        <ForYou />
+      </div>
 
       <div className={classes.yourGroupes}>Your Groupes</div>
       <div className={classes.placeholderTodoOne}>todo</div>
