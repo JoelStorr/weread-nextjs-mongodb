@@ -1,0 +1,23 @@
+
+.progressHolder{
+    position: relative;
+    height: 2rem;
+    
+}
+
+.progress{
+    position: absolute;
+    
+    background-color: $primary-dark-blue;
+    height: 2rem;
+    border-radius: 1rem;
+}
+
+.progressBg{
+    position: absolute;
+    width: 100%;
+    background-color: $primary-dark-blue;
+    opacity: 60%;
+   height: 2rem;
+    border-radius: 1rem; 
+}

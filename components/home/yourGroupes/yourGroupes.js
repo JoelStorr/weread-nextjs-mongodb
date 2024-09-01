@@ -1,6 +1,7 @@
 import React from 'react'
 
 import classes from './yourGroupes.module.scss';
+import ProgressBar from '@/components/utils/progressBar/progressBar';
 
 export default function YourGroupes() {
   return (
@@ -25,10 +26,7 @@ function GroupeElement(){
             <div className={classes.infoHolder}>
                 <h4>Group Name</h4>
                 <p>Chapter 06  22.08</p>
-                <div className={classes.progressHolder}>
-                <div className={classes.progress}/>
-                <div className={classes.progressBg} />
-                </div>
+                <ProgressBar progress={60} />
             </div>
             
         </li>

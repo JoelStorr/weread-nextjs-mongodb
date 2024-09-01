@@ -26,7 +26,9 @@ export default function AuthHome() {
       <div className={classes.yourGroupes}>
         <YourGroupes />
       </div>
-      <div className={classes.placeholderTodoOne}>todo</div>
+      <div className={classes.placeholderTodoOne}>
+        <h2>Todo</h2>
+      </div>
     </>
   );
 }
