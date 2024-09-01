@@ -2,7 +2,7 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  
   p {
     color: $primary-dark-blue;
     span {
@@ -13,6 +13,7 @@
 
 .yearGoal {
   display: flex;
+  margin-right: 4rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -21,4 +22,11 @@
   padding: 0.5rem 1rem;
   text-align: center;
   font-weight: 600;
+}
+
+.progressHolder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

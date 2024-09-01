@@ -18,12 +18,11 @@ export default function ReadingGoals() {
             Reading <br /> Goals
           </p>
         </div>
-        <div>
+        <div className={classes.progressHolder}>
           <ProgressRing />
           <p>
             <span>25</span> of <span>50</span> books
           </p>
-          <button>Update</button>
         </div>
       </section>
     </>
