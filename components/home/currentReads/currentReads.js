@@ -25,9 +25,9 @@ export default async function CurrentReads() {
   );
 }
 
-function CurrentBook({ image, title, author, progress }) {
+function CurrentBook({ key, image, title, author, progress }) {
   return (
-    <li className={classes.currentBookElement}>
+    <li className={classes.currentBookElement} key={key}>
       <img src={image} />
       <div>
         <h4>{title}</h4>
