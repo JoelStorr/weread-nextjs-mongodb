@@ -1,4 +1,10 @@
 .currentReadsList {
+  height: 100%;
+  ul{
+    max-height: 95%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
 }
 
 .currentBookElement {

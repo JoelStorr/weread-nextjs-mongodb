@@ -1,4 +1,5 @@
 .currentReads {
+  max-height: 50vh;
   grid-column: m1-start / m3-end;
   grid-row: sl1-start / sr1-end;
   border: 3px solid $primary-dark-blue;
