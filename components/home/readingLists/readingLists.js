@@ -1,18 +1,25 @@
 import React from 'react'
 import classes from './readingLists.module.scss';
+import { getLists } from '@/lib/list';
 
-export default function ReadingLists() {
+export default async function ReadingLists() {
+
+  const lists = await getLists()
+
   return (
     <>
         <section className={classes.readingLists}>
             <h3>Your Lists</h3>
             <ul>
-                <li>My Bookshelf</li>
-                <li>Favorites</li>
-                <li>Wishlist</li>
-                <li>More</li>
+               {lists &&
+          lists.map((list) => (
+            <li key={list.name}>
+              {list.name}
+            </li>
+          ))}
             </ul>
         </section>
     </>
+
   )
 }
