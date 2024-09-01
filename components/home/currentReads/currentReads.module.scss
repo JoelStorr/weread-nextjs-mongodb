@@ -6,20 +6,3 @@
     overflow-x: hidden;
   }
 }
-
-.currentBookElement {
-  margin: 1rem 0;
-  display: flex;
-
-  img {
-    max-width: 7rem;
-    height: auto;
-    object-fit:contain;
-    border-radius: 0.5rem;
-    margin-right: 1rem;
-  }
-
-  button {
-    margin: 1rem 0;
-  }
-}

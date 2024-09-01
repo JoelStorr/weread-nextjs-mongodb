@@ -1,7 +1,8 @@
-import React from "react";
+
 import classes from "./currentReads.module.scss";
-import ProgressBar from "@/components/utils/progressBar/progressBar";
+
 import { getCurrentReads } from "@/lib/list";
+import CurrentBook from "./currentBook";
 
 export default async function CurrentReads() {
   const list = await getCurrentReads();
@@ -13,30 +14,17 @@ export default async function CurrentReads() {
         {list &&
           list.map((el) => (
             <CurrentBook
-              key={el._id}
+            key={el.bookId}
+              keyVal={el.bookId}
               image={el.book.cover}
               title={el.book.title}
               author={el.book.author}
               progress={el.progress}
+              listName={"Current Reads"}
+              pages={el.pages}
             />
           ))}
       </ul>
     </div>
-  );
-}
-
-function CurrentBook({ key, image, title, author, progress }) {
-  return (
-    <li className={classes.currentBookElement} key={key}>
-      <img src={image} />
-      <div>
-        <h4>{title}</h4>
-        <p>
-          by <span>{author}</span>
-        </p>
-        <ProgressBar progress={progress} />
-        <button>Udate</button>
-      </div>
-    </li>
   );
 }
