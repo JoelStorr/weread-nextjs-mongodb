@@ -1,33 +1,42 @@
-import React from 'react'
-import classes from './currentReads.module.scss'
-import ProgressBar from '@/components/utils/progressBar/progressBar';
+import React from "react";
+import classes from "./currentReads.module.scss";
+import ProgressBar from "@/components/utils/progressBar/progressBar";
+import { getCurrentReads } from "@/lib/list";
 
-export default function CurrentReads() {
+export default async function CurrentReads() {
+  const list = await getCurrentReads();
+
   return (
     <div className={classes.currentReadsList}>
-        <h3>Current Reads</h3>
-        <ul>
-            <CurrentBook />
-            <CurrentBook />
-            <CurrentBook />
-        </ul>
+      <h3>Current Reads</h3>
+      <ul>
+        {list &&
+          list.map((el) => (
+            <CurrentBook
+              key={el._id}
+              image={el.book.cover}
+              title={el.book.title}
+              author={el.book.author}
+              progress={el.progress}
+            />
+          ))}
+      </ul>
     </div>
-  )
+  );
 }
 
-
-function CurrentBook(){
-    return (
-      <li className={classes.currentBookElement}>
-        <img src="/bookCover/cover.webp" />
-        <div>
-          <h4>Book Title</h4>
-          <p>
-            by <span>Author Name</span>
-          </p>
-          <ProgressBar progress={40} />
-          <button>Udate</button>
-        </div>
-      </li>
-    );
+function CurrentBook({ image, title, author, progress }) {
+  return (
+    <li className={classes.currentBookElement}>
+      <img src={image} />
+      <div>
+        <h4>{title}</h4>
+        <p>
+          by <span>{author}</span>
+        </p>
+        <ProgressBar progress={progress} />
+        <button>Udate</button>
+      </div>
+    </li>
+  );
 }

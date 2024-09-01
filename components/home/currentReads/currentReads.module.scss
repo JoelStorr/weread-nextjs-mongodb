@@ -1,23 +1,18 @@
-
-
-.currentReadsList{
-    
+.currentReadsList {
 }
 
-.currentBookElement{
+.currentBookElement {
+  margin: 1rem 0;
+  display: flex;
 
+  img {
+    width: 7rem;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+  }
+
+  button {
     margin: 1rem 0;
-    display: flex;
-
-    img{
-        width: 60px;
-        border-radius: 0.5rem;
-        margin-right: 1rem;
-    }
-
-    button{
-        margin: 1rem 0;
-    }
+  }
 }
-
-
