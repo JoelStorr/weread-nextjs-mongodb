@@ -41,6 +41,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.48);
+  z-index: 5;
 }
 
 .searchPopup {
@@ -54,6 +55,7 @@
   border-radius: 5px;
   overflow: hidden;
   color: white;
+  z-index: 6;
 }
 
 .bookListHolder {
@@ -62,6 +64,7 @@
   overflow-y: scroll;
   scrollbar-color: $white $primary-dark-blue;
   margin-top: 2rem;
+  color: $white;
 
 }
 
@@ -74,12 +77,22 @@
   align-items: center;
   justify-content: flex-start;
 
+  color: $white;
+
   img {
     padding-right: 2rem;
   }
 
   span {
     font-weight: bold;
+  }
+
+  h4{
+    color: $white;
+  }
+
+  p{
+    color: $white;
   }
 }
 
