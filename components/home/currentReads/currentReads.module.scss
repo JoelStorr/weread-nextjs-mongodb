@@ -12,8 +12,9 @@
   display: flex;
 
   img {
-    width: 7rem;
+    max-width: 7rem;
     height: auto;
+    object-fit:contain;
     border-radius: 0.5rem;
     margin-right: 1rem;
   }
