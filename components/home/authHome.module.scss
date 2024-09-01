@@ -1,47 +1,44 @@
-
-.currentReads{
-    grid-column: m1-start / m3-end;
-    grid-row: sl1-start / sr1-end;
-
-    border: 3px solid $primary-dark-blue;
-    border-radius: 1rem;
-    padding: 1rem 2rem;
-
+.currentReads {
+  grid-column: m1-start / m3-end;
+  grid-row: sl1-start / sr1-end;
+  border: 3px solid $primary-dark-blue;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
 
-.readingGoals{
-    grid-column: m1-start / m3-end;
-    grid-row: sl3-start / sr3-end;
-     //border: 3px solid $primary-dark-blue;
-    border-radius: 1rem;
-    padding: 1rem 2rem;
+.readingGoals {
+  grid-column: m1-start / m3-end;
+  grid-row: sl2-start / sr2-end;
+  //border: 3px solid $primary-dark-blue;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
 
-.readingList{
-     grid-column: m1-start / m3-end;
-    grid-row: sl4-start / sr4-end;
-    border: 3px solid $primary-dark-blue;
-    border-radius: 1rem;
-    padding: 1rem 2rem;
+.readingList {
+  grid-column: m1-start / m3-end;
+  grid-row: sl3-start / sr3-end;
+  border: 3px solid $primary-dark-blue;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
 
-.forYouList{
-    grid-row: sl1-start / sr4-end;
-    grid-column: m5-start / m8-end;
+.forYouList {
+  grid-row: sl1-start / sr3-end;
+  grid-column: m5-start / m8-end;
 }
 
-.yourGroupes{
-    grid-row: sl1-start / sr1-end;
-    grid-column: m10-start / m12-end;
-    border: 3px solid $primary-dark-blue;
-    border-radius: 1rem;
-    padding: 1rem 2rem;
+.yourGroupes {
+  grid-row: sl1-start / sr1-end;
+  grid-column: m10-start / m12-end;
+  border: 3px solid $primary-dark-blue;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
 
-.placeholderTodoOne{
-    grid-row: sl3-start / sr3-end;
-    grid-column: m10-start / m12-end;
-    border: 3px solid $primary-dark-blue;
-    border-radius: 1rem;
-    padding: 1rem 2rem;
+.placeholderTodoOne {
+  grid-row: sl2-start / sr3-end;
+  grid-column: m10-start / m12-end;
+  border: 3px solid $primary-dark-blue;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
