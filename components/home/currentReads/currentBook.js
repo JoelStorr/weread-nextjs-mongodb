@@ -1,29 +1,46 @@
-"use client"
+"use client";
 
-import { useEffect, useState,  } from "react";
-import {useFormState} from 'react-dom';
+import { useEffect, useState } from "react";
+import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { updateProgress } from "@/lib/list";
 import ProgressBar from "@/components/utils/progressBar/progressBar";
 import classes from "./currentBook.module.scss";
 
-export default function CurrentBook({ keyVal, image, title, author, progress, listName, pages }) {
-  
-    const router = useRouter();
+export default function CurrentBook({
+  keyVal,
+  image,
+  title,
+  author,
+  progress,
+  listName,
+  pages,
+}) {
+  const router = useRouter();
 
   const [selected, setSelected] = useState(null);
-  const [state, formAction] =  useFormState(updateProgress, {message: null})
+  const [state, formAction] = useFormState(updateProgress, { message: null });
 
-  useEffect(()=>{
+  useEffect(() => {
     setSelected(null);
     router.refresh();
-  }, [state])
+  }, [state]);
 
   //console.log(keyVal)
 
+  function handleKlick(e, keyVal) {
+    e.stopPropagation();
+
+    setSelected(keyVal);
+  }
+
   return (
     <>
-      <li className={classes.currentBookElement} key={keyVal}>
+      <li
+        className={classes.currentBookElement}
+        key={keyVal}
+        onClick={() => setSelected(null)}
+      >
         <img src={image} />
         <div>
           <h4>{title}</h4>
@@ -31,26 +48,33 @@ export default function CurrentBook({ keyVal, image, title, author, progress, li
             by <span>{author}</span>
           </p>
           <ProgressBar progress={progress} />
-          <button onClick={() => setSelected(keyVal)}>Udate</button>
+          <button onClick={(e) => handleKlick(e, keyVal)}>Udate</button>
         </div>
         {selected === keyVal && (
-          <div className={classes.popUpHolder}>
+          <div
+            className={classes.popUpHolder}
+            onClick={(e) => e.stopPropagation()}
+          >
             <form action={formAction}>
               <label>
-                Update Progress
-                <input
-                  type="number"
-                  name="progress"
-                  defaultValue={progress}
-                />
+                Update Progress: <br />
+                <input type="number" name="progress" defaultValue={progress} />
               </label>
-
-            <p>Key {keyVal}</p>
               <input type="hidden" value={keyVal} name="bookId" />
               <input type="hidden" value={listName} name="listName" />
               <input type="hidden" value={pages} name="pages" />
-
-              <button type="submit">Update</button>
+              <br />
+              <div>
+                <button type="submit" className={classes.updateBtn}>
+                  Update
+                </button>
+                <button
+                  onClick={() => setSelected(null)}
+                  className={classes.closeBtn}
+                >
+                  Close
+                </button>
+              </div>
             </form>
           </div>
         )}

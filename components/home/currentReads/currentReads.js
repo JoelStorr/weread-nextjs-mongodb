@@ -4,6 +4,8 @@ import classes from "./currentReads.module.scss";
 import { getCurrentReads } from "@/lib/list";
 import CurrentBook from "./currentBook";
 
+
+//NOTE: Show a list of current Reads List
 export default async function CurrentReads() {
   const list = await getCurrentReads();
 
