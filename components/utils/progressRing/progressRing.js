@@ -1,23 +1,22 @@
-'use client'
-import React, {useEffect, useState} from 'react'
-import classes from './progressRing.module.scss';
+"use client";
+import React, { useEffect, useState } from "react";
+import classes from "./progressRing.module.scss";
 
-export default function ProgressRing({percent}) {
+export default function ProgressRing({ percent }) {
+  const radius = 30;
+  var circumference = radius * 2 * Math.PI;
+  const [circleOffset, setCircleOffset] = useState(`${circumference}`);
 
-      const radius = 30;
-      var circumference = radius * 2 * Math.PI;
-      const [circleOffset, setCircleOffset] = useState(`${circumference}`);
+  let strokeDasharray = `${circumference} ${circumference}`;
 
-      let strokeDasharray = `${circumference} ${circumference}`;
+  function setProgress(percent = 1) {
+    const offset = circumference - (percent / 100) * circumference;
+    setCircleOffset(offset);
+  }
 
-      function setProgress(percent = 1) {
-        const offset = circumference - (percent / 100) * circumference;
-        setCircleOffset(offset);
-      }
-
-      useEffect(() => {
-        setProgress(percent);
-      }, []);
+  useEffect(() => {
+    setProgress(percent);
+  }, []);
 
   return (
     <div className={classes.progress}>
