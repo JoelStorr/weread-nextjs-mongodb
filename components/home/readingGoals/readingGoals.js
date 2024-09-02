@@ -1,12 +1,16 @@
-'use client'
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import classes from './readingGoals.module.scss';
 import ProgressRing from '@/components/utils/progressRing/progressRing';
+import { getStatisticData } from '@/lib/statistics';
 
-export default function ReadingGoals() {
+export default async function ReadingGoals() {
 
     //const circle = useRef()
-  
+
+    const data = await getStatisticData();
+
+    console.log('Statistic data', data);
+
 
   return (
     <>

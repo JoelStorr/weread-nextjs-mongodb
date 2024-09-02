@@ -13,9 +13,6 @@ import RegisterForm from './registerForm';
 export default async function AuthPopUp({register, login}) {
 
     const session = await getSession();
-
-    console.log(JSON.stringify(session, null, 2));
-
     if(login){
         return (
           <>

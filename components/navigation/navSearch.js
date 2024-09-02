@@ -18,8 +18,7 @@ export default function NavSearch() {
   const [clickedBook, setClickedBook] = useState({ id: null });
 
   function saveSelection() {
-    console.log(clickedList);
-    console.log(clickedBook);
+    
   }
 
   function handleListClick(name) {
@@ -27,11 +26,11 @@ export default function NavSearch() {
   }
 
   function handleBookClick(book) {
-    console.log(book);
+   
 
     setClickedBook(book);
 
-    console.log(clickedBook);
+    
   }
 
   async function loadLists() {
@@ -68,14 +67,14 @@ export default function NavSearch() {
 
       const response = await res.json();
 
-      console.log(response);
+      
 
       let temp = [];
       for (let i = 0; i < response.items.length; i++) {
         if (!response.items[i].volumeInfo.industryIdentifiers) {
           continue;
         }
-        console.log(response.items[i].volumeInfo.industryIdentifiers.length);
+        
 
         if (response.items[i].volumeInfo.industryIdentifiers.length === 0) {
           continue;
@@ -94,7 +93,7 @@ export default function NavSearch() {
           bookObj["cover"] = response.items[i].volumeInfo.imageLinks.thumbnail;
         }
 
-        console.log(response.items[i].volumeInfo.industryIdentifiers);
+        
 
         if (response.items[i].volumeInfo.industryIdentifiers.length > 1) {
           if (response.items[i].volumeInfo.industryIdentifiers[1].identifier) {
@@ -112,7 +111,7 @@ export default function NavSearch() {
 
       setSearchResult([...temp]);
 
-      console.log(searchResult);
+      
     } catch (error) {
       console.log(error);
     }
@@ -229,63 +228,4 @@ export default function NavSearch() {
       )}
     </>
   );
-
-  //   return (
-  //     <>
-  //       <div>BookSearch</div>
-  //       <form onSubmit={runBookSearch}>
-  //         <label>
-  //           Search for a Book
-  //           <input type="text" ref={search} />
-  //           <button type="submit">Search</button>
-  //           <br />
-  //           <button
-  //             onClick={() => {
-  //               setPageIndex(pageIndex + 10);
-  //             }}
-  //           >
-  //             Next 10
-  //           </button>
-  //           <button
-  //             onClick={() => {
-  //               setPageIndex(pageIndex - 10);
-  //             }}
-  //           >
-  //             Prev 10
-  //           </button>
-  //         </label>
-  //       </form>
-  //       <ul>
-  //         {searchResult.map((book) => (
-  //           <li key={book.id} onClick={() => handleBookClick(book)}>
-  //             <p>
-  //               {book.title} - {book.author}
-  //             </p>
-  //             <img src={book.cover} />
-  //           </li>
-  //         ))}
-  //       </ul>
-
-  //       <br />
-
-  //       {searchResult.length > 0 && (
-  //         <>
-  //           <button onClick={loadLists}>Load List</button>
-  //           <ul>
-  //             {lists.map((list) => (
-  //               <li key={list.name} onClick={() => handleListClick(list.name)}>
-  //                 {list.name}
-  //               </li>
-  //             ))}
-  //           </ul>
-  //         </>
-  //       )}
-
-  //       {clickedBook && clickedList && (
-  //         <button onClick={() => addBookToList(clickedList, clickedBook)}>
-  //           Save
-  //         </button>
-  //       )}
-  //     </>
-  //   );
 }

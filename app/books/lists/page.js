@@ -17,7 +17,6 @@ export default function Lists() {
   useEffect(() => {
     let load = async () => {
       let listData = await getLists();
-      console.log("Lists", listData);
       if (listData) {
         setLists(listData);
       }
@@ -39,8 +38,6 @@ export default function Lists() {
     setActiveList(list);
 
     let booksIds = list.books.map((book) => book.bookId);
-
-    console.log(booksIds);
     const result = await booksFromList(booksIds);
 
     const convertedList = list.books.map((book) => {
@@ -49,7 +46,6 @@ export default function Lists() {
       return book;
     });
 
-    console.log("Converted List", convertedList);
     setActiveListBooks(convertedList);
     //TODO: Fix bug loading books from lits
   }

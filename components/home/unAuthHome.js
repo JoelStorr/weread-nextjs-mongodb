@@ -14,7 +14,7 @@ export default function UnAuthHome() {
         />
         <button
           onClick={() => {
-            console.log("Clicked");
+            
           }}
         >
           Join Now

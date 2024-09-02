@@ -19,7 +19,7 @@ export default function CurrentBook({ keyVal, image, title, author, progress, li
     router.refresh();
   }, [state])
 
-  console.log(keyVal)
+  //console.log(keyVal)
 
   return (
     <>
