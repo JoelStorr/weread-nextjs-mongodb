@@ -1,31 +1,46 @@
 import React from 'react';
 import classes from './readingGoals.module.scss';
 import ProgressRing from '@/components/utils/progressRing/progressRing';
-import { getStatisticData } from '@/lib/statistics';
+import { getStatisticDataCurrYear } from "@/lib/statistics";
 
 export default async function ReadingGoals() {
 
     //const circle = useRef()
 
-    const data = await getStatisticData();
+    const data = await getStatisticDataCurrYear();
 
-    console.log('Statistic data', data);
+    let percent
+    let year = new Date(data.year).getFullYear();
+    
+    if(data.readBooks.length == 0){
+      percent = 0
+    } else {
+      percent = (data.readBooks.length / data.readingGoal) * 100;
+
+    }
+
+
+
+    console.log('Percent', percent);
 
 
   return (
     <>
       <section className={classes.readingGoals}>
         <div className={classes.yearGoal}>
-          <p>2024</p>
+          <p>{year}</p>
           <img src="/icons/OpenBook100.png" />
           <p>
             Reading <br /> Goals
           </p>
         </div>
         <div className={classes.progressHolder}>
-          <ProgressRing />
+          <ProgressRing
+            percent={percent}
+          />
           <p>
-            <span>25</span> of <span>50</span> books
+            <span>{data.readBooks.length}</span> of{" "}
+            <span>{data.readingGoal}</span> books
           </p>
         </div>
       </section>
