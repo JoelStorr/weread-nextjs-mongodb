@@ -2,35 +2,23 @@
 
 import { addBookToList, getLists } from "@/lib/list";
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import classes from "./navSearch.module.scss";
 
 export default function NavSearch() {
+
+  const router = useRouter();
+
   const search1 = useRef();
-  //const search2 = useRef();
   const [searchValue, setSearchValue] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
   const [lists, setLists] = useState([]);
-  const [showList, setShowList] = useState(false);
-
-  const [clickedList, setClickedList] = useState(null);
   const [clickedBook, setClickedBook] = useState({ id: null });
 
-  function saveSelection() {
-    
-  }
-
-  function handleListClick(name) {
-    setClickedList(name);
-  }
-
   function handleBookClick(book) {
-   
-
     setClickedBook(book);
-
-    
   }
 
   async function loadLists() {
@@ -42,6 +30,7 @@ export default function NavSearch() {
     loadLists();
   }, []);
 
+  //NOTE: Search Books via Google Books API
   async function runBookSearch(e, nav = false) {
     e.preventDefault();
 
@@ -68,6 +57,7 @@ export default function NavSearch() {
       const response = await res.json();
 
       
+      //NOTE: Convert Books to usable format
 
       let temp = [];
       for (let i = 0; i < response.items.length; i++) {
@@ -93,8 +83,6 @@ export default function NavSearch() {
           bookObj["cover"] = response.items[i].volumeInfo.imageLinks.thumbnail;
         }
 
-        
-
         if (response.items[i].volumeInfo.industryIdentifiers.length > 1) {
           if (response.items[i].volumeInfo.industryIdentifiers[1].identifier) {
             bookObj["isbn"] =
@@ -111,7 +99,6 @@ export default function NavSearch() {
 
       setSearchResult([...temp]);
 
-      
     } catch (error) {
       console.log(error);
     }
@@ -131,6 +118,7 @@ export default function NavSearch() {
           placeholder="Search for Books"
         />
       </form>
+      {/* NOTE: Search Popup */}
       {searchResult.length > 0 && (
         <div>
           <div
@@ -150,6 +138,7 @@ export default function NavSearch() {
 
             <div  className={classes.bookListHolder}>
               <ul>
+              {/* NOTE: Search Result */}
                 {searchResult.map((book, index) => (
                   <li key={book.id} className={classes.bookListElement}>
                     <div className={classes.bookListDetail}>
@@ -164,7 +153,6 @@ export default function NavSearch() {
                         <p>pages: {book.pages}</p>
                       </div>
                       <div className={classes.addToListBtn}>
-                        {/* TODO: Load List and Display users list */}
                         <button onClick={() => handleBookClick(book)}>
                           Add to List
                         </button>
@@ -177,6 +165,8 @@ export default function NavSearch() {
                                   onClick={() => {
                                     addBookToList(list.name, clickedBook);
                                     handleBookClick({ id: null });
+                                    setSearchResult([]);
+                                    router.refresh();
                                   }}
                                 >
                                   {list.name}
