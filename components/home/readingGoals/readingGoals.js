@@ -9,7 +9,7 @@ export default async function ReadingGoals() {
   const data = await getStatisticDataCurrYear();
 
   let percent;
-  let year = new Date(data.year).getFullYear();
+  
 
   if (data.readBooks.length == 0) {
     percent = 0;
@@ -21,7 +21,7 @@ export default async function ReadingGoals() {
     <>
       <section className={classes.readingGoals}>
         <div className={classes.yearGoal}>
-          <p>{year}</p>
+          <p>{data.year}</p>
           <img src="/icons/OpenBook100.png" />
           <p>
             Reading <br /> Goals
