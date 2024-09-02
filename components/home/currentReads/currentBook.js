@@ -48,7 +48,12 @@ export default function CurrentBook({
             by <span>{author}</span>
           </p>
           <ProgressBar progress={progress} />
-          <button onClick={(e) => handleKlick(e, keyVal)}>Udate</button>
+          <button
+            onClick={(e) => handleKlick(e, keyVal)}
+            className={classes.btn}
+          >
+            Update
+          </button>
         </div>
         {selected === keyVal && (
           <div
