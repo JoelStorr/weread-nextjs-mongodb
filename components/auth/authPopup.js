@@ -1,7 +1,7 @@
 import React from 'react'
 import { redirect } from "next/navigation";
-import { delUser, logout } from "/lib/auth/index";
-import { getSession } from "/lib/auth/tokenHandler";
+import { delUser, logout } from "@/lib/auth/index";
+import { getSession } from "@/lib/auth/tokenHandler";
 import Link from "next/link";
 
 import LoginForm from "./loginForm";
