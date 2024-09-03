@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './forYou.module.scss';
-import ProgressRing from '@/components/utils/progressRing/progressRing';
+import ProgressRing from '/components/utils/progressRing/progressRing';
 
 export default function ForYou() {
 

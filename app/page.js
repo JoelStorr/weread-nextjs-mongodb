@@ -1,7 +1,7 @@
-import AuthPopUp from "@/components/auth/authPopup";
-import { getSession } from "@/lib/auth/tokenHandler";
-import UnAuthHome from "@/components/home/unAuthHome";
-import AuthHome from "@/components/home/authHome";
+import AuthPopUp from "/components/auth/authPopup";
+import { getSession } from "/lib/auth/tokenHandler";
+import UnAuthHome from "/components/home/unAuthHome";
+import AuthHome from "/components/home/authHome";
 
 export default async function Home({ searchParams }) {
   const session = await getSession();

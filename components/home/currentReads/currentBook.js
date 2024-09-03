@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { updateProgress } from "@/lib/list";
-import ProgressBar from "@/components/utils/progressBar/progressBar";
+import { updateProgress } from "/lib/list";
+import ProgressBar from "/components/utils/progressBar/progressBar";
 import classes from "./currentBook.module.scss";
 
 export default function CurrentBook({

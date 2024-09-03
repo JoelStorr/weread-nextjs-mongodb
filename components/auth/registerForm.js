@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
-import { signup, logout } from "@/lib/auth/index";
+import { signup, logout } from "/lib/auth/index";
 
-import { getSession } from "@/lib/auth/tokenHandler";
+import { getSession } from "/lib/auth/tokenHandler";
 
 export default async function RegisterForm() {
   const session = await getSession();

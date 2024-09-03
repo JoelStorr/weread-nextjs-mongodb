@@ -1,7 +1,7 @@
 import React from 'react'
 
 import classes from './yourGroupes.module.scss';
-import ProgressBar from '@/components/utils/progressBar/progressBar';
+import ProgressBar from '/components/utils/progressBar/progressBar';
 
 export default function YourGroupes() {
   return (

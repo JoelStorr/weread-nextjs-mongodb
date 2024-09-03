@@ -1,7 +1,7 @@
 
 import classes from "./currentReads.module.scss";
 
-import { getCurrentReads } from "@/lib/list";
+import { getCurrentReads } from "/lib/list";
 import CurrentBook from "./currentBook";
 
 

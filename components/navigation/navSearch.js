@@ -1,6 +1,6 @@
 "use client";
 
-import { addBookToList, getLists } from "@/lib/list";
+import { addBookToList, getLists } from "/lib/list";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 

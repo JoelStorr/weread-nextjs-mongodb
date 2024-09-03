@@ -1,14 +1,14 @@
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import classes from "./indexpage.module.scss";
-import NavAuth from "@/components/navigation/navAuth";
-import AuthPopUp from "@/components/auth/authPopup";
-import { getSession } from "@/lib/auth/tokenHandler";
-import SessionAuth from "@/components/navigation/sessionNav";
-import { runBookSearch } from "@/lib/search/search";
-import NavSearch from "@/components/navigation/navSearch";
+import NavAuth from "/components/navigation/navAuth";
+import AuthPopUp from "/components/auth/authPopup";
+import { getSession } from "/lib/auth/tokenHandler";
+import SessionAuth from "/components/navigation/sessionNav";
+import { runBookSearch } from "/lib/search/search";
+import NavSearch from "/components/navigation/navSearch";
 import Link from "next/link";
-import UnAuthHome from "@/components/home/unAuthHome";
+import UnAuthHome from "/components/home/unAuthHome";
 
 const inter = Inter({ subsets: ["latin"] });
 

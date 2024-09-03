@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./readingGoals.module.scss";
-import ProgressRing from "@/components/utils/progressRing/progressRing";
-import { getStatisticDataCurrYear } from "@/lib/statistics";
+import ProgressRing from "/components/utils/progressRing/progressRing";
+import { getStatisticDataCurrYear } from "/lib/statistics";
 
 export default async function ReadingGoals() {
   //const circle = useRef()
