@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
+import React, {ReactElement} from "react";
 
 import classes from "./unAuthHome.module.scss";
 
-export default function UnAuthHome() {
+export default function UnAuthHome(): ReactElement {
   return (
     <>
       {/* NOTE: Header */}
