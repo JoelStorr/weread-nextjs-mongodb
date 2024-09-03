@@ -1,6 +1,6 @@
 "use client";
 import { useFormState } from "react-dom";
-import { makeList, getLists, booksFromList, updateProgress } from "@/lib/list";
+import { makeList, getLists, booksFromList, updateProgress } from "/lib/list";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 

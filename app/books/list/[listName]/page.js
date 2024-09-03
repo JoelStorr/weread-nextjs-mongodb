@@ -1,4 +1,4 @@
-import { getListByName } from '@/lib/list'
+import { getListByName } from '/lib/list'
 import React from 'react'
 
 export default async function ListPage({params}) {

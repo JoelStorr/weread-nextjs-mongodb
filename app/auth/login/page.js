@@ -1,12 +1,10 @@
 
 
-import { redirect } from "next/navigation";
-import { delUser, logout } from "@/lib/auth/index";
-import { getSession } from "@/lib/auth/tokenHandler";
 import Link from "next/link";
-
-
-import LoginForm from "@/components/auth/loginForm";
+import { redirect } from "next/navigation";
+import { delUser, logout } from "/lib/auth/index";
+import { getSession } from "/lib/auth/tokenHandler";
+import LoginForm from "/components/auth/loginForm";
 
 export default async function Login() {
   
