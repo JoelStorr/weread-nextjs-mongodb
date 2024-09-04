@@ -177,7 +177,7 @@ export default function NavSearch() {
                         )}
                       </div>
                     </div>
-                    {searchResult.length - 1 !== index && <hr />}
+                    {searchResult.length - 1 !== index && <hr className={classes.hr}/>}
                   </li>
                 ))}
               </ul>
