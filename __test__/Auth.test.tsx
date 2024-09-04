@@ -1,7 +1,5 @@
-import Home from "@/app/page";
 
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
 import { login } from "@/lib/auth";
 
 describe("should login user", async () => {

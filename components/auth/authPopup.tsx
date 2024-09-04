@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { redirect } from "next/navigation";
 import { delUser, logout } from "@/lib/auth/index";
 import { getSession } from "@/lib/auth/tokenHandler";
@@ -10,7 +10,12 @@ import Image from 'next/image';
 import RegisterForm from './registerForm';
 
 
-export default async function AuthPopUp({register, login}) {
+type AuthProps = {
+  register?: Boolean,
+  login?: Boolean
+}
+
+export default async function AuthPopUp({register, login}:AuthProps): Promise<ReactElement>{
 
     const session = await getSession();
     if(login){
@@ -77,5 +82,6 @@ export default async function AuthPopUp({register, login}) {
         );
     }
 
+    return (<></>)
 
 }

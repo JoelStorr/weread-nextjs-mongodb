@@ -1,9 +1,10 @@
 import { redirect } from "next/navigation";
-import { signup, logout } from "/lib/auth/index";
+import { signup, logout } from "@/lib/auth/index";
 
-import { getSession } from "/lib/auth/tokenHandler";
+import { getSession } from "@/lib/auth/tokenHandler";
+import { ReactElement } from "react";
 
-export default async function RegisterForm() {
+export default async function RegisterForm(): Promise<ReactElement>{
   const session = await getSession();
   return (
     <section>

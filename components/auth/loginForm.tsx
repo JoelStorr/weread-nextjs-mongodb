@@ -1,9 +1,9 @@
 'use client'
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { useFormState } from "react-dom";
-import { login } from "/lib/auth/index";
+import { login } from "@/lib/auth/index";
 
-export default function LoginForm() {
+export default function LoginForm(): ReactElement {
 
     const [state, formAction] = useFormState(login, { error: null });
 
