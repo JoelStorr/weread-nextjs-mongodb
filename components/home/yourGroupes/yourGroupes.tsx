@@ -1,9 +1,10 @@
 import React from 'react'
 
 import classes from './yourGroupes.module.scss';
-import ProgressBar from '/components/utils/progressBar/progressBar';
+import ProgressBar from '@/components/utils/progressBar/progressBar';
 
-export default function YourGroupes() {
+const YourGroupes: React.FC = () => {
+
   return (
     <>
       <section className={classes.yourGroupes}>
@@ -18,7 +19,7 @@ export default function YourGroupes() {
   );
 }
 
-function GroupeElement(){
+const GroupeElement: React.FC = () => {
 
     return(
         <li className={classes.groupElement}>
@@ -32,3 +33,5 @@ function GroupeElement(){
         </li>
     )
 }
+
+export default YourGroupes;

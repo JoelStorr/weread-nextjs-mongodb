@@ -1,8 +1,11 @@
 import React from 'react'
 import classes from './forYou.module.scss';
-import ProgressRing from '/components/utils/progressRing/progressRing';
+import ProgressRing from '@/components/utils/progressRing/progressRing';
 
-export default function ForYou() {
+
+const ForYou: React.FC = () => {
+
+
 
 
   return (
@@ -21,8 +24,9 @@ export default function ForYou() {
   );
 }
 
+export default ForYou;
 
-function ForYouItem(){
+const  ForYouItem: React.FC = () => {
     return(
         <li className={classes.forYouItem}>
             <div className={classes.userInfo}>
@@ -42,7 +46,7 @@ function ForYouItem(){
                 </div>
 
             </div>
-                <ProgressRing />
+                <ProgressRing percent={0} />
             </div>
 
         </li>

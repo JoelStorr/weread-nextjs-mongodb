@@ -1,14 +1,14 @@
 import React from "react";
 import classes from "./readingGoals.module.scss";
-import ProgressRing from "/components/utils/progressRing/progressRing";
-import { getStatisticDataCurrYear } from "/lib/statistics";
+import ProgressRing from "@/components/utils/progressRing/progressRing";
+import { getStatisticDataCurrYear } from "@/lib/statistics";
 
-export default async function ReadingGoals() {
+export default async function ReadingGoals(): Promise<JSX.Element> {
   //const circle = useRef()
 
   const data = await getStatisticDataCurrYear();
 
-  let percent;
+  let percent: Number;
   
 
   if (data.readBooks.length == 0) {

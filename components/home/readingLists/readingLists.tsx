@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./readingLists.module.scss";
-import { getLists } from "/lib/list";
+import { getLists } from "@/lib/list";
 import Link from "next/link";
 
-export default async function ReadingLists() {
+export default async function ReadingLists(): Promise<JSX.Element> {
   const lists = await getLists();
 
   return (
