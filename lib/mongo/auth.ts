@@ -5,7 +5,7 @@ let client;
 let db;
 let users;
 
-async function init() {
+async function init(): Promise<void> {
   if (db) return;
   try {
     client = await clientPromis;
@@ -20,11 +20,33 @@ async function init() {
   await init();
 })();
 
+interface BookInterface {
+  bookId: string;
+  pages: number;
+  progress: number;
+  percent: boolean;
+  bookType: string;
+}
+
+interface UserInterface {
+  _id: string;
+  email: string;
+  password: string;
+  username: string;
+  lists: { name: string; private: boolean; books: BookInterface[] }[];
+}
+
+interface ErrorInterface {
+  error: string;
+}
+
 // NOTE: GET USER VIA EMAIL
-export async function getUser(email) {
+export async function getUser(
+  email: string
+): Promise<UserInterface | ErrorInterface> {
   try {
     if (!users) await init();
-    const result = await users.findOne({ email: email });
+    const result: UserInterface = await users.findOne({ email: email });
 
     result._id = result._id.toString();
     result.lists = result.lists.map((list) => {
@@ -42,10 +64,12 @@ export async function getUser(email) {
 }
 
 //NOTE: Get user via Username
-export async function getUserName(name) {
+export async function getUserName(
+  name: string
+): Promise<UserInterface | ErrorInterface> {
   try {
     if (!users) await init();
-    const result = await users.findOne({ username: name });
+    const result: UserInterface = await users.findOne({ username: name });
     result._id = result._id.toString();
     return result;
   } catch (error) {
@@ -54,7 +78,12 @@ export async function getUserName(name) {
 }
 
 // NOTE: Ceate New User
-export async function addUser(email, passwordhashed, username) {
+
+export async function addUser(
+  email: string,
+  passwordhashed: string,
+  username: string
+): Promise<UserInterface | ErrorInterface> {
   try {
     if (!users) await init();
     const result = await users.insertOne({
@@ -67,19 +96,21 @@ export async function addUser(email, passwordhashed, username) {
       ],
     });
 
-    const statistics = await initaiteStatisctics(result.insertedId);
-
-    return { user: result };
+    await initaiteStatisctics(result.insertedId);
+    return result;
   } catch (error) {
-    return { errror: "Failed to add a user" };
+    return { error: "Failed to add a user" };
   }
 }
 
 // NOTE: Delete a User
-export async function deleteUser(email) {
+export async function deleteUser(
+  email: string
+): Promise<void | ErrorInterface> {
   try {
     if (!users) await init();
-    const result = await users.deleteOne({ email: email });
+    await users.deleteOne({ email: email });
+    //TODO: Return info when user was deleted
   } catch (error) {
     return { error: "Failed to delete user" };
   }
