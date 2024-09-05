@@ -20,30 +20,12 @@ async function init(): Promise<void> {
   await init();
 })();
 
-interface BookInterface {
-  bookId: string;
-  pages: number;
-  progress: number;
-  percent: boolean;
-  bookType: string;
-}
 
-interface UserInterface {
-  _id: string;
-  email: string;
-  password: string;
-  username: string;
-  lists: { name: string; private: boolean; books: BookInterface[] }[];
-}
-
-interface ErrorInterface {
-  error: string;
-}
 
 // NOTE: GET USER VIA EMAIL
 export async function getUser(
   email: string
-): Promise<UserInterface | ErrorInterface> {
+): Promise<UserInterface> {
   try {
     if (!users) await init();
     const result: UserInterface = await users.findOne({ email: email });
@@ -59,21 +41,21 @@ export async function getUser(
     return { ...result };
   } catch (error) {
     console.log(error);
-    return { error: "Failed to fetch a user!" };
+    throw new Error( "Failed to fetch a user!");
   }
 }
 
 //NOTE: Get user via Username
 export async function getUserName(
   name: string
-): Promise<UserInterface | ErrorInterface> {
+): Promise<UserInterface> {
   try {
     if (!users) await init();
     const result: UserInterface = await users.findOne({ username: name });
     result._id = result._id.toString();
     return result;
   } catch (error) {
-    return { error: "Failed to fetch a user!" };
+    throw new Error("Failed to fetch a user!")
   }
 }
 
@@ -83,7 +65,7 @@ export async function addUser(
   email: string,
   passwordhashed: string,
   username: string
-): Promise<UserInterface | ErrorInterface> {
+): Promise<UserInterface> {
   try {
     if (!users) await init();
     const result = await users.insertOne({
@@ -99,19 +81,19 @@ export async function addUser(
     await initaiteStatisctics(result.insertedId);
     return result;
   } catch (error) {
-    return { error: "Failed to add a user" };
+    throw new Error("Failed to add a user")
   }
 }
 
 // NOTE: Delete a User
 export async function deleteUser(
   email: string
-): Promise<void | ErrorInterface> {
+): Promise<void> {
   try {
     if (!users) await init();
     await users.deleteOne({ email: email });
     //TODO: Return info when user was deleted
   } catch (error) {
-    return { error: "Failed to delete user" };
+    throw new Error("Failed to delete user")
   }
 }

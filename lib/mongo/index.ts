@@ -8,7 +8,7 @@ if(!URI){
 }
 
 let client = new MongoClient(URI, options);
-let clientPromis;
+let clientPromis:any;
 
 if(process.env.NODE_ENV !== 'production'){
     if(!global._mongoClientPromis){

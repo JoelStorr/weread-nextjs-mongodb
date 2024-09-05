@@ -7,7 +7,7 @@ let client;
 let db;
 let statistics;
 
-async function init() {
+async function init(): Promise<void> {
   if (db) return;
   try {
     client = await clientPromis;
@@ -23,7 +23,7 @@ async function init() {
 })();
 
 // NOTE: Initiate New Statistics for new User
-export async function initaiteStatisctics(userId) {
+export async function initaiteStatisctics(userId: string): Promise<void> {
   try {
     if (!statistics) await init();
 
@@ -42,16 +42,26 @@ export async function initaiteStatisctics(userId) {
     });
   } catch (error) {
     console.log(error);
-    return { error: "Could not add Statistics for user" };
+    throw new Error("Could not add Statistics for user");
   }
 }
 
 // NOTE: Add a Book to List when finished
-export async function addBookToStatistic(bookId, bookPages) {
-  const session = await getSession();
-  const user = await getUser(session.user);
+export async function addBookToStatistic(
+  bookId: string,
+  bookPages: number
+): Promise<void> {
+  let user: UserInterface;
 
-  console.log('Book data for statistics',bookId, bookPages)
+  try {
+    const session = await getSession();
+    if (!session) throw new Error("Unauth Error");
+    user = await getUser(session.user as string);
+  } catch (error) {
+    throw new Error("Unauth Error");
+  }
+
+  console.log("Book data for statistics", bookId, bookPages);
 
   try {
     if (!statistics) await init();
@@ -71,23 +81,32 @@ export async function addBookToStatistic(bookId, bookPages) {
         },
       }
     );
-
-    return response;
   } catch (error) {
     console.log(error);
+    throw new Error("Could not add book to statistics");
   }
 }
 
 // NOTE: Get Statistics for user
-export async function getStatisticDB() {
-  const session = await getSession();
-  const user = await getUser(session.user);
+export async function getStatisticDB(): Promise<StatisticsInterface> {
+  let user: UserInterface;
+
+  try {
+    const session = await getSession();
+    if (!session) throw new Error("Unauth Error");
+    user = await getUser(session.user as string);
+  } catch (error) {
+    throw new Error("Unauth Error");
+  }
 
   try {
     if (!statistics) await init();
-    const response = await statistics.findOne({ userId: new ObjectId(user._id) });
+    const response = await statistics.findOne({
+      userId: new ObjectId(user._id),
+    });
     return response;
   } catch (error) {
     console.log(error);
+    throw new Error("Could not get Statistics data");
   }
 }
