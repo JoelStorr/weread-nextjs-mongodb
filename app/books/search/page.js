@@ -1,5 +1,8 @@
 'use client'
 
+// NOTE: Outdatet component. This will probably handled differently. Don't convert to TS.
+
+
 import { addBookToList, getLists } from '@/lib/list';
 import React, { useRef,useState } from 'react'
 

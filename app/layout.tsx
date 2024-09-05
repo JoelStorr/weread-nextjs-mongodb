@@ -17,11 +17,12 @@ export const metadata = {
   description: "Find your next book",
 };
 
-type Props = {
-  children: string | JSX.Element | JSX.Element[] | (() => JSX.Element)
+
+interface Props {
+  children?: React.ReactNode
 }
 
-export default async function RootLayout({ children }: Props) {
+const RootLayout: React.FC = async ({children}: Props ) => {
   const session = await getSession();
 
   return (
@@ -53,3 +54,7 @@ export default async function RootLayout({ children }: Props) {
     </html>
   );
 }
+
+export default RootLayout;
+
+

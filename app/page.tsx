@@ -11,21 +11,25 @@ interface PageProps{
   } 
 }
 
-export default async function Home({ searchParams }: PageProps) {
-  const session = await getSession();
 
-  const login = searchParams?.login || false;
-  const register = searchParams?.register || false;
+const Home: React.FC = async ({searchParams}: PageProps)=>{
+ const session = await getSession();
 
-  if (session) {
-    return <AuthHome />;
-  } else {
-    return (
-      <>
-        {login && <AuthPopUp login={true} />}
-        {register && <AuthPopUp register={true} />}
-        <UnAuthHome />
-      </>
-    );
-  }
+ const login = searchParams?.login || false;
+ const register = searchParams?.register || false;
+
+ if (session) {
+   return <AuthHome />;
+ } else {
+   return (
+     <>
+       {login && <AuthPopUp login={true} />}
+       {register && <AuthPopUp register={true} />}
+       <UnAuthHome />
+     </>
+   );
+ }
 }
+
+
+export default Home;

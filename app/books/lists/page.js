@@ -1,3 +1,7 @@
+
+// NOTE: Outdatet component. This will probably handled differently. Don't convert to TS.
+
+
 "use client";
 import { useFormState } from "react-dom";
 import { makeList, getLists, booksFromList, updateProgress } from "/lib/list";
