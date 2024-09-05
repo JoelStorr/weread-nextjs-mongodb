@@ -1,13 +1,19 @@
 'use client'
 import { createContext } from "react";
 
-const AuthContext = createContext({
+interface AuthInterface {
+  authPopUp: null | boolean;
+  showAuthPopUp(): void;
+  hideAuthPopUp():void;
+}
+
+const AuthContext = createContext<AuthInterface>({
   authPopUp: null,
   showAuthPopUp: function () {},
   hideAuthPopUp: function () {},
 });
 
-export function AuthContextProvider(props) {
+export const AuthContextProvider: React.FC = (props) => {
   return <AuthContext>{props.children}</AuthContext>;
 }
 
