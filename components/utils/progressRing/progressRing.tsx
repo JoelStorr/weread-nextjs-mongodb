@@ -2,14 +2,14 @@
 import React, { useEffect, useState } from "react";
 import classes from "./progressRing.module.scss";
 
-export default function ProgressRing({ percent }) {
+const ProgressRing: React.FC<{ percent: number }> = ({ percent }) => {
   const radius = 30;
   var circumference = radius * 2 * Math.PI;
-  const [circleOffset, setCircleOffset] = useState(`${circumference}`);
+  const [circleOffset, setCircleOffset] = useState<number>(circumference);
 
   let strokeDasharray = `${circumference} ${circumference}`;
 
-  function setProgress(percent = 1) {
+  function setProgress(percent = 1):void {
     const offset = circumference - (percent / 100) * circumference;
     setCircleOffset(offset);
   }
@@ -46,4 +46,6 @@ export default function ProgressRing({ percent }) {
       <span>{percent}%</span>
     </div>
   );
-}
+};
+
+export default ProgressRing;
