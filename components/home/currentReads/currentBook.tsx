@@ -1,13 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { updateProgress } from "/lib/list";
-import ProgressBar from "/components/utils/progressBar/progressBar";
+import { updateProgress } from "@/lib/list";
+import ProgressBar from "@/components/utils/progressBar/progressBar";
 import classes from "./currentBook.module.scss";
+import CurrentReads from "./currentReads";
 
-export default function CurrentBook({
+
+interface Props {
+  keyVal: string;
+  image: string;
+  title: string;
+  author: string;
+  progress: number;
+  listName: string;
+  pages: number
+}
+
+const  CurrentBook: React.FC<Props> = ({
   keyVal,
   image,
   title,
@@ -15,10 +27,10 @@ export default function CurrentBook({
   progress,
   listName,
   pages,
-}) {
+}) => {
   const router = useRouter();
 
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<string | null>(null);
   const [state, formAction] = useFormState(updateProgress, { message: null });
 
   useEffect(() => {
@@ -28,7 +40,10 @@ export default function CurrentBook({
 
   //console.log(keyVal)
 
-  function handleKlick(e, keyVal) {
+  function handleKlick(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    keyVal: string
+  ) {
     e.stopPropagation();
 
     setSelected(keyVal);
@@ -38,7 +53,7 @@ export default function CurrentBook({
     <>
       <li
         className={classes.currentBookElement}
-        key={keyVal}
+        key={keyVal as Key}
         onClick={() => setSelected(null)}
       >
         <img src={image} />
@@ -87,3 +102,5 @@ export default function CurrentBook({
     </>
   );
 }
+
+export default CurrentBook;

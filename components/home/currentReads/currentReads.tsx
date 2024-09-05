@@ -1,12 +1,12 @@
 
 import classes from "./currentReads.module.scss";
 
-import { getCurrentReads } from "/lib/list";
+import { getCurrentReads } from "@/lib/list";
 import CurrentBook from "./currentBook";
 
 
 //NOTE: Show a list of current Reads List
-export default async function CurrentReads() {
+export default async function CurrentReads(): Promise<JSX.Element> {
   const list = await getCurrentReads();
 
   return (

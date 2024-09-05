@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react'
 import { useFormState } from "react-dom";
 import { login } from "@/lib/auth/index";
 
-export default function LoginForm(): ReactElement {
+const LoginForm: React.FC = () =>  {
 
     const [state, formAction] = useFormState(login, { error: null });
 
@@ -20,3 +20,5 @@ export default function LoginForm(): ReactElement {
     </>
   );
 }
+
+export default LoginForm;
