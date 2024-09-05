@@ -1,6 +1,6 @@
 "use server";
 
-export async function runBookSearch(formData) {
+export async function runBookSearch(formData): Promise<SearchBook[]> {
   let searchValue = formData.get("search");
   let pageIndex = 1;
 
@@ -13,7 +13,7 @@ export async function runBookSearch(formData) {
       throw new Error(`Response status ${res.status}`);
     }
     const response = await res.json();
-    let temp = [];
+    let temp:SearchBook[] = [];
     for (let i = 0; i < response.items.length; i++) {
       if (!response.items[i].volumeInfo.industryIdentifiers) {
         continue;
@@ -23,7 +23,7 @@ export async function runBookSearch(formData) {
         continue;
       }
 
-      const bookObj = {
+      const bookObj:SearchBook = {
         id: response.items[i].id,
         title: response.items[i].volumeInfo.title,
         author: response.items[i].volumeInfo.authors,
@@ -53,5 +53,6 @@ export async function runBookSearch(formData) {
     return [...temp];
   } catch (error) {
     console.log(error);
+    throw new Error("Could not search for Books");
   }
 }

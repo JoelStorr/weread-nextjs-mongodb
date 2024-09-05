@@ -74,7 +74,7 @@ export async function getListByNameDB(
 
 export async function addList(
   name: string,
-  privateStatus: boolean
+  privateStatus: string
 ): Promise<ListInterface> {
   let user: UserInterface;
 
@@ -112,7 +112,7 @@ export async function addList(
 export async function addBookToListDB(
   listName: string,
   bookId: string,
-  pages: string
+  pages: number
 ): Promise<void> {
   let curruser: UserInterface;
 

@@ -1,3 +1,4 @@
+// NOTE: DB Interfaces
 interface UserInterface {
   _id: string;
   email: string;
@@ -18,6 +19,7 @@ interface BookProgressInterface {
   progress: number;
   percent: boolean;
   bookType: string;
+  book?: BookInterface;
 }
 
 interface BookInterface {
@@ -39,4 +41,16 @@ interface StatisticsInterface{
 
 interface ErrorInterface {
   error: string;
+}
+
+
+// NOTE: Search Interfaces
+
+interface SearchBook{
+    id:string;
+    title: string;
+    author: string[];
+    cover: string | null;
+    isbn: string | null;
+    pages: number;
 }

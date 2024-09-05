@@ -42,7 +42,7 @@ export async function addBook(
   authorName: string,
   cover: string,
   isbn: string,
-  pages: string
+  pages: number
 ): Promise<BookInterface> {
   try {
     if (!books) await init();
@@ -64,7 +64,7 @@ export async function checkDuplicateBook(
   author: string,
   cover: string,
   isbn: string,
-  pages: string
+  pages: number
 ): Promise<BookInterface> {
   try {
     if (!books) await init();
