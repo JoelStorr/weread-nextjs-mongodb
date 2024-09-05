@@ -36,7 +36,14 @@ interface StatisticsInterface{
     userId: string;
     joinedDate: string;
     totalPages: number;
-    yearList: []
+    yearList: YearStatistic[]
+}
+
+interface YearStatistic {
+  year: number;
+  readingGoal: number;
+  readBooks: [];
+  totalPaegs: number;
 }
 
 interface ErrorInterface {

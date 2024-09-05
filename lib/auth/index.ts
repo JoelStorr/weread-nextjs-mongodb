@@ -4,12 +4,16 @@ import { hashUserPassword, verifyPassword } from "./hash";
 import { redirect } from "next/navigation";
 import { addUser, deleteUser, getUser, getUserName } from "../mongo/auth";
 
-export async function signup001(prevState, formData) {
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const username = formData.get("username");
+export async function signup001(prevState, formData: FormData):Promise<{}> {
+  let email = formData.get("email");
+  let password = formData.get("password");
+  let username = formData.get("username");
 
-  let errors = {};
+  email = email as string;
+  password = password as string;
+  username = username as string;
+
+  let errors = {email, password, username};
 
   if (!email.includes("@")) {
     errors.email = "Pleas enter a valid email adress.";
@@ -60,6 +64,8 @@ export async function login(prevState, formData) {
   const password = formData.get("password");
 
   //TODO: ADD db check
+
+  //TODO: Handle try Catch 
 
   const user = await getUser(email);
 
