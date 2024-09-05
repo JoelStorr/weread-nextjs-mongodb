@@ -1,11 +1,6 @@
-"use client";
-import React from "react";
-import { useState } from "react";
 import Link from "next/link";
 
-export default function SessionAuth({ loginState }) {
-  const [registerState, setRegisterState] = useState(false);
-
+const SessionAuth: React.FC = () => {
   return (
     <>
       <ul>
@@ -22,3 +17,5 @@ export default function SessionAuth({ loginState }) {
     </>
   );
 }
+
+export default SessionAuth;
