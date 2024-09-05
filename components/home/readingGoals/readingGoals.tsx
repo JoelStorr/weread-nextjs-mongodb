@@ -8,7 +8,7 @@ export default async function ReadingGoals(): Promise<JSX.Element> {
 
   const data = await getStatisticDataCurrYear();
 
-  let percent: Number;
+  let percent: number;
   
 
   if (data.readBooks.length == 0) {
