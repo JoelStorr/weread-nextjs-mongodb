@@ -1,23 +1,39 @@
 "use client";
 
-import { addBookToList, getLists } from "/lib/list";
+import { addBookToList, getLists } from "@/lib/list";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import classes from "./navSearch.module.scss";
 
-export default function NavSearch() {
+
+  interface BookObject {
+    id: string;
+    title: string;
+    author: string;
+    cover: string | undefined ;
+    isbn: string | undefined;
+    pages: number;
+  }
+
+  interface ListObject {
+    name: string;
+    private: boolean;
+    books: []
+  }
+
+const NavSearch: React.FC = () => {
 
   const router = useRouter();
 
-  const search1 = useRef();
+  const search1 = useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
+  const [searchResult, setSearchResult] = useState<BookObject[]>([]);
   const [pageIndex, setPageIndex] = useState(0);
-  const [lists, setLists] = useState([]);
-  const [clickedBook, setClickedBook] = useState({ id: null });
+  const [lists, setLists] = useState<ListObject[]>([]);
+  const [clickedBook, setClickedBook] = useState<BookObject | {id: null}>({ id: null });
 
-  function handleBookClick(book) {
+  function handleBookClick(book:BookObject | {id: null}) {
     setClickedBook(book);
   }
 
@@ -31,18 +47,26 @@ export default function NavSearch() {
   }, []);
 
   //NOTE: Search Books via Google Books API
-  async function runBookSearch(e, nav = false) {
+  async function runBookSearch(
+    e:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    nav = false
+  ) {
     e.preventDefault();
 
     let search = "";
 
     if (nav) {
-      search = search1.current.value;
-      //search2.current.value = search;
-      setSearchValue(search);
+      if (search1.current) {
+        search = search1.current.value;
+        setSearchValue(search);
+      }
     } else {
       search = searchValue;
-      search1.current.value = search;
+      if (search1.current) {
+        search1.current.value = search;
+      }
     }
 
     try {
@@ -56,26 +80,24 @@ export default function NavSearch() {
 
       const response = await res.json();
 
-      
       //NOTE: Convert Books to usable format
 
-      let temp = [];
+      let temp: BookObject[] = [];
       for (let i = 0; i < response.items.length; i++) {
         if (!response.items[i].volumeInfo.industryIdentifiers) {
           continue;
         }
-        
 
         if (response.items[i].volumeInfo.industryIdentifiers.length === 0) {
           continue;
         }
 
-        const bookObj = {
+        const bookObj: BookObject = {
           id: response.items[i].id,
           title: response.items[i].volumeInfo.title,
           author: response.items[i].volumeInfo.authors,
-          cover: null,
-          isbn: null,
+          cover: undefined,
+          isbn: undefined,
           pages: response.items[i].volumeInfo.pageCount,
         };
 
@@ -98,7 +120,6 @@ export default function NavSearch() {
       }
 
       setSearchResult([...temp]);
-
     } catch (error) {
       console.log(error);
     }
@@ -219,3 +240,6 @@ export default function NavSearch() {
     </>
   );
 }
+
+
+export default NavSearch;

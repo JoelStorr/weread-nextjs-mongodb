@@ -1,13 +1,9 @@
-'use client'
+
 import React from 'react';
-import { useState } from "react";
 import Link from 'next/link';
 
 
-export default function NavAuth({loginState}) {
-
-        
-       const [registerState, setRegisterState] = useState(false);
+const  NavAuth: React.FC = () => {
 
   return (
     <>
@@ -18,3 +14,5 @@ export default function NavAuth({loginState}) {
     </>
   );
 }
+
+export default NavAuth;
