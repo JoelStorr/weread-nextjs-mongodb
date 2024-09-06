@@ -93,61 +93,55 @@ export async function login(prevState, formData) {
 
 // NOTE: Register new user
 //TODO: Register a new user
-export async function signup(formData) {
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const username = formData.get("username");
+export async function signup(formData: FormData): Promise<void> {
+  let email = formData.get("email");
+  let password = formData.get("password");
+  let username = formData.get("username");
 
-  console.log(email);
+  email = email as string;
+  password = password as string
+  username = username as string
 
-  let errors = {};
+  // TODO: Input validation
 
   if (!email.includes("@")) {
-    errors.email = "Pleas enter a valid email adress.";
+    throw new Error( "Pleas enter a valid email adress.");
   }
 
   if (password.trim().length < 8) {
-    errors.password = "Passwords must be at least 8 characters long.";
+    throw new Error( "Passwords must be at least 8 characters long.");
   }
 
   if (username.trim().length <= 3) {
-    errors.username = "Your username has to be at least 3 Charcters long";
+    throw new Error( "Your username has to be at least 3 Charcters long");
   }
 
-  if (Object.keys(errors).length > 0) {
-    return {
-      errors,
-    };
+
+  try{
+    //Check if user exists
+    const dbUser = await getUser(email);
+    const dbUsername = await getUserName(username);
+
+  } catch(error) {
+    // TODO: Handle Error
+    throw new Error("Email or Username is already taken")
+    return;
   }
 
-  //Check if user exists
-  const dbUser = await getUser(email);
-  const dbUsername = await getUserName(username);
+  let newUser: UserInterface;
 
-  console.log(dbUser);
-  console.log(dbUsername);
+  try{
+    // Hash password
+    const hashedPassword = hashUserPassword(password);
+    newUser = await addUser(email, hashedPassword, username);
 
-  if (!dbUser.error) {
-    return {
-      error: "Email is already taken",
-    };
+  }catch(error){
+
+    throw new Error('Could not add a new user')
+
   }
 
-  if (!dbUsername.error) {
-    return {
-      error: "Username is already taken",
-    };
-  }
-
-  // Hash password
-  const hashedPassword = hashUserPassword(password);
-
-  const newUser = await addUser(email, hashedPassword, username);
-  
-
-  console.log(newUser);
-
-  if (!newUser.error) {
+  if (newUser) {
     // Create the session
     const expires = new Date(Date.now() + 10 * 1000);
     const session = await encrypt({ user: email, expires });
@@ -163,21 +157,29 @@ export async function logout() {
   cookies().set("session", "", { expires: new Date(0) });
 }
 
-export async function delUser(formData) {
-  const session = await getSession();
-  const dbUser = await getUser(session.user);
+export async function delUser() {
+  let curruser: UserInterface;
 
-  if (!dbUser) {
+  try {
+    const session = await getSession();
+    if (!session) throw new Error("Unauth Error");
+    curruser = await getUser(session.user as string);
+  } catch (error) {
+    throw new Error("Unauth Error");
+  }
+
+  if (!curruser) {
     console.log("No User found");
     return;
   }
 
-  const email = dbUser.email;
+  const email = curruser.email;
 
   try {
     const result = await deleteUser(email);
     console.log(result);
   } catch (error) {
     console.log(error);
+    throw new Error("Could not delete user")
   }
 }

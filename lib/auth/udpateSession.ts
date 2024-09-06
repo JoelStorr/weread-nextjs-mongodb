@@ -12,6 +12,8 @@ export async function updateSession(request) {
   const parsed = await decrypt(session);
   parsed.expires = new Date(Date.now() + (1 * 60 * 60 * 1000));
   const res = NextResponse.next();
+  
+  //NOTE: Don't know why ts throws error
   res.cookies.set({
     name: "session",
     value: await encrypt(parsed),
