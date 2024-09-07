@@ -8,43 +8,8 @@
     overflow: visible;
     position: relative;
 
-    
-}
-
-.profileHeader{
-
-    position: relative;
-    height: auto;
-    height: 25rem;
-
-
-
-.profileBg{
-        width: 100%;
-        height: 15rem;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-
+    ul{
+        list-style: none;
     }
-}
-
-
-.profileImage{
-    width: 9.5rem;
-    height: 9.5rem;
-    object-fit: fill;
-    background-color: $primary-dark-blue;
-    border-radius: 0.5rem;
-}
-
-.profileInfo{
-    position: absolute;
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding:  0 2rem;
-    top: 10rem;
+    
 }
