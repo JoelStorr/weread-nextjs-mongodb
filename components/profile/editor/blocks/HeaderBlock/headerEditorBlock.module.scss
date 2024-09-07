@@ -11,6 +11,7 @@
 
 .headerBlock{
     position: relative;
+    
 
     .closeButton{
         position: absolute;
@@ -32,8 +33,8 @@
            font-size: 3.7rem;
            font-family: Baskerville;
            font-weight: 600;
-           color: $primary-dark-blue;
-
+           
+            width: 100%;
 
 
            &:active{

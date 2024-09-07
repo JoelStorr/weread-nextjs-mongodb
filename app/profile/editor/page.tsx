@@ -12,6 +12,7 @@ import {
 } from "@/components/profile/editor/blocks/HeaderBlock/headerEditorBlock";
 import PreviewManager from "@/components/profile/editor/tools/previewManager/previewManager";
 import DropZone from "@/components/profile/editor/tools/dropZone/dropZone";
+import { useRouter } from "next/navigation";
 
 const Components = {
   "header-block": HeaderBlock,
@@ -24,6 +25,8 @@ const EditorComponents = {
 const EditorPage: FC = () => {
   const { activeBlock, createBlock, layout, setLoadedLayout } =
     useEditorStore();
+
+    const router = useRouter()
 
   // TODO: Handle Component Library Panel
   // TODO: Handle Editor Panel
@@ -38,7 +41,9 @@ const EditorPage: FC = () => {
   // TODO: Save changes from Editor component to data structure
 
   const saveLayout = async (): Promise<void> => {
-    saveEditor(layout);
+    await saveEditor(layout);
+    router.push("/profile");
+    
   };
 
   useEffect(() => {

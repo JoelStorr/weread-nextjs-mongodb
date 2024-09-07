@@ -10,6 +10,12 @@ interface BlockComponent{
 
 interface BlockData {
   title?: string;
+  style?: {
+    backgroundColor?: string;
+    color?: string;
+    fontSize?: string;
+    textAlign?: string;
+  }
 }
 
 
