@@ -1,0 +1,52 @@
+
+.topBar{
+    grid-row: sl1-start / sl1-end;
+    grid-column: sl1-start / sr1-end;
+}
+
+.blockLibrary{
+    grid-row: sl2-start / sl5-end;
+    grid-column: sl1-start / m3-end;
+    background-color: rgba(255, 0, 0, 0.276);
+    height: 85vh;
+}
+
+.preview{
+    grid-row: sl2-start / sl5-end;
+    grid-column: m4-start / m9-end;
+    background-color: rgba(0, 0, 255, 0.216);
+
+    li{
+        list-style: none;
+    }
+}
+
+.editor{
+    grid-row: sl2-start / sl5-end;
+    grid-column: m10-start / sr1-end;
+    background-color: rgba(0, 128, 0, 0.376);
+}
+
+
+.dropZone{
+    height: 8rem;
+    border: 0.2rem solid grey;
+    color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h4{
+        color: grey;
+    }
+}
+
+.headerLibraryBlock{
+    border: 1px solid $primary-dark-blue;
+    height: 5rem;
+    width: 50%;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

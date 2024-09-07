@@ -1,12 +1,9 @@
 'use client'
 import { create } from "zustand";
 import { v4 } from 'uuid';
+import { stat } from "fs";
 
-interface Block{
-    _id: string;
-    blockId: string;
-    data: {};
-}
+
 
 interface EditorState {
   layout: Block[];
@@ -14,6 +11,7 @@ interface EditorState {
   
   addToLayout: (block: Block) => void;
   createBlock: (type: string) => string;
+  addActiveBlockToLayout: () => void;
 }
 
 
@@ -25,13 +23,24 @@ export const useEditorStore = create<EditorState>()((set) => ({
     
     const block: Block = {
       _id: v4(),
-      blockId: type,
+      blockTag: type,
       data: {},
     };
     
     set(() => ({activeBlock: block}))
 
     return block._id;
-}
+},
+    
+    addActiveBlockToLayout: () => set((state)=>{
+    
+        console.log('Save Active Block', state.activeBlock);
+        if(state.activeBlock !== null){
+            return {layout: [...state.layout, state.activeBlock]}
+        }
+
+        return {};
+
+    }),
 }));
 
