@@ -2,7 +2,7 @@ import { updateSession } from "./lib/auth/udpateSession";
 import { getSession } from "./lib/auth/tokenHandler";
 import { NextResponse } from "next/server";
 
-const protectedRoutes = ['/secret', "/books/search", "/books/lists"]
+const protectedRoutes = ['/secret', "/books/search", "/books/lists", "/profile", "/profile/editor"]
 
 export async function middleware(request) {
   
