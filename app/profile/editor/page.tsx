@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, ReactNode, useEffect } from "react";
+import React, { FC, ReactNode, useEffect, useState } from "react";
 import { useEditorStore } from "@/store/editorStore";
 
 import classes from "./editorPage.module.scss";
@@ -12,8 +12,7 @@ const EditorPage: FC = () => {
   // TODO: Handle Editor Panel
   // TODO: Handle Preview Panel
 
-  // TODO: Save JSON representation of Profile
-  // TODO: Load JSON representation of Profile
+ 
 
   // TODO: Build drag and drop element
   // TODO: Show Drop Zone when element is picked up
@@ -74,6 +73,7 @@ const EditorPage: FC = () => {
 
       <div className={classes.editor}>
         <h1>Editor</h1>
+        <EditorManager block={activeBlock} />
       </div>
     </>
   );
@@ -108,12 +108,56 @@ const HeaderLibraryBlock: FC = () => {
   );
 };
 
-const HeaderBlock: FC = () => {
-  return (
-    <div>
-      <h1>Placeholder Text</h1>
-    </div>
-  );
+const HeaderBlock: FC<{block: Block}> = ({block}) => {
+
+    const {selectLayoutBlock, updateActiveBlock, updateLayoutBlock, activeBlock} = useEditorStore()
+
+    const [titleState, setTitleState] = useState(block.data.title || "Placeholder Text")
+     let timer: NodeJS.Timeout;
+
+    const clickHandler = ():void =>{
+        
+        console.log('Clicked')
+
+        if(activeBlock?._id !== block._id){
+            selectLayoutBlock(block._id)
+        }
+
+    }
+
+
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement>):void => {
+
+        setTitleState(e.target.value)
+
+        console.log(e.target.value);
+
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+          console.log("Timer Ran");
+          updateActiveBlock({ title: e.target.value });
+          updateLayoutBlock();
+        }, 2000);
+
+
+    }
+
+
+    console.log(block)
+
+
+
+     return (
+       <div onClick={clickHandler} className={classes.headerBlock}>
+         <h1>{block.data.title}</h1>
+         <form>
+            <input value={titleState} onChange={handleChange} onFocus={e=>e.target.select()}/>
+         </form>
+       </div> 
+     );
+
+
 };
 
 const DropZone: FC = () => {
@@ -152,6 +196,7 @@ const PreviewManager: FC<PreviewManagerProps> = ({
       if (block.blockTag !== "undefined") {
         return React.createElement(Components[block.blockTag], {
           key: block._id,
+          block: block,
         });
       }
     }
@@ -160,4 +205,71 @@ const PreviewManager: FC<PreviewManagerProps> = ({
   return <>
     {renderBlock()}
   </>;
+};
+
+
+
+
+const EditorHeaderBlock: FC<HeaderBlock> = ({ id }) => {
+  const { selectLayoutBlock, updateActiveBlock, updateLayoutBlock } = useEditorStore();
+
+      let timer: NodeJS.Timeout;
+
+    const changeHandler = (
+      e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        console.log(e.target.value)
+      
+        clearTimeout(timer)
+
+        timer = setTimeout(()=>{
+
+            console.log('Timer Ran')
+            updateActiveBlock({title: e.target.value})
+            updateLayoutBlock();
+
+        }, 2000)
+
+    };
+
+  return (
+    <div>
+      <form>
+            <label>
+                Header Text <br/>
+                <input onChange={changeHandler}/>
+            </label>
+      </form>
+    </div>
+  );
+};
+
+
+interface EditorManagerProps {
+  block: Block | null;
+}
+
+const EditorComponents = {
+  "header-block": EditorHeaderBlock,
+};
+
+const EditorManager: FC<EditorManagerProps> = ({
+  block,
+}: EditorManagerProps) => {
+ 
+  if (block === null){
+    return <></>;
+  } 
+ 
+ 
+function renderBlock() {
+    if (block!.blockTag !== "undefined") {
+      return React.createElement(EditorComponents[block!.blockTag], {
+        key: block!._id,
+        id: block!._id,
+      });
+    }
+  }
+
+  return <>{renderBlock()}</>;
 };
