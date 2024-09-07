@@ -76,13 +76,13 @@ export const useEditorStore = create<EditorState>()((set) => ({
     deleteLayoutBlock: (id)=>set((state)=>{
 
         let index = state.layout.findIndex((block)=> block._id === id);
+    
+        if(index == -1 ){
+            return {}
+        }
+
         let layoutCopy = [...state.layout];
-
         layoutCopy.splice(index, 1)
-        
-
-        console.log(index);
-
         return {layout: [...layoutCopy]}
 
     })
