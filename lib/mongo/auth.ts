@@ -1,5 +1,7 @@
+import { UserInterface } from "@/types/types";
 import clientPromis from ".";
-import { initaiteStatisctics } from "./statistic";
+import { initiateProfile } from "./profile";
+import { initiateStatisctics } from "./statistic";
 
 let client;
 let db;
@@ -25,10 +27,14 @@ async function init(): Promise<void> {
 // NOTE: GET USER VIA EMAIL
 export async function getUser(
   email: string
-): Promise<UserInterface> {
+): Promise<UserInterface | null> {
   try {
     if (!users) await init();
-    const result: UserInterface = await users.findOne({ email: email });
+    const result: UserInterface | null = await users.findOne({ email: email });
+
+    if(result == null){
+      return null
+    }
 
     result._id = result._id.toString();
     result.lists = result.lists.map((list) => {
@@ -38,7 +44,7 @@ export async function getUser(
       }));
       return list;
     });
-    return { ...result };
+    return result;
   } catch (error) {
     console.log(error);
     throw new Error( "Failed to fetch a user!");
@@ -48,10 +54,15 @@ export async function getUser(
 //NOTE: Get user via Username
 export async function getUserName(
   name: string
-): Promise<UserInterface> {
+): Promise<UserInterface | null> {
   try {
     if (!users) await init();
-    const result: UserInterface = await users.findOne({ username: name });
+    const result: UserInterface | null = await users.findOne({ username: name });
+
+    if(result === null){
+      return result;
+    }
+
     result._id = result._id.toString();
     return result;
   } catch (error) {
@@ -78,7 +89,8 @@ export async function addUser(
       ],
     });
 
-    await initaiteStatisctics(result.insertedId);
+    await initiateStatisctics(result.insertedId);
+    await initiateProfile(result.insertedId);
     return result;
   } catch (error) {
     throw new Error("Failed to add a user")

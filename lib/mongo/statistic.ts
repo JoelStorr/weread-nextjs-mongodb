@@ -1,3 +1,4 @@
+import { UserInterface, StatisticsInterface } from "@/types/types";
 import clientPromis from ".";
 import { getSession } from "../auth/tokenHandler";
 import { getUser } from "./auth";
@@ -23,7 +24,7 @@ async function init(): Promise<void> {
 })();
 
 // NOTE: Initiate New Statistics for new User
-export async function initaiteStatisctics(userId: string): Promise<void> {
+export async function initiateStatisctics(userId: string): Promise<void> {
   try {
     if (!statistics) await init();
 

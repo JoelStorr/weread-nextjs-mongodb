@@ -55,6 +55,7 @@ export async function signup001(prevState, formData: FormData):Promise<{}> {
 
 import { cookies } from "next/headers";
 import { encrypt, decrypt, getSession } from "./tokenHandler";
+import { UserInterface } from "@/types/types";
 
 // NOTE: Login existing user
 export async function login(prevState, formData) {
@@ -124,6 +125,7 @@ export async function signup(formData: FormData): Promise<void> {
 
   } catch(error) {
     // TODO: Handle Error
+    console.log(error);
     throw new Error("Email or Username is already taken")
     return;
   }
