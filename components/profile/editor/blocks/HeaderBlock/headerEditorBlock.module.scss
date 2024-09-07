@@ -1,0 +1,30 @@
+.headerLibraryBlock{
+    border: 1px solid $primary-dark-blue;
+    height: 5rem;
+    width: 50%;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.headerBlock{
+    form{
+        input{
+           background-color: rgba(0,0,0,0); 
+           border: none;
+           outline: none;
+           font-size: 3.7rem;
+           font-family: Baskerville;
+           font-weight: 600;
+           color: $primary-dark-blue;
+
+
+
+           &:active{
+            outline: none;
+           }
+        }
+    }
+}
