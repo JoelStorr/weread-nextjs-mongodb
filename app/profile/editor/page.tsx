@@ -5,11 +5,13 @@ import { useEditorStore } from "@/store/editorStore";
 import classes from "./editorPage.module.scss";
 import { loadLayout, saveEditor } from "@/lib/editor";
 import DragComponent from "@/components/profile/editor/tools/dragComponent/dragComponent";
-import { EditorHeaderBlock, HeaderBlock, HeaderLibraryBlock } from "@/components/profile/editor/blocks/HeaderBlock/headerEditorBlock";
+import {
+  EditorHeaderBlock,
+  HeaderBlock,
+  HeaderLibraryBlock,
+} from "@/components/profile/editor/blocks/HeaderBlock/headerEditorBlock";
 import PreviewManager from "@/components/profile/editor/tools/previewManager/previewManager";
 import DropZone from "@/components/profile/editor/tools/dropZone/dropZone";
-
-
 
 const Components = {
   "header-block": HeaderBlock,
@@ -19,15 +21,13 @@ const EditorComponents = {
   "header-block": EditorHeaderBlock,
 };
 
-
 const EditorPage: FC = () => {
-  const { activeBlock, createBlock, layout, setLoadedLayout } = useEditorStore();
+  const { activeBlock, createBlock, layout, setLoadedLayout } =
+    useEditorStore();
 
   // TODO: Handle Component Library Panel
   // TODO: Handle Editor Panel
   // TODO: Handle Preview Panel
-
- 
 
   // TODO: Build drag and drop element
   // TODO: Show Drop Zone when element is picked up
@@ -37,34 +37,27 @@ const EditorPage: FC = () => {
   // TODO: Make elements inside the Editor components Editable
   // TODO: Save changes from Editor component to data structure
 
-
-  const saveLayout = async():Promise<void> =>{
-
+  const saveLayout = async (): Promise<void> => {
     saveEditor(layout);
+  };
 
-  }
-
-
-  useEffect(()=>{
-    (async ()=>{
-        const result = await loadLayout();
-        setLoadedLayout(result);
-
+  useEffect(() => {
+    (async () => {
+      const result = await loadLayout();
+      setLoadedLayout(result);
     })();
-  },[])
+  }, []);
 
   return (
     <>
-      
       <div className={classes.topBar}>
-      <p>{activeBlock?.blockTag}</p>
-      <button onClick={saveLayout}>Save</button>
-
+        <p>{activeBlock?.blockTag}</p>
+        <button onClick={saveLayout}>Save</button>
       </div>
       <div className={classes.blockLibrary}>
         <h1>Block Library</h1>
         <ul>
-            {/* TODO Make thes blocks render dynamically */}
+          {/* TODO Make thes blocks render dynamically */}
           <li>
             <DragComponent blockTag="header-block">
               <HeaderLibraryBlock />
@@ -78,7 +71,7 @@ const EditorPage: FC = () => {
         <ul>
           {layout.map((block) => (
             <li key={block._id}>
-              <PreviewManager block={block} components={Components}/>
+              <PreviewManager block={block} components={Components} />
             </li>
           ))}
           <li>
@@ -89,16 +82,10 @@ const EditorPage: FC = () => {
 
       <div className={classes.editor}>
         <h1>Editor</h1>
-        <PreviewManager block={activeBlock} components={EditorComponents}/>
+        <PreviewManager block={activeBlock} components={EditorComponents} />
       </div>
     </>
   );
 };
 
 export default EditorPage;
-
-
-
-
-
-
