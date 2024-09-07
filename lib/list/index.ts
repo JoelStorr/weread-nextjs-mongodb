@@ -1,5 +1,6 @@
 "use server";
 
+import { BookInterface, BookProgressInterface, ListInterface, SearchBook } from "@/types/types";
 import { getSession } from "../auth/tokenHandler";
 import { getUser } from "../mongo/auth";
 import { addBook, checkDuplicateBook, getBooksInList } from "../mongo/book";
@@ -120,13 +121,16 @@ export async function updateProgress(prevState, formData: FormData):Promise<{mes
   let listName = formData.get("listName");
   let pages = formData.get("pages");
 
-  progress = +progress;
+  prevState.message = "Progress missing";
+  if(!progress) return prevState
+
+  let progressNumber:number = +progress;
 
   // NOTE: Handle Book Completion
   // Add Book to array
   // Increment total pages
 
-  const result = await updateProgressDB(listName as string, bookId as string, progress as number);
+  const result = await updateProgressDB(listName as string, bookId as string, progressNumber);
   prevState.message = "Updated";
   return prevState;
 }

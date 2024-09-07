@@ -1,3 +1,5 @@
+import { ReactElement, ReactPortal } from "react";
+
 // NOTE: DB Interfaces
 interface UserInterface {
   _id: string;
@@ -61,3 +63,6 @@ interface SearchBook{
     isbn: string | null;
     pages: number;
 }
+
+
+
