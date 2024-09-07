@@ -10,6 +10,20 @@
 
 
 .headerBlock{
+    position: relative;
+
+    .closeButton{
+        position: absolute;
+        top:0;
+        right: 0;
+        padding: 0.4rem 0.5rem;
+        color: $white;
+        background-color: $secondary-light-blue;
+        border: none;
+        border-radius: 0.5rem;
+    }
+
+
     form{
         input{
            background-color: rgba(0,0,0,0); 

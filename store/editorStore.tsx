@@ -13,6 +13,7 @@ interface EditorState {
   selectLayoutBlock: (id: string) => void;
   updateLayoutBlock: ()=> void;
   updateActiveBlock: (data:{})=>void;
+  deleteLayoutBlock: (id:string)=>void;
 }
 
 export const useEditorStore = create<EditorState>()((set) => ({
@@ -70,5 +71,19 @@ export const useEditorStore = create<EditorState>()((set) => ({
         return {activeBlock: {...state.activeBlock, data}}
 
         
+    }),
+
+    deleteLayoutBlock: (id)=>set((state)=>{
+
+        let index = state.layout.findIndex((block)=> block._id === id);
+        let layoutCopy = [...state.layout];
+
+        layoutCopy.splice(index, 1)
+        
+
+        console.log(index);
+
+        return {layout: [...layoutCopy]}
+
     })
 }));

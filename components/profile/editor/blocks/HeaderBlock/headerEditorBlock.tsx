@@ -20,7 +20,8 @@ export const HeaderBlock: FC<BlockComponent> = ({ block }) => {
     selectLayoutBlock,
     updateActiveBlock,
     updateLayoutBlock,
-    activeBlock,
+    deleteLayoutBlock,
+    activeBlock
   } = useEditorStore();
 
   const [titleState, setTitleState] = useState(
@@ -52,8 +53,17 @@ export const HeaderBlock: FC<BlockComponent> = ({ block }) => {
 
   console.log(block);
 
+  const handleDelete = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ): void => {
+
+    deleteLayoutBlock(block._id);
+
+  };
+
   return (
     <div onClick={clickHandler} className={classes.headerBlock}>
+        <button className={classes.closeButton} onClick={handleDelete}>X</button>
       <form>
         <input
           value={titleState}
