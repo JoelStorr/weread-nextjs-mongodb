@@ -12,6 +12,7 @@ interface EditorState {
   addToLayout: (block: Block) => void;
   createBlock: (type: string) => string;
   addActiveBlockToLayout: () => void;
+  setLoadedLayout: (layout: Block[]) => void;
 }
 
 
@@ -42,5 +43,8 @@ export const useEditorStore = create<EditorState>()((set) => ({
         return {};
 
     }),
+
+    setLoadedLayout: (layout) => set(() => ({layout}))
+
 }));
 

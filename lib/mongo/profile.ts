@@ -32,7 +32,7 @@ export async function initiateProfile(userId: string): Promise<void> {
 
     const result = await profile.insertOne({
       userId: userId,
-      layout: ""
+      layout: "[]"
     });
   } catch (error) {
     console.log(error);
@@ -60,8 +60,27 @@ export async function saveLayoutDB(layout:string):Promise<void> {
 
       return ;
     }
-
-
-
 }
 
+
+export async function getLayoutDB(): Promise<string> {
+  try {
+    const session = await getSession();
+    if (!session) return "";
+    const user = await getUser(session.user as string);
+    if (user === null) throw new Error("Unauth User");
+
+    const result = await profile.findOne(
+      { userId: new ObjectId(user._id) },
+    );
+
+    if(result === null) throw new Error()
+
+    return result.layout;
+  } catch (error) {
+    console.log(error);
+
+    throw new Error('Could not load profile layout')
+    
+  }
+}

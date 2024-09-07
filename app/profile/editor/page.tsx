@@ -1,12 +1,12 @@
 "use client";
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import { useEditorStore } from "@/store/editorStore";
 
 import classes from "./editorPage.module.scss";
-import { saveEditor } from "@/lib/editor";
+import { loadLayout, saveEditor } from "@/lib/editor";
 
 const EditorPage: FC = () => {
-  const { activeBlock, createBlock, layout } = useEditorStore();
+  const { activeBlock, createBlock, layout, setLoadedLayout } = useEditorStore();
 
   // TODO: Handle Component Library Panel
   // TODO: Handle Editor Panel
@@ -30,6 +30,14 @@ const EditorPage: FC = () => {
 
   }
 
+
+  useEffect(()=>{
+    (async ()=>{
+        const result = await loadLayout();
+        setLoadedLayout(result);
+
+    })();
+  },[])
 
   return (
     <>
@@ -130,7 +138,6 @@ const DropZone: FC = () => {
 
 interface PreviewManagerProps {
   block: Block;
-  
 }
 
 const Components = {
