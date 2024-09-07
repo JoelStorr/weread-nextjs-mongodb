@@ -150,7 +150,6 @@ const HeaderBlock: FC<{block: Block}> = ({block}) => {
 
      return (
        <div onClick={clickHandler} className={classes.headerBlock}>
-         <h1>{block.data.title}</h1>
          <form>
             <input value={titleState} onChange={handleChange} onFocus={e=>e.target.select()}/>
          </form>
