@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './profile.module.scss';
+import Link from 'next/link';
 
 const ProfilePage: React.FC = async ():Promise<React.JSX.Element>=>{
 
@@ -7,6 +8,9 @@ const ProfilePage: React.FC = async ():Promise<React.JSX.Element>=>{
 
     return (
       <div className={classes.profile}>
+
+        <Link href="/profile/editor">Edit</Link>
+
         <div className={classes.profileHeader}>
           <img
             src="/profile/profile-header.jpg"
