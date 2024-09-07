@@ -3,6 +3,7 @@ import { getSession } from "../auth/tokenHandler";
 import { getUser } from "./auth";
 import { ObjectId } from "mongodb";
 import { addBookToStatistic } from "./statistic";
+import { ListInterface, BookProgressInterface, UserInterface } from "@/types/types";
 
 let client: any;
 let db: any;
@@ -76,12 +77,13 @@ export async function addList(
   name: string,
   privateStatus: string
 ): Promise<ListInterface> {
-  let user: UserInterface;
+  let user: UserInterface | null;
 
   try {
     const session = await getSession();
     if (!session) throw Error("Unauth Error");
     user = await getUser(session.user as string);
+    if(user === null) throw Error();
   } catch (error) {
     throw new Error("Unauth Error");
   }
@@ -114,12 +116,13 @@ export async function addBookToListDB(
   bookId: string,
   pages: number
 ): Promise<void> {
-  let curruser: UserInterface;
+  let curruser: UserInterface|null;
 
   try {
     const session = await getSession();
     if (!session) throw new Error("Unauth Error");
     curruser = await getUser(session.user as string);
+    if(curruser === null) throw new Error()
   } catch (error) {
     throw new Error("Unauth Error");
   }
@@ -152,12 +155,13 @@ export async function updateProgressDB(
   bookId: string,
   progress: number
 ): Promise<void> {
-  let curruser: UserInterface;
+  let curruser: UserInterface | null;
 
   try {
     const session = await getSession();
     if (!session) throw new Error("Unauth Error");
     curruser = await getUser(session.user as string);
+    if (curruser === null) throw new Error();
   } catch (error) {
     throw new Error("Unauth Error");
   }
