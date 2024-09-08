@@ -1,0 +1,15 @@
+
+
+.profile{
+    grid-column: h4-start / h9-end;
+    grid-row: sl1-start / sr5-end;
+    width: 100%;
+    
+    overflow: visible;
+    position: relative;
+
+    ul{
+        list-style: none;
+    }
+    
+}
