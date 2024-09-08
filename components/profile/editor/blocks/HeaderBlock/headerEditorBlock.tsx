@@ -1,31 +1,29 @@
-
-import React, { FC, useEffect, useState } from 'react';
-import classes from './headingEditorBlock.module.scss';
-import baseClasses from '../base.module.scss'
-import { useEditorStore } from '@/store/editorStore';
-import ColorPicker from '../../tools/editorSidebarComponents/colorpicker/colorPicker';
-import NumberInput from '../../tools/editorSidebarComponents/numberInput/numberInput';
-import PositionInput from '../../tools/editorSidebarComponents/positionInput/positionInput';
+import React, { FC, useEffect, useState } from "react";
+import classes from "./headerEditorBlock.module.scss";
+import baseClasses from '../base.module.scss';
+import { useEditorStore } from "@/store/editorStore";
+import ColorPicker from "../../tools/editorSidebarComponents/colorpicker/colorPicker";
+import NumberInput from "../../tools/editorSidebarComponents/numberInput/numberInput";
+import PositionInput from "../../tools/editorSidebarComponents/positionInput/positionInput";
 
 // NOTE: Library Block
-export const HeadingLibraryBlock: FC = () => {
+export const HeaderLibraryBlock: FC = () => {
   return (
     <div className={baseClasses.libraryBlock}>
-      <h5>Heading Block</h5>
+      <h5>Header Block</h5>
     </div>
   );
 };
 
-
 // NOTE: Preview Block
 
-export const HeadingBlock: FC<BlockComponent> = ({ block }) => {
+export const HeaderBlock: FC<BlockComponent> = ({ block }) => {
   const {
     selectLayoutBlock,
     updateActiveBlock,
     updateLayoutBlock,
     deleteLayoutBlock,
-    activeBlock
+    activeBlock,
   } = useEditorStore();
 
   const [titleState, setTitleState] = useState(
@@ -50,19 +48,15 @@ export const HeadingBlock: FC<BlockComponent> = ({ block }) => {
 
     timer = setTimeout(() => {
       console.log("Timer Ran");
-      updateActiveBlock({ ...block.data,  title: e.target.value });
+      updateActiveBlock({ ...block.data, title: e.target.value });
       updateLayoutBlock();
     }, 2000);
   };
 
   console.log(block);
 
-  const handleDelete = (
-    e: React.MouseEvent<HTMLButtonElement>
-  ): void => {
-
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>): void => {
     deleteLayoutBlock(block._id);
-
   };
 
   return (
@@ -90,19 +84,23 @@ export const HeadingBlock: FC<BlockComponent> = ({ block }) => {
   );
 };
 
-
 // NOTE: Editor Block
 
-export const EditorHeadingBlock: FC<BlockComponent> = ({block}) => {
+export const EditorHeaderBlock: FC<BlockComponent> = ({ block }) => {
+  const [bgColor, setBgColor] = useState<string>(
+    block.data.style?.backgroundColor || "#1e226200"
+  );
+  const [color, setColor] = useState<string>(
+    block.data.style?.color || "#1e2262"
+  );
+  const [fontSize, setFontSize] = useState<string>(
+    block.data.style?.fontSize || "37"
+  );
+  const [textAlign, setTextAlign] = useState<string>(
+    block.data.style?.textAlign || "left"
+  );
 
-    const [bgColor, setBgColor] = useState<string>(block.data.style?.backgroundColor || "#1e226200");
-    const [color, setColor] = useState<string>(
-      block.data.style?.color || "#1e2262"
-    );
-    const [fontSize, setFontSize] = useState<string>(block.data.style?.fontSize || "37");
-    const [textAlign, setTextAlign] = useState<string>(block.data.style?.textAlign ||"left")
-
-    const { selectLayoutBlock, updateActiveBlock, updateLayoutBlock } =
+  const { selectLayoutBlock, updateActiveBlock, updateLayoutBlock } =
     useEditorStore();
 
   let timer: NodeJS.Timeout;
@@ -112,32 +110,42 @@ export const EditorHeadingBlock: FC<BlockComponent> = ({block}) => {
 
     timer = setTimeout(() => {
       console.log("Timer Ran");
-      updateActiveBlock({...block.data, title: e.target.value });
+      updateActiveBlock({ ...block.data, title: e.target.value });
       updateLayoutBlock();
     }, 2000);
   };
 
-
-  useEffect(()=>{
+  useEffect(() => {
     clearTimeout(timer);
     timer = setTimeout(() => {
       console.log("Timer Ran");
-      updateActiveBlock({ ...block.data, style: {
-        backgroundColor: bgColor,
-        color: color,
-        fontSize: fontSize,
-        textAlign: textAlign
-      } });
+      updateActiveBlock({
+        ...block.data,
+        style: {
+          backgroundColor: bgColor,
+          color: color,
+          fontSize: fontSize,
+          textAlign: textAlign,
+        },
+      });
       updateLayoutBlock();
     }, 2000);
-  }, [bgColor, color, fontSize, textAlign])
+  }, [bgColor, color, fontSize, textAlign]);
 
   return (
-    <>
-      <ColorPicker color={bgColor} onChange={setBgColor} name={"Background Color"}/>
+    <div>
+      <ColorPicker
+        color={bgColor}
+        onChange={setBgColor}
+        name={"Background Color"}
+      />
       <ColorPicker color={color} onChange={setColor} name={"Text Color"} />
       <NumberInput number={fontSize} onChange={setFontSize} name="Font Size" />
-      <PositionInput position={textAlign} onChange={setTextAlign} name="Position" />
-    </>
+      <PositionInput
+        position={textAlign}
+        onChange={setTextAlign}
+        name="Position"
+      />
+    </div>
   );
 };

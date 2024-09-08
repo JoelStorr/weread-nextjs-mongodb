@@ -1,0 +1,36 @@
+.libraryBlock{
+    border: 1px solid $primary-dark-blue;
+    background-color: $white;
+    width: 20rem;
+    height: 5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+
+    &:active{
+        cursor: grabbing;
+    }
+}
+
+.previewBlock{
+    
+    position: relative;
+    padding: 2rem;
+
+    .closeButton{
+        position: absolute;
+        top:0;
+        right: 0;
+        padding: 0.4rem 0.5rem;
+        color: $white;
+        background-color: $secondary-light-blue;
+        border: none;
+        border-radius: 0.5rem;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+}
