@@ -73,14 +73,15 @@ const EditorPage: FC = () => {
                 components={Components}
                 preview={true}
               />
-              <DropZone index={index + 1} last={layout.length - 1 === index} />
+              {layout.length - 1 !== index && (
+                <DropZone index={index + 1} last={false} />
+              )}
             </li>
           ))}
-          {layout.length === 0 && (
-            <li>
-              <DropZone index={layout.length} last={true} />
-            </li>
-          )}
+
+          <li>
+            <DropZone index={layout.length} last={true} />
+          </li>
         </ul>
       </div>
 

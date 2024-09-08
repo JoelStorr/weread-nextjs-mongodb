@@ -28,7 +28,7 @@ const DropZone: FC<DropZoneProps> = ({index, last}) => {
 
   const onDrop = (): void => {
     addActiveBlockToLayout(index);
-    setShowDrop(false);
+    setShowDrop(last);
     setActiveDrop(false);
   };
 
