@@ -33,7 +33,7 @@ export const useEditorStore = create<EditorState>()((set) => ({
       data: {},
     };
 
-    set(() => ({ activeBlock: block }));
+    set(() => ({ activeBlock: block, exisitngBlock: false }));
 
     return block._id;
   },
