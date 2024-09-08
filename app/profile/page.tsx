@@ -13,7 +13,7 @@ const Components = {
 const ProfilePage: React.FC = async ():Promise<React.JSX.Element>=>{
 
 
-  const layout = await loadLayout();
+  const layout = await loadLayout("");
 
     return (
       <div className={classes.profile}>

@@ -26,7 +26,7 @@ export async function saveEditor(data:Block[]) {
 
 export async function loadLayout():Promise<Block[]>{
     try{
-        const result = await getLayoutDB();
+        const result = await getLayoutDB("");
         const jsonData:Block[] = await JSON.parse(result);
         return jsonData
     } catch(error){
