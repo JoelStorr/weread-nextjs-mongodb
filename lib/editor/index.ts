@@ -2,6 +2,9 @@
 
 import { redirect } from "next/navigation";
 import { getLayoutDB, saveLayoutDB } from "../mongo/profile";
+import { UserInfo } from "os";
+import { UserInterfacePublic } from "@/types/types";
+import { checkUser } from "../mongo/auth";
 
 
 export async function saveEditor(data:Block[]) {
@@ -17,12 +20,7 @@ export async function saveEditor(data:Block[]) {
     } catch(error){
         console.log(error)
     }
-    
-
-
 }
-
-
 
 export async function loadLayout():Promise<Block[]>{
     try{
@@ -36,4 +34,17 @@ export async function loadLayout():Promise<Block[]>{
         return []
 
     }
+}
+
+
+export async function loadUserInfo():Promise<UserInterfacePublic>{
+
+    const user = await checkUser()
+
+    return{
+        _id: user._id,
+        username: user.username,
+        lists: user.lists
+    }
+
 }
