@@ -20,7 +20,8 @@ interface BlockData {
 
 
 interface Components {
-  "header-block": FC<BlockComponent>;
+ "header-block": FC<BlockComponent>;
+  "heading-block": FC<BlockComponent>;
 }
 
 interface HeaderBlock{

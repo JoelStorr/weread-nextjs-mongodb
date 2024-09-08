@@ -1,7 +1,7 @@
 import { FC } from "react";
-import classes from "./headerBlock.module.scss";
+import classes from "./headingBlock.module.scss";
 
-export const HeaderBlock: FC<BlockComponent> = ({ block }) => {
+export const HeadingBlock: FC<BlockComponent> = ({ block }) => {
   return (
     <div
       className={classes.headerBlock}

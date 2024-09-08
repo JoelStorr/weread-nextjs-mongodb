@@ -6,20 +6,26 @@ import classes from "./editorPage.module.scss";
 import { loadLayout, saveEditor } from "@/lib/editor";
 import DragComponent from "@/components/profile/editor/tools/dragComponent/dragComponent";
 import {
-  EditorHeaderBlock,
-  HeaderBlock,
-  HeaderLibraryBlock,
-} from "@/components/profile/editor/blocks/HeaderBlock/headerEditorBlock";
+  EditorHeadingBlock,
+  HeadingBlock,
+  HeadingLibraryBlock,
+} from "@/components/profile/editor/blocks/HeadingBlock/headingEditorBlock";
 import DropZone from "@/components/profile/editor/tools/dropZone/dropZone";
 import { useRouter } from "next/navigation";
 import PreviewManagerEditor from "@/components/profile/editor/tools/previewManager/previewManagerEditor";
 
-const Components = {
-  "header-block": HeaderBlock,
+
+
+
+const Components:Components = {
+  "header-block": ;
+  "heading-block": HeadingBlock,
 };
 
-const EditorComponents = {
-  "header-block": EditorHeaderBlock,
+const EditorComponents:Components = {
+  "header-block": ;
+  "heading-block": EditorHeadingBlock,
+
 };
 
 const EditorPage: FC = () => {
@@ -53,8 +59,8 @@ const EditorPage: FC = () => {
         <ul>
           {/* TODO Make thes blocks render dynamically */}
           <li>
-            <DragComponent blockTag="header-block">
-              <HeaderLibraryBlock />
+            <DragComponent blockTag="heading-block">
+              <HeadingLibraryBlock />
             </DragComponent>
           </li>
         </ul>

@@ -1,13 +1,13 @@
 
 import React, { FC, useEffect, useState } from 'react';
-import classes from './headerEditorBlock.module.scss';
+import classes from './headingEditorBlock.module.scss';
 import { useEditorStore } from '@/store/editorStore';
 import ColorPicker from '../../tools/editorSidebarComponents/colorpicker/colorPicker';
 import NumberInput from '../../tools/editorSidebarComponents/numberInput/numberInput';
 import PositionInput from '../../tools/editorSidebarComponents/positionInput/positionInput';
 
 // NOTE: Library Block
-export const HeaderLibraryBlock: FC = () => {
+export const HeadingLibraryBlock: FC = () => {
   return (
     <div className={classes.headerLibraryBlock}>
       <h5>Header Block</h5>
@@ -18,7 +18,7 @@ export const HeaderLibraryBlock: FC = () => {
 
 // NOTE: Preview Block
 
-export const HeaderBlock: FC<BlockComponent> = ({ block }) => {
+export const HeadingBlock: FC<BlockComponent> = ({ block }) => {
   const {
     selectLayoutBlock,
     updateActiveBlock,
@@ -86,7 +86,7 @@ export const HeaderBlock: FC<BlockComponent> = ({ block }) => {
 
 // NOTE: Editor Block
 
-export const EditorHeaderBlock: FC<BlockComponent> = ({block}) => {
+export const EditorHeadingBlock: FC<BlockComponent> = ({block}) => {
 
     const [bgColor, setBgColor] = useState<string>(block.data.style?.backgroundColor || "#1e226200");
     const [color, setColor] = useState<string>(
