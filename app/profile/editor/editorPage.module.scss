@@ -1,29 +1,60 @@
-
-.topBar{
-    grid-row: sl1-start / sl1-end;
-    grid-column: sl1-start / sr1-end;
+.topBar {
+  grid-row: sl1-start / sl1-end;
+  grid-column: sl1-start / sr1-end;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5rem;
+  border: 0.4rem solid $primary-dark-blue;
+  background-color: $background-grey;
+  button {
+    color: $white;
+    background-color: $primary-dark-blue;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+  }
 }
 
-.blockLibrary{
-    grid-row: sl2-start / sl5-end;
-    grid-column: sl1-start / m3-end;
-    background-color: rgba(255, 0, 0, 0.276);
-    height: 85vh;
+.blockLibrary {
+  grid-row: sl2-start / sl5-end;
+  grid-column: sl1-start / m3-end;
+  height: 85vh;
+  border: 0.4rem solid $primary-dark-blue;
+  background-color: $background-grey;
+  border-radius: 0.5rem;
+  h1 {
+    text-align: center;
+    margin-top: 2rem;
+    color: $primary-dark-blue;
+  }
 }
 
-.preview{
-    grid-row: sl2-start / sl5-end;
-    grid-column: m4-start / m9-end;
-    
+.preview {
+  grid-row: sl2-start / sl5-end;
+  grid-column: m4-start / m9-end;
 
-    li{
-        list-style: none;
-    }
+  h1 {
+    margin-left: 2rem;
+    margin-top: 2rem;
+    color: $primary-dark-blue;
+    opacity: 0.3;
+  }
+
+  li {
+    list-style: none;
+  }
 }
 
-.editor{
-    grid-row: sl2-start / sl5-end;
-    grid-column: m10-start / sr1-end;
-    background-color: rgba(0, 128, 0, 0.376);
-}
+.editor {
+  grid-row: sl2-start / sl5-end;
+  grid-column: m10-start / sr1-end;
+  border: 0.4rem solid $primary-dark-blue;
+  border-radius: 0.5rem;
 
+  h1 {
+    text-align: center;
+    margin-top: 2rem;
+    color: $primary-dark-blue;
+  }
+}
