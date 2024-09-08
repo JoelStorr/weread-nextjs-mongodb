@@ -6,7 +6,7 @@ interface EditorState {
   layout: Block[];
   activeBlock: Block | null;
   activeBlockPosition: number | null;
-  exisitngBlock: boolean;
+  existingBlock: boolean;
 
   addToLayout: (block: Block) => void;
   createBlock: (type: string) => string;
@@ -23,7 +23,7 @@ export const useEditorStore = create<EditorState>()((set) => ({
   layout: [],
   activeBlock: null,
   activeBlockPosition: null,
-  exisitngBlock: false,
+  existingBlock: false,
   addToLayout: (block) =>
     set((state) => ({ layout: [...state.layout, block] })),
   createBlock: (type) => {
@@ -45,13 +45,22 @@ export const useEditorStore = create<EditorState>()((set) => ({
 
         const manageArray = [...state.layout];
 
-        if(state.exisitngBlock){
-          let index = state.layout.findIndex((block) => block._id === state.activeBlock?._id);
+        if(state.existingBlock){
+          let foundIndex = state.layout.findIndex((block) => block._id === state.activeBlock?._id);
 
-          if (index !== -1) {
+          if (foundIndex !== -1) {
 
-            manageArray.splice(index, 1);
+            manageArray.splice(index, 0, state.activeBlock);
+
+            if(foundIndex > index){
+              foundIndex++
+            }
+
+            manageArray.splice(foundIndex, 1);
           }
+          console.log('Temp Updated Array', manageArray)
+
+          return { layout: [...manageArray], existingBlock: false };
 
         }
           
@@ -59,7 +68,7 @@ export const useEditorStore = create<EditorState>()((set) => ({
 
         
 
-        return { layout: manageArray, exisitngBlock: false };
+        return { layout: [...manageArray], existingBlock: false };
       }
 
       return {};
@@ -71,6 +80,7 @@ export const useEditorStore = create<EditorState>()((set) => ({
     set((state) => {
       let filteredBlock = state.layout.find((block) => block._id === id);
       if (filteredBlock) {
+        console.log('Filtered Block Id', filteredBlock._id)
         return { activeBlock: filteredBlock };
       }
 
@@ -108,6 +118,6 @@ export const useEditorStore = create<EditorState>()((set) => ({
         return {layout: [...layoutCopy]}
 
     }),
-    exisitingBlockStatus: ()=>set((state) => ({exisitngBlock: true}))
+    exisitingBlockStatus: ()=>set((state) => ({existingBlock: true}))
     
 }));

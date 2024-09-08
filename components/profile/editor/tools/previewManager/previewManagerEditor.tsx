@@ -32,7 +32,14 @@ const PreviewManagerEditor: FC<PreviewManagerEditorProps> = ({
     // NOTE: Makes child draggable when active
 
     if (block._id === activeBlock?._id) {
-      return <div draggable>{renderBlock()}</div>;
+      return (
+        <div
+          draggable
+          onDragStart={exisitingBlockStatus}
+        >
+          {renderBlock()}
+        </div>
+      );
     }
   }
 
