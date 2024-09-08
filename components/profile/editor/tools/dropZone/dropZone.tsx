@@ -1,29 +1,52 @@
+'use client'
 import { useEditorStore } from "@/store/editorStore";
-import { FC } from "react";
+import { FC, useState } from "react";
 import classes from './dropZone.module.scss'
 
 
 interface DropZoneProps{
-  index: number
+  index: number,
+  last: boolean,
 }
 
 
-const DropZone: FC<DropZoneProps> = ({index}) => {
+const DropZone: FC<DropZoneProps> = ({index, last}) => {
+  
+     const [showDrop, setShowDrop] = useState(last);
+     const [activeDrop, setActiveDrop] = useState(false);
+     const handleCSSClasses = () => {
+       if (showDrop) {
+         return activeDrop ? `${classes.dropZone} ${classes.dropAreaActive}` : classes.dropZone;
+       } else {
+         return classes.hideDropArea;
+       }
+     };
+  
+  
+  
   const { addActiveBlockToLayout } = useEditorStore();
 
   const onDrop = (): void => {
-    console.log("Element dropped");
-
     addActiveBlockToLayout(index);
+    setShowDrop(false);
+    setActiveDrop(false);
   };
 
   return (
     <div
-      className={classes.dropZone}
+      onDragEnter={() => {
+        setShowDrop(true);
+        setActiveDrop(true);
+      }}
+      onDragLeave={() => {
+        setShowDrop(last);
+        setActiveDrop(false);
+      }}
       onDrop={onDrop}
       onDragOver={(e) => e.preventDefault()}
+      className={handleCSSClasses()}
     >
-      <h4>Drop Zone</h4>
+      Drop Zone
     </div>
   );
 };

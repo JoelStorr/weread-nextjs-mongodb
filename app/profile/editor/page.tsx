@@ -64,15 +64,20 @@ const EditorPage: FC = () => {
       <div className={classes.preview}>
         <h1>Preview</h1>
         <ul>
+          <li>
+            <DropZone index={0} last={false} />
+          </li>
           {layout.map((block, index) => (
             <li key={block._id}>
               <PreviewManager block={block} components={Components} />
-              <DropZone index={index+1} />
+              <DropZone index={index + 1} last={layout.length - 1 === index} />
             </li>
           ))}
-          <li>
-            <DropZone index={layout.length}/>
-          </li>
+          {layout.length === 0 && (
+            <li>
+              <DropZone index={layout.length} last={true} />
+            </li>
+          )}
         </ul>
       </div>
 
