@@ -1,11 +1,16 @@
 .headerLibraryBlock{
     border: 1px solid $primary-dark-blue;
+    width: 20rem;
     height: 5rem;
-    width: 50%;
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: grab;
+
+    &:active{
+        cursor: grabbing;
+    }
 }
 
 
@@ -22,6 +27,9 @@
         background-color: $secondary-light-blue;
         border: none;
         border-radius: 0.5rem;
+        &:hover{
+            cursor: pointer;
+        }
     }
 
 
@@ -39,6 +47,10 @@
 
            &:active{
             outline: none;
+           }
+
+           &:hover{
+            cursor: text;
            }
         }
     }

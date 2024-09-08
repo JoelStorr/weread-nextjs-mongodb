@@ -1,6 +1,7 @@
 "use client";
 import { useEditorStore } from "@/store/editorStore";
 import React, { FC } from "react";
+import classes from "./previewManagerEditor.module.scss"
 
 interface PreviewManagerEditorProps {
   block: Block | null;
@@ -34,6 +35,7 @@ const PreviewManagerEditor: FC<PreviewManagerEditorProps> = ({
     if (block._id === activeBlock?._id) {
       return (
         <div
+          className={classes.activeEl}
           draggable
           onDragStart={exisitingBlockStatus}
         >

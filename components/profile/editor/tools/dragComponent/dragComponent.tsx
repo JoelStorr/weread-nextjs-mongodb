@@ -1,6 +1,6 @@
 import { useEditorStore } from "@/store/editorStore";
 import { FC } from "react";
-
+import classes from './dragComponent.module.scss'
 
 type DragProps = {
   blockTag: string;
@@ -15,7 +15,7 @@ const DragComponent: FC<DragProps> = ({ children, blockTag }: DragProps) => {
   };
 
   return (
-    <div draggable onDragStart={dragStart}>
+    <div draggable onDragStart={dragStart} className={classes.dragHolder}>
       {children}
     </div>
   );
