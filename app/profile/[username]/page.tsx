@@ -3,9 +3,11 @@ import classes from "./profileUserPage.module.scss";
 import Link from "next/link";
 import { loadLayout } from "@/lib/profile";
 import { HeadingBlock } from "@/components/profile/profile/blocks/HeadingBlock/headingBlock";
+import { HeaderBlock } from "@/components/profile/profile/blocks/HeaderBlock/headerBlock";
 import PreviewManager from "@/components/profile/profile/previewManager/previewManager";
 
 const Components:Components = {
+  "header-block": HeaderBlock,
   "heading-block": HeadingBlock,
 };
 

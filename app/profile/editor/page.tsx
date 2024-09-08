@@ -13,17 +13,18 @@ import {
 import DropZone from "@/components/profile/editor/tools/dropZone/dropZone";
 import { useRouter } from "next/navigation";
 import PreviewManagerEditor from "@/components/profile/editor/tools/previewManager/previewManagerEditor";
+import { EditorHeaderBlock, HeaderBlock, HeaderLibraryBlock } from "@/components/profile/editor/blocks/HeaderBlock/headerEditorBlock";
 
 
 
 
 const Components:Components = {
-  "header-block": ;
+  "header-block": HeaderBlock,
   "heading-block": HeadingBlock,
 };
 
 const EditorComponents:Components = {
-  "header-block": ;
+  "header-block": EditorHeaderBlock,
   "heading-block": EditorHeadingBlock,
 
 };
@@ -58,6 +59,11 @@ const EditorPage: FC = () => {
         <h1>Block Library</h1>
         <ul>
           {/* TODO Make thes blocks render dynamically */}
+          <li>
+            <DragComponent blockTag="header-block">
+              <HeaderLibraryBlock />
+            </DragComponent>
+          </li>
           <li>
             <DragComponent blockTag="heading-block">
               <HeadingLibraryBlock />

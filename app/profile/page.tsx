@@ -2,11 +2,13 @@ import React from 'react'
 import classes from './profile.module.scss';
 import Link from 'next/link';
 import { loadLayout } from '@/lib/profile';
-import { HeaderBlock } from '@/components/profile/profile/blocks/HeaderBlock/headerBlock';
 import PreviewManager from '@/components/profile/profile/previewManager/previewManager';
+import { HeadingBlock } from '@/components/profile/profile/blocks/HeadingBlock/headingBlock';
+import { HeaderBlock } from '@/components/profile/profile/blocks/HeaderBlock/headerBlock';
 
-const Components = {
+const Components:Components = {
   "header-block": HeaderBlock,
+  "heading-block": HeadingBlock,
 };
 
 
