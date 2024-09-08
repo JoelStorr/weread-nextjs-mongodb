@@ -1,23 +1,19 @@
-"use client"
+"use client";
 import { useEditorStore } from "@/store/editorStore";
-import React, {FC} from "react";
-
-
+import React, { FC } from "react";
 
 interface PreviewManagerEditorProps {
   block: Block | null;
   components: Components;
-  preview: boolean
+  preview: boolean;
 }
 
 const PreviewManagerEditor: FC<PreviewManagerEditorProps> = ({
   block,
   components,
-  preview
+  preview,
 }: PreviewManagerEditorProps) => {
-
   const { activeBlock, exisitingBlockStatus } = useEditorStore();
-
 
   if (block === null) {
     return <></>;
@@ -32,23 +28,15 @@ const PreviewManagerEditor: FC<PreviewManagerEditorProps> = ({
     }
   }
 
-  if(preview){
-
+  if (preview) {
     // NOTE: Makes child draggable when active
 
-    if(block._id === activeBlock?._id ){
-
+    if (block._id === activeBlock?._id) {
       return <div draggable>{renderBlock()}</div>;
-
     }
   }
 
-
-
-
-
   return <div onClick={exisitingBlockStatus}>{renderBlock()}</div>;
 };
-
 
 export default PreviewManagerEditor;
