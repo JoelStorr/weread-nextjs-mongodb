@@ -137,7 +137,7 @@ export const EditorHeadingBlock: FC<BlockComponent> = ({block}) => {
       <ColorPicker color={bgColor} onChange={setBgColor} name={"Background Color"}/>
       <ColorPicker color={color} onChange={setColor} name={"Text Color"} />
       <NumberInput number={fontSize} onChange={setFontSize} name="Font Size" />
-      <PositionInput position={textAlign} onChange={setTextAlign} name="Position" />
+      <PositionInput position={textAlign} onChange={setTextAlign} name="Position" options={[{name: "left", value:"left"}, {name:"center", value:"center"}, {name: "right", value:"right"}]} />
     </>
   );
 };

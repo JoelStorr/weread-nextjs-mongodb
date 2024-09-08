@@ -1,21 +1,28 @@
 "use client";
 import Image from "next/image";
-import React, { ReactElement, useState } from "react";
+import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 
 import classes from "./positionInput.module.scss";
 import baseClasses from "../base.module.scss"
 
 interface PositionInput {
   position: string;
-  onChange: () => void;
+  onChange: Dispatch<SetStateAction<string>>;
   name: string;
+  options: Options[];
+}
+
+type Options = {
+  name: string;
+  value: string;
 }
 
 export default function PositionInput({
   position,
   onChange,
   name,
-}): ReactElement<PositionInput> {
+  options
+}: PositionInput): ReactElement<PositionInput> {
   const [showPicker, setShowPicker] = useState<boolean>(false);
 
   return (
@@ -37,9 +44,10 @@ export default function PositionInput({
         <div className={`${baseClasses.body} ${classes.body}`}>
           <form onSubmit={(e) => e.preventDefault()}>
             <select onChange={(e) => onChange(e.target.value)} value={position}>
-              <option value={"left"}>Left</option>
-              <option value={"center"}>Center</option>
-              <option value={"right"}>Right</option>
+              {options.map((val:Options)=>(
+                <option value={val.value}>{val.name}</option>
+              ))}
+              
             </select>
           </form>
         </div>
