@@ -2,13 +2,19 @@ import { useEditorStore } from "@/store/editorStore";
 import { FC } from "react";
 import classes from './dropZone.module.scss'
 
-const DropZone: FC = () => {
+
+interface DropZoneProps{
+  index: number
+}
+
+
+const DropZone: FC<DropZoneProps> = ({index}) => {
   const { addActiveBlockToLayout } = useEditorStore();
 
   const onDrop = (): void => {
     console.log("Element dropped");
 
-    addActiveBlockToLayout();
+    addActiveBlockToLayout(index);
   };
 
   return (

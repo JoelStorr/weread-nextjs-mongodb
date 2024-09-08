@@ -5,10 +5,11 @@ import { v4 } from "uuid";
 interface EditorState {
   layout: Block[];
   activeBlock: Block | null;
+  activeBlockPosition: number | null;
 
   addToLayout: (block: Block) => void;
   createBlock: (type: string) => string;
-  addActiveBlockToLayout: () => void;
+  addActiveBlockToLayout: (index: number) => void;
   setLoadedLayout: (layout: Block[]) => void;
   selectLayoutBlock: (id: string) => void;
   updateLayoutBlock: ()=> void;
@@ -19,6 +20,7 @@ interface EditorState {
 export const useEditorStore = create<EditorState>()((set) => ({
   layout: [],
   activeBlock: null,
+  activeBlockPosition: null,
   addToLayout: (block) =>
     set((state) => ({ layout: [...state.layout, block] })),
   createBlock: (type) => {
@@ -33,11 +35,15 @@ export const useEditorStore = create<EditorState>()((set) => ({
     return block._id;
   },
 
-  addActiveBlockToLayout: () =>
+  addActiveBlockToLayout: (index) =>
     set((state) => {
       console.log("Save Active Block", state.activeBlock);
       if (state.activeBlock !== null) {
-        return { layout: [...state.layout, state.activeBlock] };
+
+        const manageArray = [...state.layout]
+        manageArray.splice(index, 0, state.activeBlock)
+
+        return { layout: manageArray };
       }
 
       return {};

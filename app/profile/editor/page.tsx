@@ -28,17 +28,7 @@ const EditorPage: FC = () => {
 
     const router = useRouter()
 
-  // TODO: Handle Component Library Panel
-  // TODO: Handle Editor Panel
-  // TODO: Handle Preview Panel
-
-  // TODO: Build drag and drop element
-  // TODO: Show Drop Zone when element is picked up
-  //TODO: Handle UI Switch when dropping the element in drop Zone
-
-  // TODO: Load indevidual Editor Compoents
-  // TODO: Make elements inside the Editor components Editable
-  // TODO: Save changes from Editor component to data structure
+  // TODO: Style Editor Properly
 
   const saveLayout = async (): Promise<void> => {
     await saveEditor(layout);
@@ -74,13 +64,14 @@ const EditorPage: FC = () => {
       <div className={classes.preview}>
         <h1>Preview</h1>
         <ul>
-          {layout.map((block) => (
+          {layout.map((block, index) => (
             <li key={block._id}>
               <PreviewManager block={block} components={Components} />
+              <DropZone index={index+1} />
             </li>
           ))}
           <li>
-            <DropZone />
+            <DropZone index={layout.length}/>
           </li>
         </ul>
       </div>
