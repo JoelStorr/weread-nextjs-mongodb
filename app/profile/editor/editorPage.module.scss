@@ -13,6 +13,7 @@
     padding: 1rem;
     border: none;
     border-radius: 0.5rem;
+    cursor: pointer;
   }
 }
 
@@ -23,11 +24,17 @@
   border: 0.4rem solid $primary-dark-blue;
   background-color: $background-grey;
   border-radius: 0.5rem;
+  padding: 2rem;
   h1 {
     text-align: center;
-    margin-top: 2rem;
     color: $primary-dark-blue;
+    margin-bottom: 2rem;
   }
+
+  ul{
+    list-style: none;
+  }
+
 }
 
 .preview {
@@ -51,10 +58,11 @@
   grid-column: m10-start / sr1-end;
   border: 0.4rem solid $primary-dark-blue;
   border-radius: 0.5rem;
-
+  background-color: $background-grey;
+  padding: 2rem;
   h1 {
     text-align: center;
-    margin-top: 2rem;
+    margin-bottom: 2rem;
     color: $primary-dark-blue;
   }
 }
