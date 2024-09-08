@@ -1,6 +1,6 @@
 import clientPromis from ".";
 import { getSession } from "../auth/tokenHandler";
-import { getUser } from "./auth";
+import { checkUser, getUser } from "./auth";
 import { ObjectId } from "mongodb";
 import { addBookToStatistic } from "./statistic";
 import { ListInterface, BookProgressInterface, UserInterface } from "@/types/types";
@@ -26,11 +26,7 @@ async function init(): Promise<void> {
 
 export async function getLists(): Promise<ListInterface[]> {
   try {
-    const session = await getSession();
-    if (!session) {
-      return [];
-    }
-    const user = await getUser(session.user as string);
+    const user = await checkUser();
     return user.lists;
   } catch (error) {
     //TODO: Handle Error
@@ -40,9 +36,9 @@ export async function getLists(): Promise<ListInterface[]> {
 
 export async function getCurrentReadsDB(): Promise<BookProgressInterface[]> {
   try {
-    const session = await getSession();
-    if (!session) return [];
-    const user = await getUser(session.user as string);
+    
+    const user = await checkUser();
+
     let currReads = user.lists.filter((list) => {
       return list.name === "Current Reads";
     });
@@ -57,9 +53,8 @@ export async function getListByNameDB(
   name: string
 ): Promise<BookProgressInterface[]> {
   try {
-    const session = await getSession();
-    if (!session) return [];
-    const user = await getUser(session.user as string);
+    
+    const user = await checkUser();
 
     name = name.split("%20").join(" ");
 
@@ -77,16 +72,7 @@ export async function addList(
   name: string,
   privateStatus: string
 ): Promise<ListInterface> {
-  let user: UserInterface | null;
-
-  try {
-    const session = await getSession();
-    if (!session) throw Error("Unauth Error");
-    user = await getUser(session.user as string);
-    if(user === null) throw Error();
-  } catch (error) {
-    throw new Error("Unauth Error");
-  }
+  let user = await checkUser();
 
   // Loop over lists to see if listname is taken
   for (let list of user.lists) {
@@ -116,16 +102,7 @@ export async function addBookToListDB(
   bookId: string,
   pages: number
 ): Promise<void> {
-  let curruser: UserInterface|null;
-
-  try {
-    const session = await getSession();
-    if (!session) throw new Error("Unauth Error");
-    curruser = await getUser(session.user as string);
-    if(curruser === null) throw new Error()
-  } catch (error) {
-    throw new Error("Unauth Error");
-  }
+  let curruser = await checkUser();
 
   try {
     if (!users) await init();
@@ -155,16 +132,7 @@ export async function updateProgressDB(
   bookId: string,
   progress: number
 ): Promise<void> {
-  let curruser: UserInterface | null;
-
-  try {
-    const session = await getSession();
-    if (!session) throw new Error("Unauth Error");
-    curruser = await getUser(session.user as string);
-    if (curruser === null) throw new Error();
-  } catch (error) {
-    throw new Error("Unauth Error");
-  }
+  let curruser = await checkUser();
 
   // TODO: Handle Pages in Progress
 

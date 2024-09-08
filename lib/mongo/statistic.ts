@@ -1,7 +1,7 @@
 import { UserInterface, StatisticsInterface } from "@/types/types";
 import clientPromis from ".";
 import { getSession } from "../auth/tokenHandler";
-import { getUser } from "./auth";
+import { checkUser, getUser } from "./auth";
 import { ObjectId } from "mongodb";
 
 let client;
@@ -54,19 +54,13 @@ export async function addBookToStatistic(
 ): Promise<void> {
   let user: UserInterface;
 
-  try {
-    const session = await getSession();
-    if (!session) throw new Error("Unauth Error");
-    user = await getUser(session.user as string);
-  } catch (error) {
-    throw new Error("Unauth Error");
-  }
+  
 
   console.log("Book data for statistics", bookId, bookPages);
 
   try {
+    user = await checkUser();
     if (!statistics) await init();
-
     const response = await statistics.updateOne(
       {
         userId: new ObjectId(user._id),
@@ -93,14 +87,8 @@ export async function getStatisticDB(): Promise<StatisticsInterface> {
   let user: UserInterface;
 
   try {
-    const session = await getSession();
-    if (!session) throw new Error("Unauth Error");
-    user = await getUser(session.user as string);
-  } catch (error) {
-    throw new Error("Unauth Error");
-  }
+    user = await checkUser();
 
-  try {
     if (!statistics) await init();
     const response = await statistics.findOne({
       userId: new ObjectId(user._id),

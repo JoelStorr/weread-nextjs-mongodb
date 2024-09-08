@@ -3,6 +3,9 @@ import clientPromis from ".";
 import { initiateProfile } from "./profile";
 import { initiateStatisctics } from "./statistic";
 
+import { redirect } from "next/navigation";
+import { getSession } from "../auth/tokenHandler";
+
 let client;
 let db;
 let users;
@@ -22,18 +25,14 @@ async function init(): Promise<void> {
   await init();
 })();
 
-
-
 // NOTE: GET USER VIA EMAIL
-export async function getUser(
-  email: string
-): Promise<UserInterface | null> {
+export async function getUser(email: string): Promise<UserInterface | null> {
   try {
     if (!users) await init();
     const result: UserInterface | null = await users.findOne({ email: email });
 
-    if(result == null){
-      return null
+    if (result == null) {
+      return null;
     }
 
     result._id = result._id.toString();
@@ -47,26 +46,26 @@ export async function getUser(
     return result;
   } catch (error) {
     console.log(error);
-    throw new Error( "Failed to fetch a user!");
+    throw new Error("Failed to fetch a user!");
   }
 }
 
 //NOTE: Get user via Username
-export async function getUserName(
-  name: string
-): Promise<UserInterface | null> {
+export async function getUserName(name: string): Promise<UserInterface | null> {
   try {
     if (!users) await init();
-    const result: UserInterface | null = await users.findOne({ username: name });
+    const result: UserInterface | null = await users.findOne({
+      username: name,
+    });
 
-    if(result === null){
+    if (result === null) {
       return result;
     }
 
     result._id = result._id.toString();
     return result;
   } catch (error) {
-    throw new Error("Failed to fetch a user!")
+    throw new Error("Failed to fetch a user!");
   }
 }
 
@@ -93,19 +92,31 @@ export async function addUser(
     await initiateProfile(result.insertedId);
     return result;
   } catch (error) {
-    throw new Error("Failed to add a user")
+    throw new Error("Failed to add a user");
   }
 }
 
 // NOTE: Delete a User
-export async function deleteUser(
-  email: string
-): Promise<void> {
+export async function deleteUser(email: string): Promise<void> {
   try {
     if (!users) await init();
     await users.deleteOne({ email: email });
     //TODO: Return info when user was deleted
   } catch (error) {
-    throw new Error("Failed to delete user")
+    throw new Error("Failed to delete user");
+  }
+}
+
+export async function checkUser(): Promise<UserInterface> {
+  let curruser: UserInterface | null;
+
+  try {
+    const session = await getSession();
+    if (!session) throw new Error("Unauth Error");
+    curruser = await getUser(session.user as string);
+    if (curruser === null) throw new Error();
+    return curruser;
+  } catch (error) {
+    redirect("/?login=true");
   }
 }
