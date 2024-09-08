@@ -43,7 +43,7 @@ const EditorPage: FC = () => {
   }, []);
 
   return (
-    <>
+    <div className={classes.editorHolder}>
       <div className={classes.topBar}>
         <p>{activeBlock?.blockTag}</p>
         <button onClick={saveLayout}>Save</button>
@@ -93,7 +93,7 @@ const EditorPage: FC = () => {
           preview={false}
         />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -42,7 +42,8 @@ $off-white: #d1deef;
   display: grid;
   width: 100vw;
   height: auto;
-  grid-gap: 10px;
+  row-gap: 1vh;
+  column-gap: 1vw;
   //grid-template-rows: repeat(14, 1fr);
   grid-template-columns: repeat(14, 1fr);
   grid-template-areas: "slh h1 h2 h3 h4 h5 h6 h7 h8 h9 h10 h11 h12 srh" 

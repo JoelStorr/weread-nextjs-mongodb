@@ -1,4 +1,15 @@
+.editorHolder {
+  grid-row: sl1-start / sl5-end;
+  grid-column: sl1-start / sr1-end;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+  height: 90vh;
+  padding: 0 1vw;
+}
+
 .topBar {
+  height: 6vh;
   grid-row: sl1-start / sl1-end;
   grid-column: sl1-start / sr1-end;
   display: flex;
@@ -7,6 +18,7 @@
   padding: 1rem 5rem;
   border: 0.4rem solid $primary-dark-blue;
   background-color: $background-grey;
+  border-radius: 0.5rem;
   button {
     color: $white;
     background-color: $primary-dark-blue;
@@ -20,7 +32,8 @@
 .blockLibrary {
   grid-row: sl2-start / sl5-end;
   grid-column: sl1-start / m3-end;
-  height: 85vh;
+  height: 80vh;
+  overflow-y: scroll;
   border: 0.4rem solid $primary-dark-blue;
   background-color: $background-grey;
   border-radius: 0.5rem;
@@ -31,16 +44,16 @@
     margin-bottom: 2rem;
   }
 
-  ul{
+  ul {
     list-style: none;
   }
-
 }
 
 .preview {
   grid-row: sl2-start / sl5-end;
   grid-column: m4-start / m9-end;
-
+  height: 80vh;
+  overflow-y: scroll;
   h1 {
     margin-left: 2rem;
     margin-top: 2rem;
@@ -60,6 +73,8 @@
   border-radius: 0.5rem;
   background-color: $background-grey;
   padding: 2rem;
+  height: 80vh;
+  overflow-y: scroll;
   h1 {
     text-align: center;
     margin-bottom: 2rem;
