@@ -6,6 +6,7 @@ interface EditorState {
   layout: Block[];
   activeBlock: Block | null;
   activeBlockPosition: number | null;
+  exisitngBlock: boolean;
 
   addToLayout: (block: Block) => void;
   createBlock: (type: string) => string;
@@ -15,12 +16,14 @@ interface EditorState {
   updateLayoutBlock: ()=> void;
   updateActiveBlock: (data:{})=>void;
   deleteLayoutBlock: (id:string)=>void;
+  exisitingBlockStatus: ()=>void
 }
 
 export const useEditorStore = create<EditorState>()((set) => ({
   layout: [],
   activeBlock: null,
   activeBlockPosition: null,
+  exisitngBlock: false,
   addToLayout: (block) =>
     set((state) => ({ layout: [...state.layout, block] })),
   createBlock: (type) => {
@@ -40,10 +43,23 @@ export const useEditorStore = create<EditorState>()((set) => ({
       console.log("Save Active Block", state.activeBlock);
       if (state.activeBlock !== null) {
 
-        const manageArray = [...state.layout]
-        manageArray.splice(index, 0, state.activeBlock)
+        const manageArray = [...state.layout];
 
-        return { layout: manageArray };
+        if(state.exisitngBlock){
+          let index = state.layout.findIndex((block) => block._id === state.activeBlock?._id);
+
+          if (index !== -1) {
+
+            manageArray.splice(index, 1);
+          }
+
+        }
+          
+          manageArray.splice(index, 0, state.activeBlock)
+
+        
+
+        return { layout: manageArray, exisitngBlock: false };
       }
 
       return {};
@@ -91,5 +107,7 @@ export const useEditorStore = create<EditorState>()((set) => ({
         layoutCopy.splice(index, 1)
         return {layout: [...layoutCopy]}
 
-    })
+    }),
+    exisitingBlockStatus: ()=>set((state) => ({exisitngBlock: true}))
+    
 }));
