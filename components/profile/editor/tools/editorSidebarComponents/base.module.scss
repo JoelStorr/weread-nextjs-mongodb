@@ -1,0 +1,32 @@
+.picker{
+
+    background-color: $white;
+    border: 0.2rem solid $primary-dark-blue;
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+    
+}
+
+.header{
+     padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.arrowDown{
+    rotate: 0deg;
+}
+
+
+.arrowUp{
+    rotate: 180deg;
+}
+
+.body{
+    padding: 0 0 1rem 1rem;
+}

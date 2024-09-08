@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { ReactElement, useState } from "react";
 
 import classes from "./numberInput.module.scss";
+import baseClasses from "../base.module.scss";
 
 interface NumberInput {
   number: string;
@@ -14,14 +15,14 @@ export default function NumberInput({ number, onChange, name }): ReactElement<Nu
   const [showPicker, setShowPicker] = useState<boolean>(false);
 
   return (
-    <section className={classes.picker}>
+    <section className={baseClasses.picker}>
       <div
         onClick={() => setShowPicker(!showPicker)}
-        className={classes.header}
+        className={baseClasses.header}
       >
         <h4>{name}: </h4>
         <Image
-          className={showPicker ? classes.arrowUp : classes.arrowDown}
+          className={showPicker ? baseClasses.arrowUp : baseClasses.arrowDown}
           src="/icons/arrow.png"
           width={35}
           height={35}
@@ -29,9 +30,13 @@ export default function NumberInput({ number, onChange, name }): ReactElement<Nu
         />
       </div>
       {showPicker && (
-        <div className={classes.body}>
-          <form onSubmit={e=>e.preventDefault()}>
-            <input type="number" value={number} onChange={(e) => onChange(e.target.value)}/>
+        <div className={`${baseClasses.body} ${classes.body}`}>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="number"
+              value={number}
+              onChange={(e) => onChange(e.target.value)}
+            />
           </form>
         </div>
       )}
