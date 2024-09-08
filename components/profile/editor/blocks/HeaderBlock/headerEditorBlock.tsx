@@ -5,6 +5,8 @@ import { useEditorStore } from "@/store/editorStore";
 import ColorPicker from "../../tools/editorSidebarComponents/colorpicker/colorPicker";
 import NumberInput from "../../tools/editorSidebarComponents/numberInput/numberInput";
 import PositionInput from "../../tools/editorSidebarComponents/positionInput/positionInput";
+import { loadUserInfo } from "@/lib/editor";
+import { UserInterfacePublic } from "@/types/types";
 
 // NOTE: Library Block
 export const HeaderLibraryBlock: FC = () => {
@@ -27,9 +29,19 @@ export const HeaderBlock: FC<BlockComponent> = ({ block }) => {
   } = useEditorStore();
 
   const [titleState, setTitleState] = useState(
-    block.data.title || "Placeholder Text"
+    block.data.title || "Your Name"
   );
+
+  const [user, setUser] = useState<UserInterfacePublic>({_id: "", username:"", lists:[]})
   let timer: NodeJS.Timeout;
+
+
+  useEffect(()=>{
+    (async ()=>{
+      const user = await loadUserInfo()
+      setUser(user);
+    })()
+  }, [])
 
   const clickHandler = (): void => {
     console.log("Clicked");
@@ -68,18 +80,75 @@ export const HeaderBlock: FC<BlockComponent> = ({ block }) => {
       <button className={baseClasses.closeButton} onClick={handleDelete}>
         X
       </button>
-      <form>
-        <input
-          value={titleState}
-          onChange={handleChange}
-          onFocus={(e) => e.target.select()}
+      <div className={classes.profileHeader}>
+        <img src="/profile/profile-header.jpg" className={classes.bgImage} />
+        <div
+          className={classes.profileInfoHolder}
           style={{
-            textAlign: block.data.style?.textAlign,
-            color: block.data.style?.color,
-            fontSize: `${block.data.style?.fontSize}px`,
+            flexDirection: block.data.style?.textAlign,
           }}
-        />
-      </form>
+        >
+          <img src="/profile/ProfileImage.png" />
+          <div
+            className={classes.profileDetails}
+            style={{ color: block.data.style?.color }}
+          >
+            <div
+              className={classes.userTags}
+              style={{ color: block.data.style?.color }}
+            >
+              <h3 style={{ color: block.data.style?.color }}>
+                @{user.username}
+              </h3>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <input
+                  value={titleState}
+                  onChange={handleChange}
+                  placeholder="name"
+                  style={{ color: block.data.style?.color }}
+                />
+              </form>
+              <h4 style={{ color: block.data.style?.color }}>Details:</h4>
+            </div>
+            <div className={classes.detailHolder}>
+              <div>
+                <p style={{ color: block.data.style?.color }}>
+                  Follower{" "}
+                  <span
+                    style={{
+                      backgroundColor: block.data.style?.highlightColor,
+                    }}
+                  >
+                    5
+                  </span>
+                </p>
+                <p style={{ color: block.data.style?.color }}>
+                  Folloing{" "}
+                  <span
+                    style={{
+                      backgroundColor: block.data.style?.highlightColor,
+                    }}
+                  >
+                    5
+                  </span>
+                </p>
+              </div>
+              <div>
+                <p style={{ color: block.data.style?.color }}>
+                  Location{" "}
+                  <span
+                    style={{
+                      backgroundColor: block.data.style?.highlightColor,
+                    }}
+                  >
+                    Germany
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -93,6 +162,10 @@ export const EditorHeaderBlock: FC<BlockComponent> = ({ block }) => {
   const [color, setColor] = useState<string>(
     block.data.style?.color || "#1e2262"
   );
+
+  const [highlightColor, setHighlightColor] = useState<string>(
+    block.data.style?.color || "#1b919a"
+  );
   const [fontSize, setFontSize] = useState<string>(
     block.data.style?.fontSize || "37"
   );
@@ -100,7 +173,7 @@ export const EditorHeaderBlock: FC<BlockComponent> = ({ block }) => {
     block.data.style?.textAlign || "left"
   );
 
-  const { selectLayoutBlock, updateActiveBlock, updateLayoutBlock } =
+  const { updateActiveBlock, updateLayoutBlock } =
     useEditorStore();
 
   let timer: NodeJS.Timeout;
@@ -124,13 +197,13 @@ export const EditorHeaderBlock: FC<BlockComponent> = ({ block }) => {
         style: {
           backgroundColor: bgColor,
           color: color,
-          fontSize: fontSize,
+          highlightColor: highlightColor,
           textAlign: textAlign,
         },
       });
       updateLayoutBlock();
     }, 2000);
-  }, [bgColor, color, fontSize, textAlign]);
+  }, [bgColor, color, fontSize, textAlign, highlightColor]);
 
   return (
     <div>
@@ -140,11 +213,12 @@ export const EditorHeaderBlock: FC<BlockComponent> = ({ block }) => {
         name={"Background Color"}
       />
       <ColorPicker color={color} onChange={setColor} name={"Text Color"} />
-      <NumberInput number={fontSize} onChange={setFontSize} name="Font Size" />
+      <ColorPicker color={highlightColor} onChange={setHighlightColor} name={"Highlight Color"} />
       <PositionInput
         position={textAlign}
         onChange={setTextAlign}
         name="Position"
+        options={[{name: "left", value:"row"}, {name:"right", value:"row-reverse"}]}
       />
     </div>
   );

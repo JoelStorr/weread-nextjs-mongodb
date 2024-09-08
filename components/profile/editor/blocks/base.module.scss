@@ -19,12 +19,13 @@
     
     position: relative;
     padding: 2rem;
+    height: fit-content;
 
     .closeButton{
         position: absolute;
         top:0;
         right: 0;
-        padding: 0.4rem 0.5rem;
+        padding: 0.4rem 0.8rem;
         color: $white;
         background-color: $secondary-light-blue;
         border: none;

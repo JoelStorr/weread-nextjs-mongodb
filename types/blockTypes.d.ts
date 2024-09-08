@@ -15,7 +15,8 @@ interface BlockData {
     color?: string;
     fontSize?: string;
     textAlign?: string;
-  }
+    highlightColor?:string;
+  };
 }
 
 
