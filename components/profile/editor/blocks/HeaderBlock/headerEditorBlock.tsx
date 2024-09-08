@@ -2,7 +2,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import classes from './headerEditorBlock.module.scss';
 import { useEditorStore } from '@/store/editorStore';
-import { HexAlphaColorPicker } from 'react-colorful';
+import ColorPicker from '../../tools/editorSidebarComponents/colorpicker/colorPicker';
+import NumberInput from '../../tools/editorSidebarComponents/numberInput/numberInput';
+import PositionInput from '../../tools/editorSidebarComponents/positionInput/positionInput';
 
 // NOTE: Library Block
 export const HeaderLibraryBlock: FC = () => {
@@ -125,32 +127,10 @@ export const EditorHeaderBlock: FC<BlockComponent> = ({block}) => {
 
   return (
     <div>
-      <form onSubmit={(e) => e.preventDefault()}>
-        {/* TODO: Color Picker */}
-        <p>Test Data</p>
-      </form>
-
-      <section>
-        <h4>Background Color: </h4>
-        <HexAlphaColorPicker color={bgColor} onChange={setBgColor} />
-      </section>
-
-      <section>
-        <h4>Color: </h4>
-        <HexAlphaColorPicker color={color} onChange={setColor} />
-      </section>
-      <section>
-        <h4>Font Size</h4>
-        <input type='number' value={fontSize} onChange={(e)=>setFontSize(e.target.value)} />
-      </section>
-      <section>
-        <h4>Position</h4>
-        <select onChange={(e)=> setTextAlign(e.target.value)} value={textAlign}>
-            <option value={"left"}>Left</option>
-            <option value={"center"}>Center</option>
-            <option value={"right"}>Right</option>
-        </select>
-      </section>
+      <ColorPicker color={bgColor} onChange={setBgColor} name={"Background Color"}/>
+      <ColorPicker color={color} onChange={setColor} name={"Text Color"} />
+      <NumberInput number={fontSize} onChange={setFontSize} name="Font Size" />
+      <PositionInput position={textAlign} onChange={setTextAlign} name="Position" />
     </div>
   );
 };
