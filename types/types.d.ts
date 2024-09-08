@@ -9,6 +9,17 @@ interface UserInterface {
   lists: ListInterface[];
 }
 
+interface UserInterfacePublic {
+  _id: string;
+  username: string;
+  lists: ListInterface[];
+}
+
+interface UserInterfaceSearch {
+  _id: string;
+  username: string;
+}
+
 interface ListInterface {
   name: string;
   private: boolean;

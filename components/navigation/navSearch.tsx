@@ -5,6 +5,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import classes from "./navSearch.module.scss";
+import { ListInterface, SearchBook, UserInterface, UserInterfaceSearch } from "@/types/types";
+import { getUserByName } from "@/lib/user";
+import Link from "next/link";
 
 
   interface BookObject {
@@ -16,24 +19,19 @@ import classes from "./navSearch.module.scss";
     pages: number;
   }
 
-  interface ListObject {
-    name: string;
-    private: boolean;
-    books: []
-  }
-
 const NavSearch: React.FC = () => {
 
   const router = useRouter();
 
   const search1 = useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useState("");
-  const [searchResult, setSearchResult] = useState<BookObject[]>([]);
+  const [searchResult, setSearchResult] = useState<SearchBook[]>([]);
   const [pageIndex, setPageIndex] = useState(0);
-  const [lists, setLists] = useState<ListObject[]>([]);
-  const [clickedBook, setClickedBook] = useState<BookObject | {id: null}>({ id: null });
+  const [lists, setLists] = useState<ListInterface[]>([]);
+  const [clickedBook, setClickedBook] = useState<SearchBook | {id: null}>({ id: null });
+  const [user, setUser] = useState<UserInterfaceSearch | null>(null)
 
-  function handleBookClick(book:BookObject | {id: null}) {
+  function handleBookClick(book:SearchBook | {id: null}) {
     setClickedBook(book);
   }
 
@@ -69,6 +67,17 @@ const NavSearch: React.FC = () => {
       }
     }
 
+    if(search.split("")[0] === "@"){
+
+
+      const user = await getUserByName(search);
+      setUser(user);
+      return;
+    }
+
+
+    
+
     try {
       const res = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${search}&startIndex=${pageIndex}&maxResults=10`
@@ -82,7 +91,7 @@ const NavSearch: React.FC = () => {
 
       //NOTE: Convert Books to usable format
 
-      let temp: BookObject[] = [];
+      let temp: SearchBook[] = [];
       for (let i = 0; i < response.items.length; i++) {
         if (!response.items[i].volumeInfo.industryIdentifiers) {
           continue;
@@ -92,12 +101,12 @@ const NavSearch: React.FC = () => {
           continue;
         }
 
-        const bookObj: BookObject = {
+        const bookObj: SearchBook = {
           id: response.items[i].id,
           title: response.items[i].volumeInfo.title,
           author: response.items[i].volumeInfo.authors,
-          cover: undefined,
-          isbn: undefined,
+          cover: null,
+          isbn: null,
           pages: response.items[i].volumeInfo.pageCount,
         };
 
@@ -129,6 +138,7 @@ const NavSearch: React.FC = () => {
     setSearchValue(event.target.value);
   };
 
+  //TODO: Split Book Results and user results into there own Components
   return (
     <>
       <form className={classes.search} onSubmit={(e) => runBookSearch(e, true)}>
@@ -140,7 +150,7 @@ const NavSearch: React.FC = () => {
         />
       </form>
       {/* NOTE: Search Popup */}
-      {searchResult.length > 0 && (
+      {(searchResult.length > 0 || user !== null)  && (
         <div>
           <div
             className={classes.searchPopupBg}
@@ -158,12 +168,14 @@ const NavSearch: React.FC = () => {
             </form>
 
             <div  className={classes.bookListHolder}>
-              <ul>
-              {/* NOTE: Search Result */}
+             
+              {/* NOTE: Search Result Books */}
+                {searchResult.length > 0 &&
+                <ul>
                 {searchResult.map((book, index) => (
                   <li key={book.id} className={classes.bookListElement}>
                     <div className={classes.bookListDetail}>
-                      <img src={book.cover} />
+                      <img src={book.cover || ""} />
                       <div>
                         <h4>{book.title}</h4>
                         <br />
@@ -201,7 +213,17 @@ const NavSearch: React.FC = () => {
                     {searchResult.length - 1 !== index && <hr className={classes.hr}/>}
                   </li>
                 ))}
-              </ul>
+                </ul>
+              }
+              {/* NOTE: User Search Results */}
+              {user && (
+                <ul>
+                  <li>
+                    <Link href={"/profile/"+user.username} onClick={()=>setUser(null)}>{user.username}</Link>
+                  </li>
+                </ul>
+              )}
+
             </div>
             <div className={classes.btnHolder}>
               <div>

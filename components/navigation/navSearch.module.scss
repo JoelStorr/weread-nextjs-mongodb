@@ -66,6 +66,9 @@
   margin-top: 2rem;
   color: $white;
 
+  a{
+    color: $white;
+  }
 }
 
 .bookListElement {
@@ -167,6 +170,8 @@
     height: auto;
     padding: 1rem;
     border-radius: 5px;
+
+   
 
     ul{
         list-style: none;
