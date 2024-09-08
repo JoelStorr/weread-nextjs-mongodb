@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./profileUserPage.module.scss";
 import Link from "next/link";
-import PreviewManager from "@/components/profile/editor/tools/previewManager/previewManager";
 import { loadLayout } from "@/lib/profile";
 import { HeaderBlock } from "@/components/profile/profile/blocks/HeaderBlock/headerBlock";
+import PreviewManager from "@/components/profile/profile/previewManager/previewManager";
 
 const Components = {
   "header-block": HeaderBlock,

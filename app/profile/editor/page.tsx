@@ -10,9 +10,9 @@ import {
   HeaderBlock,
   HeaderLibraryBlock,
 } from "@/components/profile/editor/blocks/HeaderBlock/headerEditorBlock";
-import PreviewManager from "@/components/profile/editor/tools/previewManager/previewManager";
 import DropZone from "@/components/profile/editor/tools/dropZone/dropZone";
 import { useRouter } from "next/navigation";
+import PreviewManagerEditor from "@/components/profile/editor/tools/previewManager/previewManagerEditor";
 
 const Components = {
   "header-block": HeaderBlock,
@@ -26,14 +26,13 @@ const EditorPage: FC = () => {
   const { activeBlock, createBlock, layout, setLoadedLayout } =
     useEditorStore();
 
-    const router = useRouter()
+  const router = useRouter();
 
   // TODO: Style Editor Properly
 
   const saveLayout = async (): Promise<void> => {
     await saveEditor(layout);
     router.push("/profile");
-    
   };
 
   useEffect(() => {
@@ -69,7 +68,11 @@ const EditorPage: FC = () => {
           </li>
           {layout.map((block, index) => (
             <li key={block._id}>
-              <PreviewManager block={block} components={Components} />
+              <PreviewManagerEditor
+                block={block}
+                components={Components}
+                preview={true}
+              />
               <DropZone index={index + 1} last={layout.length - 1 === index} />
             </li>
           ))}
@@ -83,7 +86,11 @@ const EditorPage: FC = () => {
 
       <div className={classes.editor}>
         <h1>Editor</h1>
-        <PreviewManager block={activeBlock} components={EditorComponents} />
+        <PreviewManagerEditor
+          block={activeBlock}
+          components={EditorComponents}
+          preview={false}
+        />
       </div>
     </>
   );
