@@ -45,7 +45,7 @@ const EditorPage: FC = () => {
   return (
     <div className={classes.editorHolder}>
       <div className={classes.topBar}>
-        <p>{activeBlock?.blockTag}</p>
+        <p>Active Block: "{activeBlock?.blockTag}"</p>
         <button onClick={saveLayout}>Save</button>
       </div>
       <div className={classes.blockLibrary}>
