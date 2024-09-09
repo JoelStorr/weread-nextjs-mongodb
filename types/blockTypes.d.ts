@@ -10,6 +10,8 @@ interface BlockComponent{
 
 interface BlockData {
   title?: string;
+  quote?: string;
+  author?: string;
   style?: {
     backgroundColor?: string;
     color?: string;

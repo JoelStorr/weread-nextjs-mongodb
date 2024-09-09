@@ -14,6 +14,7 @@ import DropZone from "@/components/profile/editor/tools/dropZone/dropZone";
 import { useRouter } from "next/navigation";
 import PreviewManagerEditor from "@/components/profile/editor/tools/previewManager/previewManagerEditor";
 import { EditorHeaderBlock, HeaderBlock, HeaderLibraryBlock } from "@/components/profile/editor/blocks/HeaderBlock/headerEditorBlock";
+import { EditorQuoteBlock, QuoteBlock, QuoteLibraryBlock } from "@/components/profile/editor/blocks/QuoteBlock/QuoteEditorBlock";
 
 
 
@@ -21,11 +22,13 @@ import { EditorHeaderBlock, HeaderBlock, HeaderLibraryBlock } from "@/components
 const Components:Components = {
   "header-block": HeaderBlock,
   "heading-block": HeadingBlock,
+  "quote-block": QuoteBlock,
 };
 
 const EditorComponents:Components = {
   "header-block": EditorHeaderBlock,
   "heading-block": EditorHeadingBlock,
+  "quote-block": EditorQuoteBlock
 
 };
 
@@ -67,6 +70,11 @@ const EditorPage: FC = () => {
           <li>
             <DragComponent blockTag="heading-block">
               <HeadingLibraryBlock />
+            </DragComponent>
+          </li>
+          <li>
+            <DragComponent blockTag="quote-block">
+              <QuoteLibraryBlock />
             </DragComponent>
           </li>
         </ul>

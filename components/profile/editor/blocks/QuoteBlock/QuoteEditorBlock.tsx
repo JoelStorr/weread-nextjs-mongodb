@@ -1,6 +1,6 @@
 
 import React, { FC, useEffect, useState } from 'react';
-import classes from './headingEditorBlock.module.scss';
+import classes from "./QuoteEditorBlock.module.scss";
 import baseClasses from '../base.module.scss'
 import { useEditorStore } from '@/store/editorStore';
 import ColorPicker from '../../tools/editorSidebarComponents/colorpicker/colorPicker';
@@ -28,9 +28,12 @@ export const QuoteBlock: FC<BlockComponent> = ({ block }) => {
     activeBlock
   } = useEditorStore();
 
-  const [titleState, setTitleState] = useState(
-    block.data.title || "Placeholder Text"
+  const [quote, setQuote] = useState(
+    block.data.quote || "Placeholder Text"
   );
+
+   const [author, setAuthor] = useState(block.data.author || "Placeholder Text");
+
   let timer: NodeJS.Timeout;
 
   const clickHandler = (): void => {
@@ -41,19 +44,17 @@ export const QuoteBlock: FC<BlockComponent> = ({ block }) => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setTitleState(e.target.value);
+ 
 
-    console.log(e.target.value);
-
+  useEffect(()=>{
     clearTimeout(timer);
 
     timer = setTimeout(() => {
       console.log("Timer Ran");
-      updateActiveBlock({ ...block.data,  title: e.target.value });
+      updateActiveBlock({ ...block.data, quote: quote, author: author });
       updateLayoutBlock();
     }, 2000);
-  };
+  }, [quote, author])
 
   console.log(block);
 
@@ -75,9 +76,20 @@ export const QuoteBlock: FC<BlockComponent> = ({ block }) => {
         X
       </button>
       <form>
-        <input
-          value={titleState}
-          onChange={handleChange}
+        <span
+          style={{
+            display: "inline-block",
+            textAlign: block.data.style?.textAlign,
+            color: block.data.style?.color,
+            fontSize: `${block.data.style?.fontSize / 1.5}px`,
+          }}
+        >
+          "
+        </span>
+        <textarea
+          rows={1}
+          value={quote}
+          onChange={(e) => setQuote(e.target.value)}
           onFocus={(e) => e.target.select()}
           style={{
             textAlign: block.data.style?.textAlign,
@@ -85,15 +97,37 @@ export const QuoteBlock: FC<BlockComponent> = ({ block }) => {
             fontSize: `${block.data.style?.fontSize}px`,
           }}
         />
+
+        <span
+          style={{
+            display: "inline-block",
+            textAlign: block.data.style?.textAlign,
+            color: block.data.style?.color,
+            fontSize: `${block.data.style?.fontSize / 1.5}px`,
+          }}
+        >
+          "
+        </span>
+
         <br />
+        <span
+          style={{
+            display: "inline-block",
+            textAlign: block.data.style?.textAlign,
+            color: block.data.style?.color,
+            fontSize: `${block.data.style?.fontSize / 1.5}px`,
+          }}
+        >
+          by{"  "}
+        </span>
         <input
-          value={titleState}
-          onChange={handleChange}
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
           onFocus={(e) => e.target.select()}
           style={{
             textAlign: block.data.style?.textAlign,
             color: block.data.style?.color,
-            fontSize: `${block.data.style?.fontSize}px`,
+            fontSize: `${block.data.style?.fontSize / 1.5}px`,
           }}
         />
       </form>
