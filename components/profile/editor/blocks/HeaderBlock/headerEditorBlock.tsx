@@ -88,7 +88,13 @@ export const HeaderBlock: FC<BlockComponent> = ({ block }) => {
             flexDirection: block.data.style?.textAlign,
           }}
         >
-          <img src="/profile/ProfileImage.png" />
+          <img
+            src="/profile/ProfileImage.png"
+            style={{
+              borderRadius: `${block.data.style?.imageCorner}px`,
+              width: `${block.data.style?.imageSize}px`,
+            }}
+          />
           <div
             className={classes.profileDetails}
             style={{ color: block.data.style?.color }}
@@ -166,8 +172,11 @@ export const EditorHeaderBlock: FC<BlockComponent> = ({ block }) => {
   const [highlightColor, setHighlightColor] = useState<string>(
     block.data.style?.color || "#1b919a"
   );
-  const [fontSize, setFontSize] = useState<string>(
+  const [imageCorner, setImageCorner] = useState<string>(
     block.data.style?.fontSize || "37"
+  );
+  const [imageSize, setImageSize] = useState<string>(
+    block.data.style?.fontSize || "200"
   );
   const [textAlign, setTextAlign] = useState<string>(
     block.data.style?.textAlign || "left"
@@ -199,11 +208,13 @@ export const EditorHeaderBlock: FC<BlockComponent> = ({ block }) => {
           color: color,
           highlightColor: highlightColor,
           textAlign: textAlign,
+          imageCorner: imageCorner,
+          imageSize: imageSize,
         },
       });
       updateLayoutBlock();
     }, 2000);
-  }, [bgColor, color, fontSize, textAlign, highlightColor]);
+  }, [bgColor, color, imageCorner, textAlign, highlightColor, imageSize]);
 
   return (
     <div>
@@ -213,12 +224,29 @@ export const EditorHeaderBlock: FC<BlockComponent> = ({ block }) => {
         name={"Background Color"}
       />
       <ColorPicker color={color} onChange={setColor} name={"Text Color"} />
-      <ColorPicker color={highlightColor} onChange={setHighlightColor} name={"Highlight Color"} />
+      <ColorPicker
+        color={highlightColor}
+        onChange={setHighlightColor}
+        name={"Highlight Color"}
+      />
       <PositionInput
         position={textAlign}
         onChange={setTextAlign}
         name="Position"
-        options={[{name: "left", value:"row"}, {name:"right", value:"row-reverse"}]}
+        options={[
+          { name: "left", value: "row" },
+          { name: "right", value: "row-reverse" },
+        ]}
+      />
+      <NumberInput
+        number={imageSize}
+        onChange={setImageSize}
+        name="Image Size"
+      />
+      <NumberInput
+        number={imageCorner}
+        onChange={setImageCorner}
+        name="Image Corner"
       />
     </div>
   );

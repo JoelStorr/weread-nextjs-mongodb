@@ -15,7 +15,9 @@ interface BlockData {
     color?: string;
     fontSize?: string;
     textAlign?: string;
-    highlightColor?:string;
+    highlightColor?: string;
+    imageCorner?: string;
+    imageSize?: string;
   };
 }
 
@@ -23,6 +25,7 @@ interface BlockData {
 interface Components {
  "header-block": FC<BlockComponent>;
   "heading-block": FC<BlockComponent>;
+  "quote-block": FC<BlockComponent>;
 }
 
 interface HeaderBlock{

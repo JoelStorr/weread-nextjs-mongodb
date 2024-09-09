@@ -18,7 +18,13 @@ export const HeaderBlock: FC<BlockComponent> = async ({ block }) => {
             flexDirection: block.data.style?.textAlign,
           }}
         >
-          <img src="/profile/ProfileImage.png" />
+          <img
+            src="/profile/ProfileImage.png"
+            style={{
+              borderRadius: `${block.data.style?.imageCorner}px`,
+              width: `${block.data.style?.imageSize}px`,
+            }}
+          />
           <div
             className={classes.profileDetails}
             style={{ color: block.data.style?.color }}
@@ -27,12 +33,14 @@ export const HeaderBlock: FC<BlockComponent> = async ({ block }) => {
               className={classes.userTags}
               style={{ color: block.data.style?.color }}
             >
-              <h3 style={{ color: block.data.style?.color }}>@{user.username}</h3>
-              
-                <p
-                  style={{ color: block.data.style?.color }}
-                >{block.data.title}</p>
-              
+              <h3 style={{ color: block.data.style?.color }}>
+                @{user.username}
+              </h3>
+
+              <p style={{ color: block.data.style?.color }}>
+                {block.data.title}
+              </p>
+
               <h4 style={{ color: block.data.style?.color }}>Details:</h4>
             </div>
             <div className={classes.detailHolder}>
