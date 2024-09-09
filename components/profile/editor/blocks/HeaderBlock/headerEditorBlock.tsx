@@ -170,13 +170,13 @@ export const EditorHeaderBlock: FC<BlockComponent> = ({ block }) => {
   );
 
   const [highlightColor, setHighlightColor] = useState<string>(
-    block.data.style?.color || "#1b919a"
+    block.data.style?.highlightColor || "#1b919a"
   );
   const [imageCorner, setImageCorner] = useState<string>(
-    block.data.style?.fontSize || "37"
+    block.data.style?.imageCorner || "37"
   );
   const [imageSize, setImageSize] = useState<string>(
-    block.data.style?.fontSize || "200"
+    block.data.style?.imageSize || "200"
   );
   const [textAlign, setTextAlign] = useState<string>(
     block.data.style?.textAlign || "left"

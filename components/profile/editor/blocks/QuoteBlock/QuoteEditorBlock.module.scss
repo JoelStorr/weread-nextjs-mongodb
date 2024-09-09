@@ -1,0 +1,25 @@
+
+.previewBlock{
+   
+    form{
+        input{
+           background-color: rgba(0,0,0,0); 
+           border: none;
+           outline: none;
+           font-size: 3.7rem;
+           font-family: Baskerville;
+           font-weight: 600;
+           
+            width: 100%;
+
+
+           &:active{
+            outline: none;
+           }
+
+           &:hover{
+            cursor: text;
+           }
+        }
+    }
+}
