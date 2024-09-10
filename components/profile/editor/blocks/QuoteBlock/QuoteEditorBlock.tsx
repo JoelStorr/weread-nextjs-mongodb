@@ -81,7 +81,7 @@ export const QuoteBlock: FC<BlockComponent> = ({ block }) => {
             display: "inline-block",
             textAlign: block.data.style?.textAlign,
             color: block.data.style?.color,
-            fontSize: `${block.data.style?.fontSize / 1.5}px`,
+            fontSize: `${+block.data.style?.fontSize / 1.5}px`,
           }}
         >
           "
@@ -103,7 +103,7 @@ export const QuoteBlock: FC<BlockComponent> = ({ block }) => {
             display: "inline-block",
             textAlign: block.data.style?.textAlign,
             color: block.data.style?.color,
-            fontSize: `${block.data.style?.fontSize / 1.5}px`,
+            fontSize: `${+block.data.style?.fontSize / 1.5}px`,
           }}
         >
           "
@@ -115,7 +115,7 @@ export const QuoteBlock: FC<BlockComponent> = ({ block }) => {
             display: "inline-block",
             textAlign: block.data.style?.textAlign,
             color: block.data.style?.color,
-            fontSize: `${block.data.style?.fontSize / 1.5}px`,
+            fontSize: `${+block.data.style?.fontSize / 1.5}px`,
           }}
         >
           by{"  "}
@@ -127,7 +127,7 @@ export const QuoteBlock: FC<BlockComponent> = ({ block }) => {
           style={{
             textAlign: block.data.style?.textAlign,
             color: block.data.style?.color,
-            fontSize: `${block.data.style?.fontSize / 1.5}px`,
+            fontSize: `${+block.data.style?.fontSize / 1.5}px`,
           }}
         />
       </form>
