@@ -12,12 +12,16 @@
     margin: 2rem 0;
 
     width: 100%;
-    img{
-        margin-right: 2rem;
-    }
+ 
 
     .infoHolder{
         width: 100%;
     }
 
+    img{
+        width: 5rem;
+        height: 5rem;
+        border-radius: 0.5rem;
+        margin-right: 2rem;
+    }
 }
